@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeEye | Cadastro</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+    <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="cadastro-background">
+        <div class="cadastro-box">
+            <div class="cadastro-form">
+                <div class="cadastro-title">
+                    <h1>Bem-Vindo!</h1>
+                    <h3>Cadastre sua empresa e aproveite os benefícios.</h3>
+                </div>
+
+                <div class="cadastro-section" id="section1">
+                    <div class="cadastro-field">
+                        <label for="nome_fantasia">Nome Fantasia</label>
+                        <input type="text">
+                        
+                    </div>
+                    <div class="cadastro-field">
+                        <label for="razao_social">Razão Social</label>
+                        <input type="text" >
+                       
+                    </div>
+                    <div class="cadastro-field">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" >
+                       
+                    </div>
+                    <div class="cadastro-button">
+                        <button onclick="mudarSection('section2')">Próximo</button>
+                    </div>
+                </div>
+
+                <div class="cadastro-section" id="section2" style="display: none;">
+                    <div class="cadastro-field">
+                        <label for="email">Email</label>
+                        <input type="text">
+                    </div>
+                    <div class="cadastro-field">
+                        <label for="razao_social">Senha</label>
+                        <input type="text" >
+                       
+                    </div>
+                    <div class="cadastro-field">
+                        <label for="cnpj">Confirmar senha</label>
+                        <input type="text" >
+                       
+                    </div>
+                    <div class="cadastro-button">
+                        <button onclick="mudarSection('section1')">Voltar</button>
+                        <button>Cadastrar</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="cadastro-image">
+                <img src="assets/svg/blob-haikei-cadastro.svg" alt="" id="image-background">
+                <img src="assets/svg/Business mission-pana.svg" alt="">
+             
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function mudarSection(id) {
+        var abas = document.getElementsByClassName('cadastro-section');
+
+        for (var i = 0; i < abas.length; i++) {
+            abas[i].style.display = 'none';
+        }
+
+        document.getElementById(id).style.display = 'flex';
+    }
+</script>
