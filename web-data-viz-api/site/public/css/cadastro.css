@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 *{
     margin: 0;
-    /* fonte temporária */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .cadastro-background{
@@ -39,10 +40,12 @@
     border-bottom-right-radius: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;   
-
+    justify-content: center;  
+    
    
 }
+
+
 
 
 .cadastro-image img{
@@ -53,6 +56,26 @@
 
 #image-background{
     width: 920px;
+    margin-bottom: 30px;
+}
+
+.box-text{
+    position: relative;
+    margin-top: 430px;
+    margin-right: 110px;
+}
+
+.box-text p{
+    font-weight: 600;
+    font-size: 13px;
+    
+    color: #263238;
+    
+}
+
+.box-text a{
+    text-decoration: none;
+    color: #003b95;
 }
 
 
@@ -66,6 +89,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    background-color: #fff;
+   
 }
 
 .cadastro-section{
@@ -87,12 +112,12 @@
     text-transform: uppercase;
     margin-top: 60px;
     text-align: center;
-    color: #1a1a1a;
+    color: #263238;
 }
 
 .cadastro-title h3{
     
-    font-weight: 300;
+    font-weight: 600;
     font-size: 12px;
     margin-top: 15px;
     color: #003b95;
@@ -108,8 +133,8 @@
 
 .cadastro-field label{
     font-size: 12px;
-    font-weight: 500;
-    margin-left: 18px;
+    font-weight: 600;
+    margin-left: 12px;
     margin-bottom: 8px;
 }
 
@@ -123,17 +148,19 @@
     
 }
 
-
 .cadastro-field i{
-    color: #003b95;
+    color: #1a1a1a;
     position: absolute;
-    margin-top: 38px;
-    margin-left: 18px;
+    margin-top: 39px;
+    margin-left: 270px;
     font-size: 15px;
 }
 
+
+
+
+
 .cadastro-button button{
-    
     width: 150px;
     height: 44px;
     padding: 8px;
