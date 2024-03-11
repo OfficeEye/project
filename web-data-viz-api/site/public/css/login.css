@@ -127,7 +127,9 @@
     border: 1.5px solid #999999;
     padding: 10px;
     z-index: 3;
+    transition: all .4s ease-in-out;
 }
+
 
 
 .login-field i{
@@ -174,6 +176,7 @@
     background-color: #003c95e5;
     color: #1a1a1a;
 }
+
 
 .login-form img{
     height: 100%;

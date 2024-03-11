@@ -19,7 +19,7 @@
                 <div class="cadastro-section" id="section1">
                     <div class="cadastro-field">
                         <label for="nome_fantasia">Nome Fantasia</label>
-                        <input type="text">
+                        <input type="text" autofocus autocomplete="off">
                         
                     </div>
                     <div class="cadastro-field">
@@ -40,18 +40,22 @@
                 <div class="cadastro-section" id="section2" style="display: none;">
                     <div class="cadastro-field">
                         <label for="email">Email</label>
-                        <input type="text">
+                        <input type="text" autofocus autocomplete="off">
                     </div>
                     <div class="cadastro-field" id="field_senha">
-                        <label for="razao_social">Senha</label>
+                        <label for="senha">Senha</label>
                         <input type="password" id="input_senha">
-                        <i class="fa-solid fa-lock" onclick="verSenha()"></i>
+                        <div class="icon-password" id="icon_password">
+                            <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_lock"></i>
+                        </div>
                        
                     </div>
                     <div class="cadastro-field">
-                        <label for="cnpj">Confirmar senha</label>
-                        <input type="text" >
-                        <i class="fa-solid fa-lock"></i>
+                        <label for="confirmar_senha">Confirmar senha</label>
+                        <input type="password" >
+                        <div class="icon-password" id="icon_password">
+                            <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_confirm_lock"></i>
+                        </div>
                        
                     </div>
                     <div class="cadastro-button">
@@ -84,17 +88,6 @@
         }
 
         document.getElementById(id).style.display = 'flex';
-    }
-
-
-    function verSenha(){
-        input_senha.type = 'text';
-        field_senha.innerHTML = `<i class="fa-solid fa-unlock" id="senha_aparente" onclick="ocultarSenha()></i>`
-    }
-
-    function ocultarSenha(){
-        input_senha.type = 'password';
-        field_senha.innerHTML = `<i class="fa-solid fa-lock" id="senha_oculta" onclick="verSenha()"></i>`
     }
 
 

@@ -52,6 +52,7 @@
     width: 520px;
     position: absolute;
     margin-right: 80px;
+    z-index: 2;
 }
 
 #image-background{
@@ -63,6 +64,7 @@
     position: relative;
     margin-top: 430px;
     margin-right: 110px;
+    z-index: 4;
 }
 
 .box-text p{
@@ -145,6 +147,8 @@
     border-radius: 20px;
     border: 1.5px solid #999999;
     padding: 10px;
+    z-index: 3;
+    transition: all .4s ease-in-out;
     
 }
 
@@ -154,10 +158,24 @@
     margin-top: 39px;
     margin-left: 270px;
     font-size: 15px;
+    z-index: 5;
 }
 
+#cadastro_field_password_lock, #cadastro_field_password_confirm_lock{
+    cursor: pointer;
+}
 
+.icon-password{
+  
+    height: 60px;
+    position: absolute;
+    margin-bottom: 200px;
+   
+}
 
+.cadastro-button{
+    z-index: 3;
+}
 
 
 .cadastro-button button{
@@ -177,6 +195,7 @@
 
 .cadastro-button button:hover{
     background-color: #003c95e5;
+    color: #1a1a1a;
 }
 
 .cadastro-form img{
