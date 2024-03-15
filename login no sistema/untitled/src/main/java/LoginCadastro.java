@@ -92,19 +92,19 @@ public class LoginCadastro {
                     for (int i = 0; i < listaEmail.size(); i++){
                         if (email.equals(listaEmail.get(i))){
                             emailValido = true;
+
+                            do {
+                                System.out.println("senha: ");
+                                String senha = leitor.next();
+                                    if(senha.equals(listaSenha.get(i))){
+                                        senhaValida = true;
+                                    }
+                            }while(senhaValida.equals(false));
                         }
                     }
                 }while(emailValido.equals(false));
 
-                do {
-                    System.out.println("senha: ");
-                    String senha = leitor.next();
-                    for (int i = 0; i< listaSenha.size(); i++){
-                        if(senha.equals(listaSenha.get(i))){
-                            senhaValida = true;
-                        }
-                    }
-                }while(senhaValida.equals(false));
+
 
                 break;
 

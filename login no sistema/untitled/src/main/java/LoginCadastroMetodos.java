@@ -40,7 +40,7 @@ public class LoginCadastroMetodos {
 
     Boolean senhaExiste(String senha){
         Boolean checkSenha = false;
-        if(senha.length() == 6){
+        if(senha.length() >= 6){
             checkSenha = true;
         }
 
