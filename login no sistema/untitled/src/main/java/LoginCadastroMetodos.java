@@ -31,48 +31,28 @@ public class LoginCadastroMetodos {
 
     Boolean emailExiste(String email){
         Boolean checkEmail = false;
-        if (email.indexOf("@") == 1 || email.indexOf(".com") == 1 ) {
+        if (email.indexOf("@") >= 1 || email.indexOf(".com") >= 1 ) {
             checkEmail = true;
         }
 
         return checkEmail;
     }
 
-//    String realizarCadastroLogin(Integer cadastroLogin){
-//        Scanner leitor = new Scanner(System.in);
-//
-//        if(cadastroLogin == 1){
-//
-//            System.out.println("Cadastro:\n Nome fantasia");
-//            String nomeFantasia = leitor.next();
-//
-//            System.out.println("Razão social: ");
-//            String razaoSocial = leitor.next();
-//
-//            System.out.println("CNPJ: ");
-//            String cnpj = leitor.next();
-//
-//            System.out.println("email: ");
-//            String email = leitor.next();
-//
-//            System.out.println("senha: ");
-//            String senha = leitor.next();
-//
-//            System.out.println("confirme senha: ");
-//            String confirmaSenha = leitor.next();
-//
-//            return nomeFantasia;
-//            return razaoSocial;
-//            return  cnpj;
-//            return email;
-//            return senha;
-//            return confirmaSenha;
-//
-//        }else if(cadastroLogin == 2){
-//            return null;
-//        }else {
-//            System.out.println("Não é uma opção valida");
-//            return null;
-//        }
-//    }
+    Boolean senhaExiste(String senha){
+        Boolean checkSenha = false;
+        if(senha.length() == 6){
+            checkSenha = true;
+        }
+
+        return  checkSenha;
+    }
+
+    Boolean confirmaSenhaExiste(String senha, String confirmaSenha){
+        Boolean checkConfirmaSenha = false;
+        if(senha.equals(confirmaSenha)){
+            checkConfirmaSenha = true;
+        }
+
+        return checkConfirmaSenha;
+    }
 }
