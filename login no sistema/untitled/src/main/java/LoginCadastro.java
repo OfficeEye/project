@@ -78,7 +78,6 @@ public class LoginCadastro {
 
                     if(checkConfirmaSenha.equals(true)){
                         listaSenha.add(senha);
-                        System.out.println(listaEmail + "" + listaSenha);
                     }
                     System.out.println(mensagem);
                 }while(!Objects.equals(confirmaSenha, senha));
