@@ -25,29 +25,29 @@ public class LoginCadastro {
                 String senha;
                 String confirmaSenha;
 
-//            do {
-//                System.out.println("Cadastro:\nNome fantasia: ");
-//                String nomeFantasia = leitor.next();
-//                Boolean checkNomeFantasia = metodos.nomeFantasiaExiste(nomeFantasia);
-//                mensagem = checkNomeFantasia ? "nome valido" : "nome invalido";
-//                System.out.println(mensagem);
-//            }while(mensagem.equals("nome invalido"));
-//
-//            do {
-//                System.out.println("Razão social: ");
-//                String razaoSocial = leitor.next();
-//                Boolean checkRazaoSocial = metodos.razaoSocialExiste(razaoSocial);
-//                mensagem = checkRazaoSocial ? "Razão social valida" : "Razão social invalida";
-//                System.out.println(mensagem);
-//            }while(mensagem.equals("Razão social invalida"));
-//
-//            do {
-//                System.out.println("CNPJ: ");
-//                String cnpj = leitor.next();
-//                Boolean checkCNPJ = metodos.cnpjExiste(cnpj);
-//                mensagem = checkCNPJ ? "CNPJ valido" : "CNPJ invalido";
-//                System.out.println(mensagem);
-//            }while(mensagem.equals("CNPJ invalido"));
+            do {
+                System.out.println("Cadastro:\nNome fantasia: ");
+                String nomeFantasia = leitor.next();
+                Boolean checkNomeFantasia = metodos.nomeFantasiaExiste(nomeFantasia);
+                mensagem = checkNomeFantasia ? "nome valido" : "nome invalido";
+                System.out.println(mensagem);
+            }while(mensagem.equals("nome invalido"));
+
+            do {
+                System.out.println("Razão social: ");
+                String razaoSocial = leitor.next();
+                Boolean checkRazaoSocial = metodos.razaoSocialExiste(razaoSocial);
+                mensagem = checkRazaoSocial ? "Razão social valida" : "Razão social invalida";
+                System.out.println(mensagem);
+            }while(mensagem.equals("Razão social invalida"));
+
+            do {
+                System.out.println("CNPJ: ");
+                String cnpj = leitor.next();
+                Boolean checkCNPJ = metodos.cnpjExiste(cnpj);
+                mensagem = checkCNPJ ? "CNPJ valido" : "CNPJ invalido";
+                System.out.println(mensagem);
+            }while(mensagem.equals("CNPJ invalido"));
 
                 do{
                     System.out.println("email: ");
