@@ -16,7 +16,7 @@ public class LoginCadastro {
 
         Integer cadastroLogin;
         do {
-            System.out.println("Deseja realizar Cadastro(1) ou Login(2): ");
+            System.out.println("\nDeseja realizar Cadastro(1) ou Login(2): ");
             cadastroLogin = leitor.nextInt();
 
             if(cadastroLogin == 1){
@@ -26,7 +26,7 @@ public class LoginCadastro {
                 String confirmaSenha;
 
             do {
-                System.out.println("Cadastro:\nNome fantasia: ");
+                System.out.println("Cadastro:\n------------------------------\nNome fantasia: ");
                 String nomeFantasia = leitor.next();
                 Boolean checkNomeFantasia = metodos.nomeFantasiaExiste(nomeFantasia);
                 mensagem = checkNomeFantasia ? "nome valido" : "nome invalido";
@@ -34,7 +34,7 @@ public class LoginCadastro {
             }while(mensagem.equals("nome invalido"));
 
             do {
-                System.out.println("Razão social: ");
+                System.out.println("------------------------------\nRazão social: ");
                 String razaoSocial = leitor.next();
                 Boolean checkRazaoSocial = metodos.razaoSocialExiste(razaoSocial);
                 mensagem = checkRazaoSocial ? "Razão social valida" : "Razão social invalida";
@@ -42,15 +42,15 @@ public class LoginCadastro {
             }while(mensagem.equals("Razão social invalida"));
 
             do {
-                System.out.println("CNPJ: ");
+                System.out.println("------------------------------\nCNPJ: ");
                 String cnpj = leitor.next();
                 Boolean checkCNPJ = metodos.cnpjExiste(cnpj);
-                mensagem = checkCNPJ ? "CNPJ valido" : "CNPJ invalido";
+                mensagem = checkCNPJ ? "CNPJ valido" : "CNPJ invalido, ser exatos 14 numeros";
                 System.out.println(mensagem);
-            }while(mensagem.equals("CNPJ invalido"));
+            }while(mensagem.equals("CNPJ invalido, ser exatos 14 numeros"));
 
                 do{
-                    System.out.println("email: ");
+                    System.out.println("------------------------------\nemail: ");
                     String email = leitor.next();
                     Boolean checkEmail = metodos.emailExiste(email);
                     mensagem = checkEmail ? "Email valido" : "Email invalido";
@@ -63,15 +63,15 @@ public class LoginCadastro {
                 }while(mensagem.equals("Email invalido"));
 
                 do {
-                    System.out.println("senha: ");
+                    System.out.println("------------------------------\nsenha: ");
                     senha = leitor.next();
                     Boolean checkSenha = metodos.senhaExiste(senha);
-                    mensagem = checkSenha ? "Senha valida" : "Senha invalida";
+                    mensagem = checkSenha ? "Senha valida" : "Senha invalida, minímo 6 caracteres";
                     System.out.println(mensagem);
-                }while(mensagem.equals("Senha invalida"));
+                }while(mensagem.equals("Senha invalida, minímo 6 caracteres"));
 
                 do {
-                    System.out.println("confirme senha: ");
+                    System.out.println("------------------------------\nconfirme senha: ");
                     confirmaSenha = leitor.next();
                     Boolean checkConfirmaSenha = metodos.confirmaSenhaExiste(senha, confirmaSenha);
                     mensagem = checkConfirmaSenha ? "Senha confirmada" : "Senha diferente";
@@ -85,21 +85,27 @@ public class LoginCadastro {
             }else if(cadastroLogin == 2){
                 Boolean emailValido = false;
                 Boolean senhaValida = false;
+                System.out.println("Login:");
 
                 do {
-                    System.out.println("email: ");
+                    System.out.println("------------------------------\nemail: ");
                     String email = leitor.next();
                     for (int i = 0; i < listaEmail.size(); i++){
                         if (email.equals(listaEmail.get(i))){
                             emailValido = true;
 
                             do {
-                                System.out.println("senha: ");
+                                System.out.println("------------------------------\nsenha: ");
                                 String senha = leitor.next();
                                     if(senha.equals(listaSenha.get(i))){
                                         senhaValida = true;
+                                        System.out.println("------------------------------\nLogado com sucesso!");
+                                    }else {
+                                        System.out.println("senha incorreta");
                                     }
                             }while(senhaValida.equals(false));
+                        }else {
+                            System.out.println("email não cadastrado");
                         }
                     }
                 }while(emailValido.equals(false));
