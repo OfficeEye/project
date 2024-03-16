@@ -209,11 +209,84 @@ h1 {
    height: 520px;
   }
 
-
- 
   .container-values{
     height: 110vh;
     display: flex;
+  }
+
+  .card-container-1{
+    width: 33.3%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin-bottom: 180px;
+  }
+
+  .card-container-2{
+    width: 33.3%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+  }
+
+  .card-container-2 img{
+    height: 120px;
+    width: 400px;
+    margin-top: 70px;
+  }
+
+  .card{
+    background-color: #1a1a1a;
+    width: 386px;
+    height: 520px;
+    border: solid 4px #003B95;
+    border-radius: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+    color: white;
+    font-weight: 500;
+  }
+
+  .card-c{
+    background-color: #1a1a1a;
+    width: 386px;
+    height: 520px;
+    border: solid 4px #003B95;
+    border-radius: 51px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    color: white;
+    font-weight: 500;
+  }
+
+  .card-c img{
+    height: 150px;
+    width: 150px;
+  }
+
+  .card-c span{
+    width: 340px;
+  }
+
+  .card span{
+    width: 340px;
+    margin-bottom: 30px;
+  }
+
+  .card img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .card h2{ 
+    color: white;
   }
 
   
