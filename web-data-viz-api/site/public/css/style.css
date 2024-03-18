@@ -335,7 +335,11 @@ h1 {
   .member span{
     font-size: 18px;
     font-weight: 600;
+<<<<<<< HEAD
     color: white;
+=======
+    color: #003B95;
+>>>>>>> 6187ab08fe94621fe4d19ee3e83dc12abdfdcf2b
     margin-bottom: 5px;
   }
 
@@ -350,7 +354,10 @@ h1 {
   }
 
   .member-image{
+<<<<<<< HEAD
     border: 3px solid blue;
+=======
+>>>>>>> 6187ab08fe94621fe4d19ee3e83dc12abdfdcf2b
     height: 150px;
     width: 150px;
     border-radius: 50%;
