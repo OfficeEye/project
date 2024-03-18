@@ -279,11 +279,11 @@ section .about-we {
 }
 
 .card-c span {
-  width: 340px;
+  width: 300px;
 }
 
 .card span {
-  width: 340px;
+  width: 300px;
   margin-bottom: 30px;
 }
 
@@ -296,21 +296,6 @@ section .about-we {
   color: white;
 }
 
-
-.member-container {
-  height: 100vh;
-  background-color: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-}
-
-.member-list {
-  height: 50%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
 
 .member-container {
   height: 100vh;
@@ -341,7 +326,7 @@ section .about-we {
 .member span {
   font-size: 18px;
   font-weight: 600;
-  color: #003B95;
+  color: white;
   margin-bottom: 5px;
 }
 
@@ -356,6 +341,7 @@ section .about-we {
 }
 
 .member-image {
+  border: 3px solid blue;
   height: 150px;
   width: 150px;
   border-radius: 50%;
