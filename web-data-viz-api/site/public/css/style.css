@@ -359,6 +359,11 @@ section .about-we {
   background-size: cover;
 }
 
+.felipe {
+  background-image: url('../assets/svg/felipe.jpg');
+  background-size: cover;
+}
+
 .gabriella{
   background-image: url('../assets/svg/gabriella.jpeg');
   background-size: cover;
