@@ -21,6 +21,10 @@ body::-webkit-scrollbar-thumb {
   border: 3px solid #003B95;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
@@ -341,13 +345,34 @@ section .about-we {
 }
 
 .member-image {
-  border: 3px solid blue;
+
   height: 150px;
   width: 150px;
   border-radius: 50%;
   margin-top: 30px;
   background-color: #d2d2d2;
   margin-bottom: 15px;
+}
+
+.antonio {
+  background-image: url('../assets/svg/antonio.jpeg');
+  background-size: cover;
+}
+
+.gabriella{
+  background-image: url('../assets/svg/gabriella.jpeg');
+  background-size: cover;
+
+}
+
+.maria {
+  background-image: url('../assets/svg/maria.jpeg');
+  background-size: cover;
+}
+
+.renan {
+  background-image: url('../assets/svg/renan.jpg');
+  background-size: cover;
 }
 
 

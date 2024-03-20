@@ -138,6 +138,7 @@
     font-weight: 600;
     margin-left: 12px;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .cadastro-field input{
@@ -150,6 +151,11 @@
     z-index: 3;
     transition: all .4s ease-in-out;
     
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.52);
 }
 
 .cadastro-field i{

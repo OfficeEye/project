@@ -117,6 +117,7 @@
     font-weight: 600;
     margin-left: 12px;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .login-field input{
