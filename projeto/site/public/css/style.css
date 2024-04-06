@@ -16,9 +16,9 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #003B95;
+  background-color: #3B9B9B;
   border-radius: 20px;
-  border: 3px solid #003B95;
+  border: 3px solid #3B9B9B;
 }
 
 html {
@@ -71,7 +71,7 @@ ul li a {
 }
 
 ul li a:hover {
-  color: #003B95;
+  color: #3B9B9B;
   transition: 0.3s;
 }
 
@@ -104,7 +104,7 @@ ul li a:hover {
 }
 
 .column-2 button {
-  background-color: #003B95;
+  background-color: #3B9B9B;
   color: white;
   border: none;
   border-radius: 12px;
@@ -116,7 +116,7 @@ ul li a:hover {
 }
 
 h1 {
-  color: #003B95
+  color: #3B9B9B
 }
 
 .container-header img {
@@ -225,6 +225,11 @@ section .about-we {
   display: flex;
 }
 
+.container-values .logo-values img{
+  height: 100px;
+  width: 380px;
+}
+
 .card-container-1 {
   width: 33.3%;
   display: flex;
@@ -252,7 +257,7 @@ section .about-we {
   background-color: #1a1a1a;
   width: 386px;
   height: 520px;
-  border: solid 4px #003B95;
+  border: solid 4px #3B9B9B;
   border-radius: 51px;
   display: flex;
   align-items: center;
@@ -267,7 +272,7 @@ section .about-we {
   background-color: #1a1a1a;
   width: 386px;
   height: 520px;
-  border: solid 4px #003B95;
+  border: solid 4px #3B9B9B;
   border-radius: 51px;
   display: flex;
   align-items: center;
@@ -454,7 +459,7 @@ footer {
   width: 200px;
   font-size: 38px;
   color: #1a1a1a;
-  border-bottom: solid 3px #003B95;
+  border-bottom: solid 3px #3B9B9B;
 }
 
 .container-shortcuts {
@@ -476,7 +481,7 @@ footer {
   width: 200px;
   color: #1a1a1a;
   font-size: 38px;
-  border-bottom: solid 3px #003B95;
+  border-bottom: solid 3px #3B9B9B;
 }
 
 .container-shortcuts .container-2 {
@@ -516,7 +521,7 @@ footer {
   width: 320px;
   font-size: 38px;
   color: #1a1a1a;
-  border-bottom: solid 3px #003B95;
+  border-bottom: solid 3px #3B9B9B;
 }
 
 footer .icon {
