@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    background-color: #262525;
+}
+
+.nav-bar {
+    width: 5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.nav-bar .logo-officeeye img{
+    width: 60px;
+}
+
+.nav-bar .logo-officeeye{
+    padding-top: 10px;
+    height: 100px;
+}
+
+
+.shortcuts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.shortcuts img{
+    height: 35px;
+    
+}
+
+.content{
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.naosei {
+    height: 10%;
+}
+
+.kpi{
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.kpi-card{
+    height: 230px;
+    width: 370px;
+    background-color: #1d1d1d;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+
+}
+
+.container-charts{
+    height: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.chart{
+    height: 400px;
+    width: 600px;
+    background-color: #1d1d1d;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
