@@ -29,12 +29,12 @@
                 </div>
                 <div class="login-field">
                     <label for="input_email">E-mail</label>
-                    <input type="text" id="input_email" autofocus autocomplete="off">
+                    <input id="email_input" type="text" id="input_email" autofocus autocomplete="off">
                     <i class="fa-solid fa-envelope" id="icone_email"></i>
                 </div>
                 <div class="login-field">
                     <label for="input_password">Senha</label>
-                    <input type="password" id="input_password">
+                    <input id="senha_input" type="password" id="input_password">
                     <div class="icon-password" id="icon_password">
                         <i class="fa-solid fa-lock" onclick="verSenha()" id="login_field_password_lock"></i>
                     </div>
@@ -42,7 +42,7 @@
                 
                 </div>
                 <div class="login-button">
-                    <button>Entrar</button>
+                    <button onclick="logar()">Entrar</button>
                 </div>
             </div>
         </div>
@@ -50,6 +50,68 @@
 </body>
 </html>
 <script>
+    function logar() {
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        // if (
+        //     emailVar == "" ||
+        //     senhaVar == ""
+        // ) {
+        //     erro_email.innerHTML =
+        //         "";
+        // } else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/logar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "index.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
     function verSenha(){
         input_password.type = 'text';
         icon_password.innerHTML = '<i class="fa-solid fa-unlock" onclick="ocultarSenha()" id="login_field_password_unlock"></i>'

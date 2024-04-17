@@ -20,17 +20,17 @@
                 <div class="cadastro-section" id="section1">
                     <div class="cadastro-field">
                         <label for="nome_fantasia">Nome Fantasia</label>
-                        <input type="text" autofocus autocomplete="off">
+                        <input id="nomeFantasia_input" type="text" autofocus autocomplete="off">
                         
                     </div>
                     <div class="cadastro-field">
                         <label for="razao_social">Razão Social</label>
-                        <input type="text" >
+                        <input id="razaoSocial_input" type="text" >
                        
                     </div>
                     <div class="cadastro-field">
                         <label for="cnpj">CNPJ</label>
-                        <input type="text" >
+                        <input id="cnpj_input" type="text" >
                        
                     </div>
                     <div class="cadastro-button">
@@ -41,11 +41,11 @@
                 <div class="cadastro-section" id="section2" style="display: none;">
                     <div class="cadastro-field">
                         <label for="email">E-mail</label>
-                        <input type="text" autofocus autocomplete="off">
+                        <input id="email_input" type="text" autofocus autocomplete="off">
                     </div>
                     <div class="cadastro-field" id="field_senha">
                         <label for="senha">Senha</label>
-                        <input type="password" id="input_senha">
+                        <input id="senha_input" type="password" id="input_senha">
                         <div class="icon-password" id="icon_password">
                             <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_lock"></i>
                         </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="cadastro-field">
                         <label for="confirmar_senha">Confirmar senha</label>
-                        <input type="password" >
+                        <input id="confirmacao_senha_input" type="password" >
                         <div class="icon-password" id="icon_password">
                             <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_confirm_lock"></i>
                         </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="cadastro-button">
                         <button onclick="mudarSection('section1')">Voltar</button>
-                        <button>Cadastrar</button>
+                        <button onclick="cadastrar()">Cadastrar</button>
                     </div>
                 </div>
                 
@@ -80,6 +80,79 @@
 </body>
 </html>
 <script>
+
+    function cadastrar() {
+        var nomeFantasiaVar = nomeFantasia_input.value;
+        var razaoSocialVar = razaoSocial_input.value;
+        var cnpjVar = cnpj_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        // if (
+        //     nomeFantasiaVar == "" ||
+        //     razaoSocialVar == "" ||
+        //     cnpjVar == "" ||
+        //     emailVar == "" ||
+        //     senhaVar == "" ||
+        //     confirmacaoSenhaVar == ""
+        // ) {
+            
+        // } else if (nomeFantasiaVar.trim() == "") {
+            
+        // } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+            
+        // } else if (senhaVar.length < 6) {
+            
+        // } else if (confirmacaoSenhaVar != senhaVar) {
+            
+        // } else {
+            // setInterval(sumirMensagem, 3000)
+
+
+            // Enviando o valor da nova input
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeFantasiaServer: nomeFantasiaVar,
+                    razaoSocialServer: razaoSocialVar,
+                    cnpjServer: cnpjVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    // if (resposta.ok) {
+                        // cardErro.style.display = "block";
+
+                        // mensagem_erro.innerHTML =
+                        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                        setTimeout(() => {
+                            window.location = "login.html";
+                        }, "3000");
+
+                        limparFormulario();
+
+                    // } else {
+                    //     throw "Houve um erro ao tentar realizar o cadastro!";
+                    // }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+
+                });
+
+            return false;
+        // }
+    }
 
     function mudarSection(id) {
         var abas = document.getElementsByClassName('cadastro-section');
