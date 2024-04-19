@@ -1,0 +1,155 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    overflow-y: hidden;
+}
+
+.content{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #262525;
+}
+
+.content .header{
+    height: 100vh;
+    width: 8%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1%;
+}
+
+.content .header .logo{
+    display: flex;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .header .logo img{
+    display: flex;
+    width: 80%;
+}
+
+.content .header .images{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 43%;
+    justify-content: space-between;
+    margin-top: 30%;
+}
+
+.content .header .images a{
+    display: flex;
+    width: 80%;
+    height: 25%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+img{
+    display: flex;
+    width: 60%;
+}
+
+a:hover{
+    display: flex;
+    transition: 1s;
+    background-color: black;
+}
+
+.content .middle{
+    width: 62%;
+}
+
+.content .middle .top{
+    display: flex;
+    width: 100%;
+    height: 13%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .middle .top .hello{
+    display: flex;
+    height: 100%;
+    width: 40%;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+}
+
+.content .middle .top .hello .text span{
+    color: white;
+    font-size: 120%;
+}
+
+.content .middle .top .search{
+    display: flex;
+    height: 40%;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 5%;
+}
+
+.content .middle .mid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 37%;
+    margin-left: 1%;
+}
+
+.content .middle .mid .box{
+    display: flex;
+    height: 80%;
+    width: 30%;
+    background-color: black;
+    border-radius: 30px;
+}
+
+.content .middle .low{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content .middle .low .box{
+    display: flex;
+    height: 80%;
+    width: 45%;
+    justify-content: space-around;
+    background-color: black;
+    border-radius: 30px;
+}
+
+.content .right{
+    display: flex;
+    height: 100%;
+    width: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content .right .box{
+    display: flex;
+    width: 80%;
+    height: 40%;
+    border-radius: 30px;
+    background-color: black;
+}
