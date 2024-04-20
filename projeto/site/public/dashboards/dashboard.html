@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="logo-officeeye">
+        <img src="../assets/svg/icon-officeeye (2).png" alt="">
+    </div>
+    <div class="shortcuts">
+        <img src="../assets/svg/home.svg " alt="">
+        <img src="../assets/svg/add-user (1).svg " alt="">
+        <img src="../assets/svg/settings.svg " alt="" onclick="openModal()">
+    </div>
+    </div>
+    <div class="content">
+        <div class="naosei">
+
+        </div>
+        <div class="kpi">
+            <div class="kpi-card"></div>
+            <div class="kpi-card"></div>
+            <div class="kpi-card"></div>
+        </div>
+        <div class=" container-charts">
+            <div class="chart"></div>
+            <div class="chart"></div>
+        </div>
+    </div>
+    <dialog id="modal">
+        <div class="paiNosso">
+          <h2>ops! certeza que deseja sair?</h2>
+         
+
+          <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
+          <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+        </div>
+      </dialog>
+</body>
+</html>
+<script src="../js/dashboard.js"></script>
