@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash</title>
+    <link rel="stylesheet" href="../css/dashboard-tecnico.css">
+    <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="content">
+        <div class="header">
+            <div class="logo">
+                <img src="../assets/svg/icon-officeeye (2).png" onclick="openModal()">
+            </div>
+            <div class="images">
+                <a href="tabela-cadastro-funcionario.html">
+                    <img src="../assets/svg/pessoas.png">
+                </a>
+                <a href="tabela-cadastro-maquinas.html">
+                    <img src="../assets/svg/computador-portatil-header.png">
+                </a>
+                <a href="dashboard-tecnico.html">
+                    <img src="../assets/svg/grafico-de-pizza-header.png">
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="top">
+                <div class="hello">
+                    <div class="text">
+                        <span>
+                            <b>
+                                Olá,
+                            </b>
+                        </span>
+                        <span>
+                            <b>
+                                Usuário
+                            </b>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="mid">
+                <div class="box">
+                    <h2>Computadores em estado de alerta</h2>
+                    <div class="kpi" style="color: red;">
+                        8/50
+                    </div>
+                </div>
+                <div class="box">
+                    <h2>Computadores em risco de alerta</h2>
+                    <div class="kpi" style="color: yellow;">
+                        4/50
+                    </div>
+                </div>
+                <div class="box">
+                    <h2>Chamados abertos no momento</h2>
+                    <div class="kpi" style="color: rgb(0, 161, 0);">
+                        3
+                    </div>
+                </div>
+            </div>
+            <div class="low">
+                <div class="box">
+                    <div class="dados">
+                        <h2>Quantidade de alerta na semana, por componente</h2>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <dialog id="modal">
+        <div class="paiNosso">
+            <h2>ops! certeza que deseja sair?</h2>
+            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
+            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+        </div>
+    </dialog>
+</body>
+
+</html>
+<script src="../js/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
+        datasets: [{
+            label: '',
+            data: [65, 59, 80, 81],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+            
+        }]
+    };
+
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        scales: {
+            y: {
+                beginAtZero: false
+            },
+        },
+      },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+    
+    const lineChart = new Chart(
+    document.getElementById('lineChart'),
+    config
+);
+</script>
