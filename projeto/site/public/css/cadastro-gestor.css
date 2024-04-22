@@ -67,12 +67,43 @@ body {
     width: 95%;
     height: 100%;
     display: flex;
-    
 }
 
 .content .column-1{
     height: 100%;
     width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/*label {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 10px 0;
+    text-align:astart;
+}*/
+
+input{
+    width: 280px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    padding: 4px;
+    margin: 4px 0;
+}
+
+button{
+    width: 280px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #3B9B9B;
+    font-weight: 600;
 }
 
 .content .column-2{
