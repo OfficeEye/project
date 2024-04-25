@@ -21,7 +21,6 @@ html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 1%;
 }
 
 .content .header .logo{
@@ -33,7 +32,7 @@ html{
 
 .content .header .logo img{
     display: flex;
-    width: 80%;
+    width: 90%;
 }
 
 .content .header .images{
@@ -41,15 +40,15 @@ html{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 43%;
+    height: 45%;
     justify-content: space-between;
-    margin-top: 70%;
+    margin-top: 90%;
 }
 
 .content .header .images a{
     display: flex;
     width: 80%;
-    height: 25%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -57,7 +56,7 @@ html{
 
 img{
     display: flex;
-    width: 60%;
+    width: 65%;
 }
 
 a:hover{
@@ -88,7 +87,6 @@ a:hover{
     width: 40%;
     justify-content: center;
     align-items: center;
-    margin-top: 2%;
 }
 
 .content .container .top .hello .text span{
