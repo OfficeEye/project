@@ -1,0 +1,144 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.content{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #262525;
+}
+
+.content .header{
+    height: 100%;
+    width: 5%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content .header .logo{
+    display: flex;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .header .logo img{
+    display: flex;
+    width: 90%;
+}
+
+.content .header .images{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 45%;
+    justify-content: space-between;
+    margin-top: 90%;
+}
+
+.content .header .images a{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+img{
+    display: flex;
+    width: 65%;
+}
+
+a:hover{
+    display: flex;
+    transition: 1s;
+    background-color: black;
+}
+
+.content .container{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 100%;
+    align-items: center;
+}
+
+.content .container .top{
+    display: flex;
+    width: 100%;
+    height: 13%;
+    justify-content: end;
+    align-items: center;
+    margin-right: 2%;
+}
+
+.content .container .top .hello{
+    display: flex;
+    height: 100%;
+    width: 54%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.content .container .top .hello button{
+    background-color: black;
+    border: solid 2px;
+    border-radius: 5px;
+    color: white;
+    height: 55%;
+    width: 22%;
+    cursor: pointer;
+}
+
+b{
+    font-size: 140%;
+}
+
+.content .container .block{
+    display: flex;
+    width: 100%;
+    height: 87%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .container .block .stats{
+    display: flex;
+    width: 100%;
+    height: 45%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.content .container .block .stats .box {
+    display: flex;
+    height: 85%;
+    width: 38%;
+    background-color: #1d1d1d;
+    color: white;
+    border-radius: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.content .container .block .stats .box .dados{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    height: 90%;
+}
