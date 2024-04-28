@@ -21,8 +21,8 @@ var sqlServerConfig = {
 var mySqlConfig = {
     host: "localhost",
     database: "officeeye",
-    user: "SEU_USUARIO",
-    password: "SUA_SENHA",
+    user: "root",
+    password: "Rosapink1808#",
 };
 
 function executar(instrucao) {
