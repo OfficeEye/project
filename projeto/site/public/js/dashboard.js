@@ -1,4 +1,4 @@
-function returnIndex() {
+function logout() {
     window.location.href = "../index.html";
 }
 function openModal(texto){

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard | OfficeEye</title>
     <link rel="stylesheet" href="../css/dashboard-gestor.css">
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
@@ -16,9 +16,10 @@
     </div>
     <div class="shortcuts">
 
-        <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">
-        <img src="../assets/svg/home.svg " alt="" onclick="returnDash()">        
-        <img src="../assets/svg/settings.svg " alt="" onclick="openModal()">
+        <img src="../assets/svg/home.svg " alt="" onclick="returnDash()"> 
+        <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
+        <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
+
     </div>
     </div>
     <div class="content">
@@ -29,7 +30,7 @@
             <div class="kpi-card">
                 <h2>Computadores em estado de alerta</h2>
                 <div class="stats" style="color: red;">
-                    8/50
+                    8
                 </div>
             </div>
             <div class="kpi-card">
@@ -49,24 +50,35 @@
             </div>
             <div class="chart">
                 <div class="dados">
-                    <h2>Tempo médio na resolução de chamados</h2>
+                    <h2>Chamados Abertos vs. Resolvidos/ Dia </h2>
                     <canvas id="lineChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal-background"></div>
     <dialog id="modal">
-        <div class="paiNosso">
-            <h2>ops! certeza que deseja sair?</h2>
+        <div class="container-modal">
 
+           <div class="title">
+                <h2>Tem certeza que deseja sair?</h2>
+           </div>
 
-            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="logout()">Sair</button>
+           </div>
         </div>
     </dialog>
 </body>
 
 </html>
+
 <script src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>

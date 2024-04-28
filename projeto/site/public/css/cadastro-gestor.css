@@ -49,6 +49,10 @@ body {
     height: 100px;
 }
 
+.logout-image{
+    margin-left: 11px;
+}
+
 
 .shortcuts{
     display: flex;
@@ -138,6 +142,7 @@ button{
     border-radius: 8px;
     background-color: #3B9B9B;
     font-weight: 600;
+    color: #fff;
 }
 
 .div_tabelaUsuarios .column-2{
@@ -255,14 +260,14 @@ td img {
 
 
 
-#modal{
+#modal {
     display: none;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 220px;
+    height: 250px;
     width: 350px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255);
     border: none;
     border-radius: 8px;
     position: absolute;
@@ -274,27 +279,47 @@ td img {
     color: #fff;
 }
 
-#modal.active{
+#modal.active {
     display: flex;
     justify-content: center;
     align-items: center;
 }
- #modal .botao{
+
+.container-modal{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.container-modal .title{
+    color: #1d1d1d;
+    font-weight: 14px;
+}
+
+.container-modal .img-modal img{
+    height: 70px;
+    width: 70px;
+}
+
+#modal .botao {
     height: 35px;
     width: 100px;
-    margin-top: 70px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
     color: white;
     font-weight: 600;
- }
+}
 
- .botao-confirmar{
+.botao-confirmar {
     background-color: #c21f1f;
     margin-left: 10px;
- }
+}
 
-    .botao-cancelar{
-        background-color: #3B9B9B;
-    }
+.botao-cancelar {
+    background-color: #3B9B9B;
+}
+

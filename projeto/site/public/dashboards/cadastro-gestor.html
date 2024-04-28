@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro Funcionário | OfficeEye</title>
     <link rel="stylesheet" href="../css/cadastro-gestor.css">
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
@@ -15,9 +15,9 @@
             <img src="../assets/svg/icon-officeeye (2).png" alt="">
         </div>
         <div class="shortcuts">
-            <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">
-            <img src="../assets/svg/home.svg " alt="" onclick="returnDash()">            
-            <img src="../assets/svg/settings.svg " alt="" onclick="openModal()">
+            <img src="../assets/svg/home.svg " alt="" onclick="returnDash()">     
+            <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
+            <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
         </div>
     </div>
 
@@ -26,7 +26,7 @@
         <div class="div_header">
             <div class="div_nomeUsuario">
                 <h1 style="color: white;">Bem vindo, Antonio Macedo Conde</h1>
-            </div>
+            </div> 
             <div class="div_buttonCadastrar">
                 <button>Cadastrar funcionário</button>
             <button>Cadastrar Usuario</button>
@@ -219,12 +219,20 @@
     </div>
     
     <dialog id="modal">
-        <div class="paiNosso">
-            <h2>ops! certeza que deseja sair?</h2>
+        <div class="container-modal">
 
+           <div class="title">
+                <h2>Tem certeza que deseja sair?</h2>
+           </div>
 
-            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="logout()">Sair</button>
+           </div>
         </div>
     </dialog>
 </body>
