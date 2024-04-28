@@ -9,3 +9,11 @@ function openModal(texto){
 function closeModal(){
     modal.classList.remove("active");
 }
+
+function returnCadastrarUsuario() {
+    window.location.href = "cadastro-gestor.html"
+}
+
+function returnDash() {
+    window.location.href = "dashboard-gestor.html"
+}

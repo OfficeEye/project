@@ -4,9 +4,6 @@ package-lock.json
 package.json
 
 # Caso você renomeie seu diretório /site, altere também nas linhas abaixo:
-/node_modules
-/package-lock.json
-/package.json
 
 
 .github

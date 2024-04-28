@@ -1,14 +1,3 @@
-# A linha abaixo determina que o diretório node_modules não será enviado ao repositório remoto
-package-lock.json
-package.json
 node_modules
-node_modules\@popperjs
-node_modules\bootstrap
-
-# Caso você renomeie seu diretório /site, altere também nas linhas abaixo:
-/node_modules
-/package-lock.json
-/package.json
-
 
 .github
