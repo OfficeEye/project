@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/dashboard-gestor.css">
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
+
 <body>
     <div class="nav-bar">
         <div class="logo-officeeye">
@@ -24,24 +26,123 @@
 
         </div>
         <div class="kpi">
-            <div class="kpi-card"></div>
-            <div class="kpi-card"></div>
+            <div class="kpi-card">
+                <h2>Computadores em estado de alerta</h2>
+                <div class="stats" style="color: red;">
+                    8/50
+                </div>
+            </div>
+            <div class="kpi-card">
+                <h2>Chamados priotitários abertos</h2>
+                <div class="stats">
+                    11
+                </div>
+            </div>
             <div class="kpi-card"></div>
         </div>
         <div class=" container-charts">
-            <div class="chart"></div>
-            <div class="chart"></div>
+            <div class="chart">
+                <div class="dados">
+                    <h2>Tempo médio na resolução de chamados</h2>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+            <div class="chart">
+                <div class="dados">
+                    <h2>Tempo médio na resolução de chamados</h2>
+                    <canvas id="lineChart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <dialog id="modal">
         <div class="paiNosso">
-          <h2>ops! certeza que deseja sair?</h2>
-         
+            <h2>ops! certeza que deseja sair?</h2>
 
-          <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-          <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+
+            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
+            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
         </div>
-      </dialog>
+    </dialog>
 </body>
+
 </html>
 <script src="../js/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Grafico de barra 
+    const labelsDays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+    const data = {
+        labels: labelsDays,
+        datasets: [{
+            label: '',
+            data: [12, 7, 2, 8],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+
+    const configBar = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+            },
+        },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+
+    const barChart = new Chart(
+        document.getElementById('barChart'),
+        configBar
+    );
+
+    // Grafico de linha
+
+    const dataLine = {
+        labels: labelsDays,
+        datasets: [
+            {
+                label: 'Chamados Abertos',
+                data: [5, 2, 10, 3, 1, 7, 10],
+                backgroundColor: 'rgb(75, 192, 192)',
+                borderColor: 'rgb(75, 192, 192)',
+            },
+            {
+                label: 'Chamados Resolvidos',
+                data: [4, 3, 6, 4, 2, 7, 7],
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+            }
+        ]
+    };
+
+    const configLine = {
+        type: 'line',
+        data: dataLine,
+    };
+
+    const lineChart = new Chart(
+        document.getElementById('lineChart'),
+        configLine
+    );
+
+
+</script>

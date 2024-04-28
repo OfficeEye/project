@@ -40,22 +40,28 @@
                     <div class="box">
                         <div class="dados">
                             <h3>CPU</h3>
-                            <canvas id="lineChart"></canvas>
+                            <canvas id="chartCpu"></canvas>
                         </div>
                     </div>
                     <div class="box">
-                        <h3>Memória RAM</h3>
-                        <canvas id="lineChart"></canvas>
+                        <div class="dados">
+                            <h3>Memória RAM</h3>
+                            <canvas id="chartMemoria"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="stats">
                     <div class="box">
-                        <h3>Disco</h3>
-                        <canvas id="lineChart"></canvas>
+                        <div class="dados">
+                            <h3>Disco</h3>
+                            <canvas id="chartDisco"></canvas>
+                        </div>
                     </div>
                     <div class="box">
-                        <h3>Rede</h3>
-                        <canvas id="lineChart"></canvas>
+                        <div class="dados">
+                            <h3>Rede</h3>
+                            <canvas id="chartJanela"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,7 +83,8 @@
 <script src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const data = {
+    //CPU
+    const dataCpu = {
         labels: ['Memória', 'CPU', 'Disco', 'Rede'],
         datasets: [{
             label: '',
@@ -99,9 +106,9 @@
         }]
     };
 
-    const config = {
+    const configCpu = {
         type: 'bar',
-        data: data,
+        data: dataCpu,
         options: {
             scales: {
                 y: {
@@ -114,8 +121,136 @@
     Chart.defaults.color = '#fff';
     Chart.defaults.borderColor = '#fff';
 
-    const lineChart = new Chart(
-        document.getElementById('lineChart'),
-        config
+    const chartCpu = new Chart(
+        document.getElementById('chartCpu'),
+        configCpu
+    );
+
+    //Memoria
+    const dataMemoria = {
+        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
+        datasets: [{
+            label: '',
+            data: [65, 59, 80, 81],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+
+    const configMemoria = {
+        type: 'bar',
+        data: dataMemoria,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                },
+            },
+        },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+
+    const chartMemoria = new Chart(
+        document.getElementById('chartMemoria'),
+        configMemoria
+    );
+
+    //Disco
+    const dataDisco = {
+        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
+        datasets: [{
+            label: '',
+            data: [65, 59, 80, 81],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+
+    const configDisco = {
+        type: 'bar',
+        data: dataDisco,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                },
+            },
+        },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+
+    const chartDisco = new Chart(
+        document.getElementById('chartDisco'),
+        configDisco
+    );
+    //Janelas
+    const dataJanela = {
+        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
+        datasets: [{
+            label: '',
+            data: [65, 59, 80, 81],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+
+    const configJanela = {
+        type: 'bar',
+        data: dataJanela,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                },
+            },
+        },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+
+    const chartJanela = new Chart(
+        document.getElementById('chartJanela'),
+        configJanela   
     );
 </script>

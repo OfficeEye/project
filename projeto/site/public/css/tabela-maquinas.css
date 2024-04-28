@@ -85,7 +85,7 @@ a:hover{
 .content .container .top .hello{
     display: flex;
     height: 100%;
-    width: 54%;
+    width: 60%;
     justify-content: space-between;
     align-items: center;
     color: white;
@@ -253,16 +253,21 @@ tr {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
 }
 
-.th-id,
-.td-id {
+.th-acoes{
+    width: 100px;
+}
+
+.th-id{
     width: 140px;
+}
+.td-id {
+    width: 130px;
 }
 
 .th-nome {
-    width: 190px;
+    width: 140px;
 }
 .td-nome {
     width: 150px;
@@ -273,11 +278,40 @@ tr {
     width: 140px;
 }
 
-.th-acoes,
-.td-acoes {
+.th-funcionario{
+    width: 120px;
+}
+.td-funcionario {
+    width: 140px;
+}
+
+.th-cpu {
+    width: 140px;
+}
+.td-cpu {
+    width: 140px;
+}
+
+.th-memoria{
+    width: 110px;
+}
+.td-memoria {
     width: 120px;
 }
 
+.th-disco{
+    margin-left: 1%;
+    justify-content: start;
+    width: 120px;
+}
+.td-disco {
+    width: 120px;
+}
+
+.th-status,
+.td-status {
+    width: 140px;
+}
 
 .container-img {
     display: flex;
