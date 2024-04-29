@@ -80,7 +80,7 @@
 
 .box-text a{
     text-decoration: none;
-    color: #003b95;
+    color: #399797;
 }
 
 
@@ -104,7 +104,7 @@
     text-transform: uppercase;
     margin-top: 60px;
     text-align: center;
-    color: #003b95;
+    color: #399797;
 }
 
 .login-title h3{
@@ -182,7 +182,7 @@ input:focus {
     height: 44px;
     /* padding: 8px; */
     border: none;
-    background-color: #003b95;
+    background-color: #399797;
     color: #fff;
     border-radius: 20px;
     /* margin-bottom: 50px; */
@@ -194,7 +194,7 @@ input:focus {
 }
 
 .login-button button:hover{
-    background-color: #003c95e5;
+    background-color: #407171;
     color: #1a1a1a;
 }
 
