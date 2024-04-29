@@ -59,11 +59,11 @@ img{
     width: 65%;
 }
 
-a:hover{
+/*a:hover{
     display: flex;
     transition: 1s;
     background-color: black;
-}
+} */
 
 .content .container{
     display: flex;

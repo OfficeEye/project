@@ -28,5 +28,8 @@ function editarMaquina() {
 }
 
 function confirmarRemocao(){
-    
+
+}
+
+function confirmarEdicao(){
 }

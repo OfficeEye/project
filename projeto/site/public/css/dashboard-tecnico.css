@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
@@ -8,11 +10,19 @@ html{
     overflow-x: hidden;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .content{
     display: flex;
     height: 100vh;
     width: 100vw;
     background-color: #262525;
+}
+
+.header{
+    padding-right: 63px;
 }
 
 .content .header{
@@ -28,14 +38,35 @@ html{
     height: 10%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 70px;
 }
 
 .content .header .logo img{
     display: flex;
-    width: 90%;
+    height: 40px;
+    width: 60px;
 }
 
-.content .header .images{
+.images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+
+}
+
+.images img{
+    height: 35px;
+    width:  35px;
+    cursor: pointer;
+}
+
+.logout-image{
+    margin-left: 13px;
+}
+
+/*.content .header .images{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,18 +83,18 @@ html{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-}
+}*/
 
 img{
     display: flex;
     width: 65%;
 }
 
-a:hover{
+/*a:hover{
     display: flex;
     transition: 1s;
     background-color: black;
-}
+} */
 
 .content .container{
     display: flex;
@@ -163,4 +194,66 @@ a:hover{
     justify-content: space-between;
     width: 70%;
     height: 80%;
+}
+
+#modalSair{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 250px;
+    width: 350px;
+    background-color: rgba(255, 255, 255);
+    border: none;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+#modalSair.active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-modal{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-modal .title{
+    color: #1d1d1d;
+    font-weight: 14px;
+}
+
+.container-modal .img-modal img{
+    height: 70px;
+    width: 70px;
+}
+
+#modalSair .botao{
+    height: 35px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+}
+
+.botao-confirmar {
+    background-color: #c21f1f;
+    margin-left: 10px;
+}
+
+.botao-cancelar {
+    background-color: #3B9B9B;
 }
