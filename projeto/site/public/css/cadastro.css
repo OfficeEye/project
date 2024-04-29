@@ -67,7 +67,7 @@
 
 .box-text a{
     text-decoration: none;
-    color: #003b95;
+    color: #399797;
 }
 
 .cadastro-form{
@@ -111,7 +111,7 @@ margin-bottom: 20px;
     font-weight: 600;
     font-size: 12px;
     margin-top: 15px;
-    color: #003b95;
+    color: #399797;
     margin-bottom: 8px;
 }
 
@@ -178,7 +178,7 @@ input:focus {
     height: 44px;
     padding: 8px;
     border: none;
-    background-color: #003b95;
+    background-color: #399797;
     color: #fff;
     border-radius: 20px;
     text-transform: uppercase;
@@ -189,7 +189,7 @@ input:focus {
 }
 
 .cadastro-button button:hover{
-    background-color: #003c95e5;
+    background-color: #407171;
     color: #1a1a1a;
 }
 
