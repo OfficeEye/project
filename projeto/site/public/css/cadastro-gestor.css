@@ -265,7 +265,7 @@ td img {
 
 
 
-#modal {
+#modalSair, #modalRemover{
     display: none;
     justify-content: space-between;
     align-items: center;
@@ -284,7 +284,40 @@ td img {
     color: #fff;
 }
 
-#modal.active {
+#modalEditar{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 650px;
+    width: 450px;
+    background-color: rgba(255, 255, 255);
+    border: none;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    padding: 5px;
+    text-align: center;
+    color: #1d1d1d;
+}
+
+#modalEditar .container-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#modalEditar input{
+    background-color: #1d1d1d;
+    color: white;
+}
+
+
+#modalSair.active, #modalRemover.active, #modalEditar.active {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,7 +342,7 @@ td img {
     width: 70px;
 }
 
-#modal .botao {
+#modalSair .botao, #modalRemover .botao, #modalEditar .botao {
     height: 35px;
     width: 100px;
     border: none;

@@ -1,9 +1,9 @@
-function logout() {
+function returnIndex() {
     window.location.href = "../index.html";
 }
-function openModal(texto){
+function openModal(){
     modal.classList.add("active");
-    textoModal.innerHTML = texto
+    textoModal.innerHTML = "Tem certeza que deseja sair?"
 
 }
 function closeModal(){
