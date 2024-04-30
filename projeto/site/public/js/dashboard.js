@@ -3,11 +3,12 @@ function returnIndex() {
 }
 function openModal(){
     modal.classList.add("active");
-    textoModal.innerHTML = "Tem certeza que deseja sair?"
+    modalBackground.classList.add("active");
 
 }
 function closeModal(){
     modal.classList.remove("active");
+    modalBackground.classList.remove("active");
 }
 
 function returnCadastrarUsuario() {
