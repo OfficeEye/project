@@ -28,30 +28,32 @@ html{
     height: 10%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 70px;
 }
 
 .content .header .logo img{
     display: flex;
-    width: 90%;
+    height: 40px;
+    width: 60px;
 }
 
-.content .header .images{
+.images{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 45%;
-    justify-content: space-between;
-    margin-top: 90%;
+    gap: 40px;
+
 }
 
-.content .header .images a{
-    display: flex;
-    width: 80%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
+.images img{
+    height: 35px;
+    width:  35px;
+    cursor: pointer;
+}
+
+.logout-image{
+    margin-left: 14px;
 }
 
 img{
@@ -59,11 +61,11 @@ img{
     width: 65%;
 }
 
-a:hover{
+/*a:hover{
     display: flex;
     transition: 1s;
     background-color: black;
-}
+} */
 
 .content .container{
     display: flex;
@@ -85,7 +87,7 @@ a:hover{
 .content .container .top .hello{
     display: flex;
     height: 100%;
-    width: 54%;
+    width: 60%;
     justify-content: space-between;
     align-items: center;
     color: white;
@@ -253,16 +255,21 @@ tr {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
 }
 
-.th-id,
-.td-id {
+.th-acoes{
+    width: 100px;
+}
+
+.th-id{
     width: 140px;
+}
+.td-id {
+    width: 130px;
 }
 
 .th-nome {
-    width: 190px;
+    width: 140px;
 }
 .td-nome {
     width: 150px;
@@ -273,11 +280,40 @@ tr {
     width: 140px;
 }
 
-.th-acoes,
-.td-acoes {
+.th-funcionario{
+    width: 120px;
+}
+.td-funcionario {
+    width: 140px;
+}
+
+.th-cpu {
+    width: 140px;
+}
+.td-cpu {
+    width: 140px;
+}
+
+.th-memoria{
+    width: 110px;
+}
+.td-memoria {
     width: 120px;
 }
 
+.th-disco{
+    margin-left: 1%;
+    justify-content: start;
+    width: 120px;
+}
+.td-disco {
+    width: 120px;
+}
+
+.th-status,
+.td-status {
+    width: 140px;
+}
 
 .container-img {
     display: flex;
@@ -316,14 +352,14 @@ td img {
 
 
 
-#modal{
+#modalSair{
     display: none;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 220px;
+    height: 250px;
     width: 350px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255);
     border: none;
     border-radius: 8px;
     position: absolute;
@@ -335,27 +371,45 @@ td img {
     color: #fff;
 }
 
-#modal.active{
+#modalSair.active{
     display: flex;
     justify-content: center;
     align-items: center;
 }
- #modal .botao{
+
+.container-modal{ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-modal .title{
+    color: #1d1d1d;
+    font-weight: 14px;
+}
+
+.container-modal .img-modal img{
+    height: 70px;
+    width: 70px;
+}
+
+#modalSair .botao{
     height: 35px;
     width: 100px;
-    margin-top: 70px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
     color: white;
     font-weight: 600;
- }
+}
 
- .botao-confirmar{
+.botao-confirmar {
     background-color: #c21f1f;
     margin-left: 10px;
- }
+}
 
-    .botao-cancelar{
-        background-color: #3B9B9B;
-    }
+.botao-cancelar {
+    background-color: #3B9B9B;
+}

@@ -15,13 +15,14 @@ tbody::-webkit-scrollbar-thumb {
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
     height: 100vh;
 }
 
@@ -40,21 +41,17 @@ body {
     gap: 50px;
 }
 
-.nav-bar .logo-officeeye img{
+.nav-bar .logo-officeeye img {
     width: 60px;
 }
 
-.nav-bar .logo-officeeye{
+.nav-bar .logo-officeeye {
     padding-top: 10px;
     height: 100px;
 }
 
-.logout-image{
-    margin-left: 11px;
-}
 
-
-.shortcuts{
+.shortcuts {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,42 +59,18 @@ body {
     gap: 50px;
 }
 
-.shortcuts img{
+.shortcuts img {
     height: 35px;
     cursor: pointer;
 }
 
-.div_content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.div_header {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.div_nomeUsuario {
-    margin-left: 30px;
-    margin-top: 10px;
-}
-
-.div_buttonCadastrar {
-    margin-right: 20px;
-    margin-top: 10px;
-    display: flex;
-    gap: 20px;
-}
-
-.div_tabelaUsuarios{
+.content {
     width: 95%;
     height: 100%;
     display: flex;
 }
 
-.div_tabelaUsuarios .column-1{
+.content .column-1 {
     height: 100%;
     width: 50%;
     display: flex;
@@ -116,7 +89,7 @@ body {
     text-align:astart;
 }*/
 
-input{
+input {
     width: 280px;
     height: 40px;
     border-radius: 6px;
@@ -125,12 +98,7 @@ input{
     margin: 4px 0;
 }
 
-input:focus {
-    outline: none;
-     box-shadow: 0 0 5px 0 rgba(255, 255, 255, 1); 
-}
-
-select{
+select {
     width: 280px;
     height: 40px;
     border-radius: 6px;
@@ -139,7 +107,7 @@ select{
     margin: 4px 0;
 }
 
-button{
+button {
     width: 280px;
     height: 40px;
     border: none;
@@ -147,10 +115,9 @@ button{
     border-radius: 8px;
     background-color: #3B9B9B;
     font-weight: 600;
-    color: #fff;
 }
 
-.div_tabelaUsuarios .column-2{
+.content .column-2 {
     height: 100%;
     width: 50%;
     display: flex;
@@ -205,21 +172,18 @@ tr {
 
 }
 
-.th-id,
-.td-id {
+.th-nome,
+.td-nome.th-nome {
     width: 140px;
+    justify-content: center;
 }
 
-.th-nome {
+.th-maquina {
     width: 190px;
 }
-.td-nome {
-    width: 150px;
-}
 
-.th-maquina,
 .td-maquina {
-    width: 140px;
+    width: 150px;
 }
 
 .th-acoes,
@@ -265,14 +229,14 @@ td img {
 
 
 
-#modalSair, #modalRemover{
+#modal {
     display: none;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    height: 250px;
+    height: 220px;
     width: 350px;
-    background-color: rgba(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.7);
     border: none;
     border-radius: 8px;
     position: absolute;
@@ -282,72 +246,18 @@ td img {
     padding: 5px;
     text-align: center;
     color: #fff;
-    z-index: 3;
 }
 
-#modalEditar{
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    height: 650px;
-    width: 450px;
-    background-color: rgba(255, 255, 255);
-    border: none;
-    border-radius: 8px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-60%, -50%);
-    padding: 5px;
-    text-align: center;
-    color: #1d1d1d;
-    z-index: 3;
-}
-
-#modalEditar .container-input{
+#modal.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 10px;
 }
 
-#modalEditar input{
-    background-color: #1d1d1d;
-    color: white;
-}
-
-
-#modalSair.active, #modalRemover.active, #modalEditar.active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-}
-
-.container-modal{ 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-}
-
-
-.container-modal .title{
-    color: #1d1d1d;
-    font-weight: 14px;
-}
-
-.container-modal .img-modal img{
-    height: 70px;
-    width: 70px;
-}
-
-#modalSair .botao, #modalRemover .botao, #modalEditar .botao {
+#modal .botao {
     height: 35px;
     width: 100px;
+    margin-top: 70px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
@@ -363,18 +273,3 @@ td img {
 .botao-cancelar {
     background-color: #3B9B9B;
 }
-
-.modal-background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #0000005a;
-    opacity: 0;
-    z-index: -1;
-}
-
-.modal-background.active {
-    opacity: 1;
-    z-index: 2;
-}
-

@@ -16,7 +16,18 @@
                 <img src="../assets/svg/icon-officeeye (2).png" onclick="openModal()">
             </div>
             <div class="images">
-                <a href="dashboard-tecnico.html">
+
+                <img src="../assets/svg/home.svg" alt="">
+                <img src="../assets/svg/computador-portatil-header.png" alt="" onclick="returnTabelaMaquinas()">
+                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
+                <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
+
+
+
+
+
+
+             <!--   <a href="dashboard-tecnico.html">
                     <img src="../assets/svg/home.svg">
                 </a>
                 <a href="tabela-maquinas.html">
@@ -25,13 +36,14 @@
                 <a href="tabela-chamados.html">
                     <img src="../assets/svg/operador-de-telemarketing.png">
                 </a>
+                <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image"> -->
             </div>
         </div>
         <div class="container">
             <div class="top">
                 <div class="hello">
                     <div class="text">
-                        <span>
+                      <!--  <span>
                             <b>
                                 Olá,
                             </b>
@@ -40,7 +52,7 @@
                             <b>
                                 Usuário
                             </b>
-                        </span>
+                        </span> -->
                     </div>
                 </div>
             </div>
@@ -75,17 +87,27 @@
         </div>
     </div>
 
-    <dialog id="modal">
-        <div class="paiNosso">
-            <h2>ops! certeza que deseja sair?</h2>
-            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+    <dialog id="modalSair">
+        <div class="container-modal">
+
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+           </div>
         </div>
     </dialog>
 </body>
 
 </html>
-<script src="../js/dashboard.js"></script>
+<script src="../js/dashboard-tecnico.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const data = {

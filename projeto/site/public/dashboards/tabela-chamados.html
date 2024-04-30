@@ -5,26 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Chamados | OfficeEye</title>
-    <link rel="stylesheet" href="../css/tabela-maquinas.css">
+    <link rel="stylesheet" href="../css/tabela-chamado.css">
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
 <body>
     <div class="content">
         <div class="header">
+
             <div class="logo">
                 <img src="../assets/svg/icon-officeeye (2).png" onclick="openModal()">
             </div>
+
             <div class="images">
-                <a href="dashboard-tecnico.html">
-                    <img src="../assets/svg/home.svg">
-                </a>
-                <a href="tabela-maquinas.html">
-                    <img src="../assets/svg/computador-portatil.png">
-                </a>
-                <a href="tabela-chamados.html">
-                    <img src="../assets/svg/operador-de-telemarketing.png">
-                </a>
+              
+                <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
+                <img src="../assets/svg/computador-portatil-header.png" alt="" onclick="returnTabelaMaquinas()">
+                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
+                <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
+
             </div>
         </div>
         <div class="container">
@@ -37,189 +36,44 @@
                 </div>
             </div>
             <div class="block">
-                <table>
-                    <thead>
-                        <th colspan="2" class="th-id">Id</th>
-                        <th class="th-nome">Nome</th>
-                        <th class="th-maquina">Máquina</th>
-                        <th class="th-acoes">Ações</th>
-                    </thead>
-                    <tbody id="tbodyRefrigerador">
-    
-    
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-                        <tr>
-                            <td class="td-id">undefined</td>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                            </td>
-                        </tr>
-    
-    
-    
-    
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+                <div class="row">
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="cardNone"></div>
+                    <div class="cardNone"></div>
+                </div>  
             </div>
         </div>
     </div>
 
-    <dialog id="modal">
-        <div class="paiNosso">
-            <h2>ops! certeza que deseja sair?</h2>
+    
+    <dialog id="modalSair">
+        <div class="container-modal">
 
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
 
-            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+           </div>
         </div>
     </dialog>
 </body>
 
 </html>
-<script src="../js/dashboard.js"></script>
+<script src="../js/dashboard-tecnico.js"></script>
 <script>
     function ChangeScreen(){
         window.location = "cadastro-chamado.html";
