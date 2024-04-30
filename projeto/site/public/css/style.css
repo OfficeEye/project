@@ -643,6 +643,22 @@ footer .icon {
     height: auto;
     width: 100%;
   }
+
+  footer {
+    flex-direction: column;
+    height: auto;
+    justify-content: space-around;
+  }
   
+  
+  footer .container-logo img {
+    width: 90%;
+  }
+
+  footer .container-social-medias .container-1 {
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+  }
 
 }
