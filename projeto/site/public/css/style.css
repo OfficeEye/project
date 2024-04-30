@@ -29,7 +29,7 @@ body {
 header {
   height: auto;
   padding: 20px;
-  margin-left: -100px;
+  /* margin-left: -100px; */
 }
 
 header button:hover {
@@ -167,7 +167,7 @@ section .about-we {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   width: 100%;
 }
 
@@ -194,7 +194,7 @@ section .about-we {
   height: auto;
   align-items: center;
   justify-content: space-around;
-  margin-left: -250px;
+  /* margin-left: -250px; */
 }
 
 .logo-values {
@@ -257,7 +257,7 @@ section .about-we {
 
 .card-c {
   align-items: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   background-color: #1a1a1a;
   border: solid 4px #3B9B9B;
   border-radius: 51px;
@@ -537,15 +537,23 @@ footer .icon {
   width: 150px;
 }
 
-.logo-values {
+/* .logo-values {
   margin-bottom: -60px;
-}
+} */
+
+
+
+
 
 @media only screen and (max-width: 767px) {
   .container-header {
     flex-direction: column;
     height: auto;
   }
+
+.card-c {
+  margin-right: -20px;
+}
 
   .column-1 img {
     width: 100%;
