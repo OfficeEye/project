@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="getNameUser()">
     <div class="nav-bar">
         <div class="logo-officeeye">
             <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -25,11 +25,11 @@
         
         <div class="div_header">
             <div class="div_nomeUsuario">
-                <h1 style="color: white;">Bem vindo, Antonio Macedo Conde</h1>
+                <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
             </div> 
             <div class="div_buttonCadastrar">
                 <button>Cadastrar funcionário</button>
-            <button>Cadastrar Usuario</button>
+                <button onclick="cadastrarUser()">Cadastrar Usuario</button>
             </div>
             
         </div>
@@ -261,8 +261,6 @@
             <button class="botao botao-confirmar" onclick="confirmarEdicao()">Confirmar</button>
            </div>
 
-
-
         </div>
     </dialog>
 
@@ -283,12 +281,6 @@
            </div>
         </div>
     </dialog>
-
-
-
-
-
-    
 </body>
 
 </html>

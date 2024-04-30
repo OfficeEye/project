@@ -1,3 +1,12 @@
+function getNameUser() {
+    const user = sessionStorage.NOME_FANTASIA_EMPRESA
+    nomeUser.innerHTML = `Bem vindo, ${user}`
+}
+
+function cadastrarUser() {
+    window.location.href = "gerente-cadastra/usuario-cadastro.html"
+}
+
 function returnIndex() {
     window.location.href = "../index.html";
 }
@@ -13,8 +22,7 @@ function closeModal(){
 }
 
 function returnCadastrarUsuario() {
-    window.location.href = "cadastro-gestor.html"
-    
+    window.location.href = "cadastro-gestor.html"    
 }
 
 function returnDash() {

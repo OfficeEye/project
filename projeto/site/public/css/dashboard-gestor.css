@@ -58,8 +58,10 @@ body {
 
 }
 
-.naosei {
+.div_nomeUsuario {
     height: 10%;
+    margin-left: 30px;
+    margin-top: 10px;
 }
 
 .kpi {
