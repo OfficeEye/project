@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Chamados | OfficeEye</title>
-    <link rel="stylesheet" href="../css/cadastro-gestor.css">
+    <title>Cadastro de Chamado | OfficeEye</title>
+    <link rel="stylesheet" href="../css/cadastro-chamado.css">
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
@@ -28,21 +28,32 @@
     </div>
     <div class="content">
         <div class="column-1">
-            <label for="">Nome da Máquina</label>
-            <input class="input-cadastro" type="text">
             <label for="">Selecione o Funcionário</label>
             <select name="" id="">
                 <option value="">Funcionário</option>
                 <option value="">Felipe</option>
+            </select>
+            <label for="">Selecione a Máquina</label>
+            <select name="" id="">
+                <option value="">Funcionário</option>
+                <option value="">Felipe</option>
+            </select>
+            <label for="">Descrição do Chamado</label>
+            <input type="text">
+            <label for="">Prioritário</label>
+            <select name="" id="">
+                <option value="">Sim</option>
+                <option value="">Não</option>
             </select>
             <button>Cadastrar</button>
         </div>
         <div class="column-2">
             <table>
                 <thead>
-                    <th colspan="2" class="th-id">Descição</th>
                     <th class="th-nome">Funcionário</th>
                     <th class="th-maquina">Máquina</th>
+                    <th class="th-funcionario">Descrição</th>
+                    <th class="th-prioridade">Prioridade</th>
                     <th class="th-acoes">Ações</th>
                 </thead>
                 <tbody id="tbodyRefrigerador">
@@ -50,9 +61,10 @@
 
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
@@ -60,9 +72,10 @@
                     </tr>
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
@@ -70,9 +83,10 @@
                     </tr>
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
@@ -80,9 +94,10 @@
                     </tr>
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
@@ -90,9 +105,10 @@
                     </tr>
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
@@ -100,113 +116,21 @@
                     </tr>
 
                     <tr>
-                        <td class="td-id">undefined</td>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
+                        <td class="td-funcionario">undefined</td>
+                        <td class="td-funcionario">undefined</td>
                         <td class="container-img">
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
                         </td>
                     </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="td-id">undefined</td>
-                        <td class="td-nome">undefined</td>
-                        <td class="td-maquina">undefined</td>
-                        <td class="container-img">
-                            <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                            <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                        </td>
-                    </tr>
-
-
 
 
                 </tbody>
             </table>
         </div>
     </div>
-
     <dialog id="modal">
         <div class="paiNosso">
             <h2>ops! certeza que deseja sair?</h2>
