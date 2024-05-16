@@ -85,21 +85,21 @@
 <script>
     //CPU
     const dataCpu = {
-        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
-        datasets: [{
+        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+                datasets: [{
             label: '',
             data: [65, 59, 80, 81],
             backgroundColor: [
-                'rgba(255, 99, 132)',
-                'rgba(255, 159, 64)',
-                'rgba(255, 205, 86)',
-                'rgba(75, 192, 192)',
+                'rgba(85, 173, 250)',
+                'rgba(85, 173, 250)',
+                'rgba(85, 173, 250)',
+                'rgba(85, 173, 250)',
             ],
             borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
+                'rgb(85, 173, 250)',
+                'rgb(85, 173, 250)',
+                'rgb(85, 173, 250)',
+                'rgb(85, 173, 250)',
             ],
             borderWidth: 1
 
@@ -107,7 +107,7 @@
     };
 
     const configCpu = {
-        type: 'bar',
+        type: 'line',
         data: dataCpu,
         options: {
             scales: {
@@ -128,7 +128,7 @@
 
     //Memoria
     const dataMemoria = {
-        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
+        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
         datasets: [{
             label: '',
             data: [65, 59, 80, 81],
@@ -150,7 +150,7 @@
     };
 
     const configMemoria = {
-        type: 'bar',
+        type: 'line',
         data: dataMemoria,
         options: {
             scales: {
@@ -171,8 +171,8 @@
 
     //Disco
     const dataDisco = {
-        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
-        datasets: [{
+        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+                datasets: [{
             label: '',
             data: [65, 59, 80, 81],
             backgroundColor: [
@@ -182,7 +182,7 @@
                 'rgba(75, 192, 192)',
             ],
             borderColor: [
-                'rgb(255, 99, 132)',
+                'rgb(85, 173, 250)',
                 'rgb(255, 159, 64)',
                 'rgb(255, 205, 86)',
                 'rgb(75, 192, 192)',
@@ -193,7 +193,7 @@
     };
 
     const configDisco = {
-        type: 'bar',
+        type: 'line',
         data: dataDisco,
         options: {
             scales: {
@@ -213,21 +213,22 @@
     );
     //Janelas
     const dataJanela = {
-        labels: ['Memória', 'CPU', 'Disco', 'Rede'],
-        datasets: [{
+        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+            datasets: [{
             label: '',
             data: [65, 59, 80, 81],
             backgroundColor: [
-                'rgba(255, 99, 132)',
-                'rgba(255, 159, 64)',
-                'rgba(255, 205, 86)',
+                'rgba(85, 250, 126)',
+                'rgba(85, 250, 126)',
+                'rgba(85, 250, 126)',
                 'rgba(75, 192, 192)',
             ],
             borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
+                'rgb(85, 250, 126)',
+                'rgb(85, 250, 126)',
+                'rgb(85, 250, 126)',
+                'rgb(85, 250, 126)',
+
             ],
             borderWidth: 1
 
@@ -235,7 +236,7 @@
     };
 
     const configJanela = {
-        type: 'bar',
+        type: 'line',
         data: dataJanela,
         options: {
             scales: {

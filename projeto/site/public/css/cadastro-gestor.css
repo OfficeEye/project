@@ -318,6 +318,16 @@ td img {
     color: white;
 }
 
+#modalEditar select{
+    background-color: #1d1d1d;
+    color: white;
+}
+
+#modaEditar select.focus{
+    outline: none;
+    box-shadow: ;
+}
+
 
 #modalSair.active, #modalRemover.active, #modalEditar.active {
     display: flex;

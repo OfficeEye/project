@@ -27,16 +27,11 @@
             <div class="div_nomeUsuario">
                 <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
             </div> 
-            <div class="div_buttonCadastrar">
-                <button>Cadastrar funcionário</button>
-                <button onclick="cadastrarUser()">Cadastrar Usuario</button>
-            </div>
+           
             
         </div>
         <div class="div_tabelaUsuarios">
             <div class="column-1">
-                <label for="">Id</label>
-                <input class="input-cadastro" type="text">
                 <label for="">Nome</label>
                 <input class="input-cadastro" type="text">
                 <label for="">E-mail</label>
@@ -45,6 +40,12 @@
                 <input class="input-cadastro" type="text">
                 <label for="">Máquina</label>
                 <input class="input-cadastro" type="text">
+                <label for="">Permissões do usúario</label>
+                <select name="" id="">
+                    <option value="">Gestor</option>
+                    <option value="">Técnio de Suporte</option>
+                    <option value="">Funcionário</option>
+                </select>
                 <button>Cadastrar</button>
             </div>
             <div class="column-2">
@@ -244,8 +245,6 @@
            </div>
 
             <div class="container-input">
-            <label for="">Id</label>
-                <input class="input-cadastro" type="text">
                 <label for="">Nome</label>
                 <input class="input-cadastro" type="text">
                 <label for="">E-mail</label>
@@ -254,6 +253,12 @@
                 <input class="input-cadastro" type="text">
                 <label for="">Máquina</label>
                 <input class="input-cadastro" type="text">
+                <label for="">Permissões do usúario</label>
+                <select name="" id="">
+                    <option value="">Gestor</option>
+                    <option value="">Técnio de Suporte</option>
+                    <option value="">Funcionário</option>
+                </select>
             </div>
 
            <div class="buttons-modal">
@@ -268,7 +273,7 @@
         <div class="container-modal">
 
            <div class="title">
-                <h2 id="textoModal">Tem certeza que deseja remover essa máquina?</h2>
+                <h2 id="textoModal">Tem certeza que deseja remover esse usuário?</h2>
            </div>
 
            <div class="img-modal">

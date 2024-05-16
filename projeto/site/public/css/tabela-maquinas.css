@@ -1,7 +1,9 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 
 html{
     overflow-y: hidden;
@@ -94,13 +96,14 @@ img{
 }
 
 .content .container .top .hello button{
-    background-color: black;
-    border: solid 2px;
-    border-radius: 5px;
-    color: white;
-    height: 55%;
-    width: 22%;
-    cursor: pointer;
+   background-color: #ffffff;
+   color: balck;
+   height: 35px;
+   width: 140px;
+   border: none;
+   border-radius: 8px;
+   font-weight: 600;
+   cursor : pointer;
 }
 
 b{
@@ -115,10 +118,6 @@ b{
     align-items: center;
 }
 
-
-
-
-
 tbody::-webkit-scrollbar {
     width: 6px;
 }
@@ -131,13 +130,6 @@ tbody::-webkit-scrollbar-thumb {
     background-color: #3B9B9B;
     border-radius: 30px;
 
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 html, body {
@@ -241,6 +233,10 @@ tbody {
 
 tbody tr {
     border-bottom: solid 1px #303030;
+}
+
+td {
+    cursor: pointer;
 }
 
 th,
