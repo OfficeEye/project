@@ -172,17 +172,25 @@ tr {
 
 }
 
-.th-nome,
-.td-nome.th-nome {
+.td-nome{
+    width: 130px;
+}
+.th-nome {
     width: 140px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .th-maquina {
     width: 190px;
 }
-
 .td-maquina {
+    width: 90px;
+}
+
+.th-funcionario {
+    width: 190px;
+}
+.td-funcionario {
     width: 150px;
 }
 

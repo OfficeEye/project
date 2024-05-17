@@ -172,8 +172,7 @@ tr {
 
 }
 
-.th-nome,
-.td-nome.th-nome {
+.td-funcionario.th-funcionario {
     width: 120px;
     justify-content: center;
 }
@@ -183,11 +182,14 @@ tr {
 }
 
 .td-maquina {
-    width: 110px;
+    width: 100px;
 }
 
-.th-funcionario{
+.th-descricao{
     width: 130px;
+}
+.td-descricao{
+    width: 100px;
 }
 
 .th-prioridade{

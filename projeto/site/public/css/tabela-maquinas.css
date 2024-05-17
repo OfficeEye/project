@@ -257,29 +257,24 @@ tr {
     width: 100px;
 }
 
-.th-id{
-    width: 140px;
-}
-.td-id {
-    width: 130px;
-}
-
 .th-nome {
     width: 140px;
 }
 .td-nome {
-    width: 150px;
-}
-
-.th-maquina,
-.td-maquina {
-    width: 140px;
+    width: 130px;
 }
 
 .th-funcionario{
     width: 120px;
 }
 .td-funcionario {
+    width: 120px;
+}
+
+.th-status{
+    width: 140px;
+}
+.td-status {
     width: 140px;
 }
 
@@ -294,21 +289,14 @@ tr {
     width: 110px;
 }
 .td-memoria {
-    width: 120px;
+    width: 100px;
 }
 
 .th-disco{
-    margin-left: 1%;
-    justify-content: start;
     width: 120px;
 }
 .td-disco {
     width: 120px;
-}
-
-.th-status,
-.td-status {
-    width: 140px;
 }
 
 .container-img {
