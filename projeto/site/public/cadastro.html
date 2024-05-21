@@ -40,6 +40,14 @@
 
                 <div class="cadastro-section" id="section2" style="display: none;">
                     <div class="cadastro-field">
+                        <label for="nome">Nome</label>
+                        <input id="nome_input" type="text" autofocus autocomplete="off">
+                    </div>
+                    <div class="cadastro-field">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf_input" type="text" autofocus autocomplete="off">
+                    </div>
+                    <div class="cadastro-field">
                         <label for="email">E-mail</label>
                         <input id="email_input" type="text" autofocus autocomplete="off">
                     </div>
@@ -85,6 +93,8 @@
         var nomeFantasiaVar = nomeFantasia_input.value;
         var razaoSocialVar = razaoSocial_input.value;
         var cnpjVar = cnpj_input.value;
+        var nomeVar = nome_input.value;
+        var cpfVar = cpf_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
@@ -122,6 +132,8 @@
                     nomeFantasiaServer: nomeFantasiaVar,
                     razaoSocialServer: razaoSocialVar,
                     cnpjServer: cnpjVar,
+                    nomeServer: nomeVar,
+                    cpfServer: cpfVar,
                     emailServer: emailVar,
                     senhaServer: senhaVar
                 }),

@@ -44,6 +44,8 @@ function cadastrar(req, res) {
    var nomeFantasia = req.body.nomeFantasiaServer;
    var razaoSocial = req.body.razaoSocialServer;
    var cnpj = req.body.cnpjServer;
+   var nome = req.body.nomeServer;
+   var cpf = req.body.cpfServer;
    var email = req.body.emailServer;
    var senha = req.body.senhaServer;
 
@@ -54,6 +56,10 @@ function cadastrar(req, res) {
         res.status(400).send("Razão Social está udefined!");
    } else if (cnpj == undefined) {
         res.status(400).send("Seu cnpj está udefined!");
+   } else if(nome == undefined) {
+        res.status(400).send("Seu nome está undefined!")
+   } else if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!")
    } else if (email == undefined) {
        res.status(400).send("Seu email está undefined!");
    } else if (senha == undefined) {
@@ -61,7 +67,7 @@ function cadastrar(req, res) {
    }else {
 
        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-       usuarioModel.cadastrar(nomeFantasia, razaoSocial, cnpj, email, senha)
+       usuarioModel.cadastrar(nomeFantasia, razaoSocial, cnpj, nome, cpf, email, senha)
            .then(
                function (resultado) {
                    res.json(resultado);
