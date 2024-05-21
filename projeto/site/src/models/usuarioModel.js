@@ -10,10 +10,10 @@ function logar(email, senha) {
 }
 
 
-function cadastrar(nomeFantasia, razaoSocial, cnpj, email, senha) {
+function cadastrar(nomeFantasia, razaoSocial, cnpj, nome, cpf, email, senha) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        INSERT INTO empresa (nomeFantasia, razaoSocial, cnpj, email, senha) VALUES ('${nomeFantasia}', '${razaoSocial}', '${cnpj}', '${email}', '${senha}');
+        INSERT INTO empresa (nomeFantasia, razaoSocial, cnpj, email, senha) VALUES ('${nomeFantasia}', '${razaoSocial}', '${cnpj}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
