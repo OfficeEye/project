@@ -12,4 +12,8 @@ router.post("/logar", function (req, res) {
     usuarioController.logar(req, res);
 });
 
+router.post("/existeEmpresa", function (req, res) {
+    usuarioController.existeEmpresa(req, res);
+});
+
 module.exports = router;

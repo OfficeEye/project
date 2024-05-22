@@ -85,7 +85,39 @@ function cadastrar(req, res) {
    }
 }
 
+function existeEmpresa(req, res) {
+    var nomeFantasia = req.body.nomeFantasiaServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var cnpj = req.body.cnpjServer;
+
+    if (nomeFantasia == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    }else if (razaoSocial == undefined) {
+         res.status(400).send("Razão Social está udefined!");
+    } else if (cnpj == undefined) {
+         res.status(400).send("Seu cnpj está udefined!");
+    } else {
+        usuarioModel.existeEmpresa(nomeFantasia, razaoSocial, cnpj)
+            .then(
+                function (resultado) {
+                    if (resultado.length == 1){
+                        res.json(resultado[0])
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Mais de uma empresa já cadastrada")
+                    }
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro)
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
+
 module.exports = {
     logar,
-    cadastrar
+    cadastrar,
+    existeEmpresa
 }

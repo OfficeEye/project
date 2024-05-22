@@ -19,7 +19,17 @@ function cadastrar(nomeFantasia, razaoSocial, cnpj, nome, cpf, email, senha) {
     return database.executar(instrucao);
 }
 
+function existeEmpresa(nomeFantasia, razaoSocial, cnpj) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT nomeFantasia, razaoSocial, cnpj FROM empresa WHERE nomeFantasia = "${nomeFantasia}" AND razaoSocial = "${razaoSocial}" AND cnpj = ${cnpj};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     logar,
-    cadastrar
+    cadastrar,
+    existeEmpresa
 };

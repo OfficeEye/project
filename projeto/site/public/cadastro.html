@@ -31,10 +31,14 @@
                     <div class="cadastro-field">
                         <label for="cnpj">CNPJ</label>
                         <input id="cnpj_input" type="text" >
+                        <p id="mensagem_erro" style="display: none; color: red;">empresa ja cadastrada</p>
                        
                     </div>
                     <div class="cadastro-button">
+                        
+                        
                         <button onclick="mudarSection('section2')">Próximo</button>
+                        
                     </div>
                 </div>
 
@@ -99,6 +103,60 @@
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
+        if (nomeFantasiaVar == "") {
+            document.getElementById('nomeFantasia_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+            
+            if (cnpjVar.length != 14) {
+            document.getElementById('cnpj_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+        }
+
+            if (razaoSocialVar == "") {
+            document.getElementById('razaoSocial_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+
+            if (cnpjVar.length != 14) {
+            document.getElementById('cnpj_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+        }
+        }
+
+        } else if (razaoSocialVar == "") {
+            document.getElementById('razaoSocial_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+
+            if (cnpjVar.length != 14) {
+            document.getElementById('cnpj_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+        }
+
+        } else if (cnpjVar.length != 14) {
+            document.getElementById('cnpj_input').style.borderColor = "red";
+
+            var abas = document.getElementsByClassName('cadastro-section');
+            abas[1].style.display = 'none';
+            abas[0].style.display = 'flex'
+        }
+
         // if (
         //     nomeFantasiaVar == "" ||
         //     razaoSocialVar == "" ||
@@ -115,8 +173,9 @@
         // } else if (senhaVar.length < 6) {
             
         // } else if (confirmacaoSenhaVar != senhaVar) {
-            
-        // } else {
+        
+        //}  
+        else {
             // setInterval(sumirMensagem, 3000)
 
 
@@ -149,7 +208,7 @@
 
                         setTimeout(() => {
                             window.location = "login.html";
-                        }, "3000");
+                        }, "2000");
 
                         limparFormulario();
 
@@ -163,17 +222,62 @@
                 });
 
             return false;
-        // }
+        }
     }
 
     function mudarSection(id) {
-        var abas = document.getElementsByClassName('cadastro-section');
+        var nomeFantasiaVar = nomeFantasia_input.value;
+        var razaoSocialVar = razaoSocial_input.value;
+        var cnpjVar = cnpj_input.value;
 
-        for (var i = 0; i < abas.length; i++) {
-            abas[i].style.display = 'none';
-        }
+        fetch("/usuarios/existeEmpresa", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeFantasiaServer: nomeFantasiaVar,
+                razaoSocialServer: razaoSocialVar,
+                cnpjServer: cnpjVar
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log("Houve um erro ao buscar empresa")
 
-        document.getElementById(id).style.display = 'flex';
+                resposta.text().then(texto => {
+                    console.error(texto)
+                });
+
+                document.getElementById('mensagem_erro').style.display = "flex"
+
+                document.getElementById('nomeFantasia_input').style.borderColor = "red";
+                document.getElementById('razaoSocial_input').style.borderColor = "red";
+                document.getElementById('cnpj_input').style.borderColor = "red";
+
+                
+
+            } else {
+                var abas = document.getElementsByClassName('cadastro-section');
+
+                console.log(abas)
+
+                for (var i = 0; i < abas.length; i++) {
+                    abas[i].style.display = 'none';
+                }
+
+                document.getElementById(id).style.display = 'flex';
+
+                document.getElementById('nomeFantasia_input').style.borderColor = "black";
+                document.getElementById('razaoSocial_input').style.borderColor = "black";
+                document.getElementById('cnpj_input').style.borderColor = "black";
+
+                document.getElementById('mensagem_erro').style.display = "none"
+                
+            }
+        }).catch(function (erro) {
+            console.log(erro)
+        })
+
     }
 
 
