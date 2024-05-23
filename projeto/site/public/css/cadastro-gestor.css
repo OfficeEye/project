@@ -18,11 +18,11 @@ tbody::-webkit-scrollbar-thumb {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
 html, body {
     height: 100vh;
+    overflow-y: hidden;
 }
 
 body {
@@ -183,6 +183,7 @@ tbody {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
     overflow-y: scroll;
+    scroll-behavior: smooth;
     padding: 0 6px;
 }
 
@@ -325,7 +326,7 @@ td img {
 
 #modaEditar select.focus{
     outline: none;
-    box-shadow: ;
+    /* box-shadow: ; */
 }
 
 
