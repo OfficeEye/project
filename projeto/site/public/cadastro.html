@@ -70,8 +70,8 @@
                         <label id="confirmacao_senha_correct" for="confirmacao_senha_input">Confirmar senha</label>
                         <label id="confirmacao_senha_error" style="display: none; color: red;" for="confirmacao_senha_input">Senhas devem ser iguais</label>
                         <input id="confirmacao_senha_input" type="password" >
-                        <div class="icon-password" id="icon_password">
-                            <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_confirm_lock"></i>
+                        <div class="icon-password" id="icon_passwordCheck">
+                            <i class="fa-solid fa-lock" onclick="verSenhaCheck()" id="cadastro_field_password_confirm_lock"></i>
                         </div>
                        
                     </div>
@@ -531,5 +531,21 @@
         })
     }
 
+    function verSenha(){
+        senha_input.type = 'text';
+        icon_password.innerHTML = '<i style="cursor: pointer;" class="fa-solid fa-unlock" onclick="ocultarSenha()" id="cadastro_field_password_unlock"></i>'
+    }
+    function ocultarSenha(){
+        senha_input.type = 'password';
+        icon_password.innerHTML = '<i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_lock"></i>'
+    }
+    function verSenhaCheck(){
+        confirmacao_senha_input.type = 'text';
+        icon_passwordCheck.innerHTML = '<i style="cursor: pointer;" class="fa-solid fa-unlock" onclick="ocultarSenhaCheck()" id="cadastro_field_password_unlock"></i>'
+    }
+    function ocultarSenhaCheck(){
+        confirmacao_senha_input.type = 'password';
+        icon_passwordCheck.innerHTML = '<i class="fa-solid fa-lock" onclick="verSenhaCheck()" id="cadastro_field_password_lock"></i>'
+    }
 
 </script>
