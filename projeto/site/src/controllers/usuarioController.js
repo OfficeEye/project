@@ -38,7 +38,7 @@ function logar(req, res) {
     }
 }
 
-function cadastrar(req, res) {
+function cadastrarEmpresa(req, res) {
    console.log("Controller de Cadastro - Clonar a data viz separadamente e consultar o controller chamado Cadastrar")
    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
    var nomeFantasia = req.body.nomeFantasiaServer;
@@ -48,6 +48,7 @@ function cadastrar(req, res) {
    var cpf = req.body.cpfServer;
    var email = req.body.emailServer;
    var senha = req.body.senhaServer;
+   var fkEmpresa = req.body.fkEmpresaServer;
 
    // Faça as validações dos valores
    if (nomeFantasia == undefined) {
@@ -67,7 +68,7 @@ function cadastrar(req, res) {
    }else {
 
        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-       usuarioModel.cadastrar(nomeFantasia, razaoSocial, cnpj, nome, cpf, email, senha)
+       usuarioModel.cadastrarEmpresa(nomeFantasia, razaoSocial, cnpj)
            .then(
                function (resultado) {
                    res.json(resultado);
@@ -82,10 +83,77 @@ function cadastrar(req, res) {
                    res.status(500).json(erro.sqlMessage);
                }
            );
+
+        usuarioModel.cadastrarUsuario(nome, cpf, email, senha, fkEmpresa).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
    }
+}
+
+function existeEmpresa(req, res) {
+    var nomeFantasia = req.body.nomeFantasiaServer;
+    var razaoSocial = req.body.razaoSocialServer;
+    var cnpj = req.body.cnpjServer;
+
+    if (nomeFantasia == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    }else if (razaoSocial == undefined) {
+         res.status(400).send("Razão Social está udefined!");
+    } else if (cnpj == undefined) {
+         res.status(400).send("Seu cnpj está udefined!");
+    } else {
+        usuarioModel.existeEmpresa(nomeFantasia, razaoSocial, cnpj)
+            .then(
+                function (resultado) {
+                    if (resultado.length == 1){
+                        res.json(resultado[0])
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Mais de uma empresa já cadastrada")
+                    }
+                    
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro)
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    }
+}
+
+function ultimaEmpresaCadastrada(req, res) {
+    
+        usuarioModel.ultimaEmpresaCadastrada()
+            .then(
+                function (resultado) {
+                    if (resultado.length == 1){
+                        res.json(resultado[0])
+                    } else if (resultado.length == 0){
+                        res.status(403).send("nenhuma empresa cadastrada")
+                    }                    
+                }).catch(
+                function (erro) {
+                    console.log(erro)
+                    res.status(500).json(erro.sqlMessage)
+                }
+            )
+    
 }
 
 module.exports = {
     logar,
-    cadastrar
+    cadastrarEmpresa,
+    existeEmpresa,
+    ultimaEmpresaCadastrada
 }
