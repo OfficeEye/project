@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="BuscarUltimaEmpresaCadastrada ()">
     <div class="cadastro-background">
         <div class="cadastro-box">
             <div class="cadastro-form">
@@ -19,17 +19,17 @@
 
                 <div class="cadastro-section" id="section1">
                     <div class="cadastro-field">
-                        <label for="nome_fantasia">Nome Fantasia</label>
+                        <label for="nome_fantasia_input">Nome Fantasia</label>
                         <input id="nomeFantasia_input" type="text" autofocus autocomplete="off">
                         
                     </div>
                     <div class="cadastro-field">
-                        <label for="razao_social">Razão Social</label>
+                        <label for="razaoSocial_input">Razão Social</label>
                         <input id="razaoSocial_input" type="text" >
                        
                     </div>
                     <div class="cadastro-field">
-                        <label for="cnpj">CNPJ</label>
+                        <label for="cnpj_input">CNPJ</label>
                         <input id="cnpj_input" type="text" >
                         <p id="mensagem_erro" style="display: none; color: red;">empresa ja cadastrada</p>
                        
@@ -44,19 +44,22 @@
 
                 <div class="cadastro-section" id="section2" style="display: none;">
                     <div class="cadastro-field">
-                        <label for="nome">Nome</label>
+                        <label id="nome_correct" for="nome_input">Nome</label>
                         <input id="nome_input" type="text" autofocus autocomplete="off">
                     </div>
                     <div class="cadastro-field">
-                        <label for="cpf">CPF</label>
+                        <label id="cpf_correct" for="cpf_input">CPF</label>
+                        <label id="cpf_error" style="display: none; color: red;" for="cpf_input">CPF deve conter 11 caracteres</label>
                         <input id="cpf_input" type="text" autofocus autocomplete="off">
                     </div>
                     <div class="cadastro-field">
-                        <label for="email">E-mail</label>
+                        <label id="email_correct" for="email_input">E-mail</label>
+                        <label id="email_error" style="display: none; color: red;" for="email_input">E-mail Invalido</label>
                         <input id="email_input" type="text" autofocus autocomplete="off">
                     </div>
                     <div class="cadastro-field" id="field_senha">
-                        <label for="senha">Senha</label>
+                        <label id="senha_correct" for="senha_input">Senha</label>
+                        <label id="senha_error" style="display: none; color: red;" for="senha_input">Senha mínima de 6 caracteres</label>
                         <input id="senha_input" type="password" id="input_senha">
                         <div class="icon-password" id="icon_password">
                             <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_lock"></i>
@@ -64,7 +67,8 @@
                        
                     </div>
                     <div class="cadastro-field">
-                        <label for="confirmar_senha">Confirmar senha</label>
+                        <label id="confirmacao_senha_correct" for="confirmacao_senha_input">Confirmar senha</label>
+                        <label id="confirmacao_senha_error" style="display: none; color: red;" for="confirmacao_senha_input">Senhas devem ser iguais</label>
                         <input id="confirmacao_senha_input" type="password" >
                         <div class="icon-password" id="icon_password">
                             <i class="fa-solid fa-lock" onclick="verSenha()" id="cadastro_field_password_confirm_lock"></i>
@@ -92,6 +96,7 @@
 </body>
 </html>
 <script>
+    var fkEmpresa = "";
 
     function cadastrar() {
         var nomeFantasiaVar = nomeFantasia_input.value;
@@ -102,6 +107,7 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        
 
         if (nomeFantasiaVar == "") {
             document.getElementById('nomeFantasia_input').style.borderColor = "red";
@@ -111,12 +117,12 @@
             abas[0].style.display = 'flex'
             
             if (cnpjVar.length != 14) {
-            document.getElementById('cnpj_input').style.borderColor = "red";
+                document.getElementById('cnpj_input').style.borderColor = "red";
 
-            var abas = document.getElementsByClassName('cadastro-section');
-            abas[1].style.display = 'none';
-            abas[0].style.display = 'flex'
-        }
+                var abas = document.getElementsByClassName('cadastro-section');
+                abas[1].style.display = 'none';
+                abas[0].style.display = 'flex'
+            }
 
             if (razaoSocialVar == "") {
             document.getElementById('razaoSocial_input').style.borderColor = "red";
@@ -155,32 +161,249 @@
             var abas = document.getElementsByClassName('cadastro-section');
             abas[1].style.display = 'none';
             abas[0].style.display = 'flex'
-        }
+        } else if (nomeVar == "") {
 
-        // if (
-        //     nomeFantasiaVar == "" ||
-        //     razaoSocialVar == "" ||
-        //     cnpjVar == "" ||
-        //     emailVar == "" ||
-        //     senhaVar == "" ||
-        //     confirmacaoSenhaVar == ""
-        // ) {
+            document.getElementById('nome_input').style.borderColor = "red" 
+            document.getElementById('nome_correct').style.color = "red"      
             
-        // } else if (nomeFantasiaVar.trim() == "") {
+            document.getElementById('cpf_input').style.borderColor = "black"
+            document.getElementById('cpf_correct').style.display = "flex"
+            document.getElementById('cpf_error').style.display = "none"
+
+            document.getElementById('email_input').style.borderColor = "black"
+            document.getElementById('email_correct').style.display = "flex"
+            document.getElementById('email_error').style.display = "none"
+
+            if (cpfVar.length != 11) {
+
+                document.getElementById('cpf_input').style.borderColor = "red"
+                document.getElementById('cpf_correct').style.display = "none"
+                document.getElementById('cpf_error').style.display = "flex"
+
+                if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
             
-        // } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+                    document.getElementById('email_input').style.borderColor = "red"
+                    document.getElementById('email_correct').style.display = "none"
+                    document.getElementById('email_error').style.display = "flex"
+
+                    if (senhaVar.length < 6) {
+
+                        document.getElementById('senha_input').style.borderColor = "red"
+                        document.getElementById('senha_correct').style.display = "none"
+                        document.getElementById('senha_error').style.display = "flex"
+
+                    }
+                }
+
+                if (senhaVar.length < 6) {
+
+                    document.getElementById('senha_input').style.borderColor = "red"
+                    document.getElementById('senha_correct').style.display = "none"
+                    document.getElementById('senha_error').style.display = "flex"
+
+                }
+                if (confirmacaoSenhaVar != senhaVar) {
+
+                    document.getElementById('senha_correct').style.display = "flex"
+                    document.getElementById('senha_error').style.display = "none"
+                    document.getElementById('senha_correct').style.color = "red"
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+                    document.getElementById('confirmacao_senha_correct').style.display = "none"
+                    document.getElementById('confirmacao_senha_error').style.display = "flex"
+
+                } else if (confirmacaoSenhaVar == senhaVar) {
+                    document.getElementById('senha_correct').style.color = "black"
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "black"
+                    document.getElementById('confirmacao_senha_correct').style.display = "flex"
+                    document.getElementById('confirmacao_senha_error').style.display = "none"
+                }
+            }
+
+            else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+                
+                document.getElementById('cpf_input').style.borderColor = "black"
+                document.getElementById('cpf_correct').style.display = "flex"
+                document.getElementById('cpf_error').style.display = "none"
+
+                document.getElementById('email_input').style.borderColor = "red"
+                document.getElementById('email_correct').style.display = "none"
+                document.getElementById('email_error').style.display = "flex"
+
+                if (senhaVar.length < 6) {
+
+                    document.getElementById('senha_input').style.borderColor = "red"
+                    document.getElementById('senha_correct').style.display = "none"
+                    document.getElementById('senha_error').style.display = "flex"
+
+                }          
+
+            }else if (senhaVar.length < 6) {
+
+                document.getElementById('senha_input').style.borderColor = "red"
+                document.getElementById('senha_correct').style.display = "none"
+                document.getElementById('senha_error').style.display = "flex"
+
+                document.getElementById('email_input').style.borderColor = "black"
+                document.getElementById('email_correct').style.display = "flex"
+                document.getElementById('email_error').style.display = "none"
+
+                if (confirmacaoSenhaVar != senhaVar) {
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+                    document.getElementById('confirmacao_senha_correct').style.display = "none"
+                    document.getElementById('confirmacao_senha_error').style.display = "flex"
+                }
+
+            }
+            if (confirmacaoSenhaVar != senhaVar) {
+
+                document.getElementById('senha_correct').style.display = "flex"
+                document.getElementById('senha_error').style.display = "none"
+                document.getElementById('senha_correct').style.color = "red"
+
+                document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+                document.getElementById('confirmacao_senha_correct').style.display = "none"
+                document.getElementById('confirmacao_senha_error').style.display = "flex"
+
+            }else if (confirmacaoSenhaVar == senhaVar && confirmacaoSenhaVar != "") {
+                    document.getElementById('senha_correct').style.color = "black"
+                    document.getElementById('senha_input').style.borderColor = "black"
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "black"
+                    document.getElementById('confirmacao_senha_correct').style.display = "flex"
+                    document.getElementById('confirmacao_senha_error').style.display = "none"
+                }   
+
+        } else if (cpfVar.length != 11) {
+
+            document.getElementById('nome_input').style.borderColor = "black" 
+            document.getElementById('nome_correct').style.color = "black"  
+
+            document.getElementById('cpf_input').style.borderColor = "red"
+            document.getElementById('cpf_correct').style.display = "none"
+            document.getElementById('cpf_error').style.display = "flex"
+
+            document.getElementById('email_input').style.borderColor = "black"
+            document.getElementById('email_correct').style.display = "flex"
+            document.getElementById('email_error').style.display = "none"
+
             
-        // } else if (senhaVar.length < 6) {
+
+            if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
             
-        // } else if (confirmacaoSenhaVar != senhaVar) {
-        
-        //}  
+                document.getElementById('email_input').style.borderColor = "red"
+                document.getElementById('email_correct').style.display = "none"
+                document.getElementById('email_error').style.display = "flex"
+
+                if (senhaVar.length < 6) {
+
+                    document.getElementById('senha_input').style.borderColor = "red"
+                    document.getElementById('senha_correct').style.display = "none"
+                    document.getElementById('senha_error').style.display = "flex"
+
+                } 
+
+            } else if (senhaVar.length < 6) {
+
+                document.getElementById('email_input').style.borderColor = "black"
+                document.getElementById('email_correct').style.display = "flex"
+                document.getElementById('email_error').style.display = "none"
+
+                document.getElementById('senha_input').style.borderColor = "red"
+                document.getElementById('senha_correct').style.display = "none"
+                document.getElementById('senha_error').style.display = "flex"
+
+            }
+            if (confirmacaoSenhaVar != senhaVar) {
+
+                document.getElementById('senha_correct').style.display = "flex"
+                document.getElementById('senha_error').style.display = "none"
+                document.getElementById('senha_correct').style.color = "red"
+
+                document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+                document.getElementById('confirmacao_senha_correct').style.display = "none"
+                document.getElementById('confirmacao_senha_error').style.display = "flex"
+
+            } else if (confirmacaoSenhaVar == senhaVar && confirmacaoSenhaVar != "") {
+                    document.getElementById('senha_correct').style.color = "black"
+                    document.getElementById('senha_input').style.borderColor = "black"
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "black"
+                    document.getElementById('confirmacao_senha_correct').style.display = "flex"
+                    document.getElementById('confirmacao_senha_error').style.display = "none"
+                }   
+
+        } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+            
+            document.getElementById('nome_input').style.borderColor = "black" 
+            document.getElementById('nome_correct').style.color = "black"  
+
+            document.getElementById('cpf_input').style.borderColor = "black"
+            document.getElementById('cpf_correct').style.display = "flex"
+            document.getElementById('cpf_error').style.display = "none"
+
+            document.getElementById('email_input').style.borderColor = "red"
+            document.getElementById('email_correct').style.display = "none"
+            document.getElementById('email_error').style.display = "flex"
+
+            if (senhaVar.length < 6) {
+            document.getElementById('nome_input').style.borderColor = "black" 
+            document.getElementById('nome_correct').style.color = "black"
+
+            document.getElementById('senha_input').style.borderColor = "red"
+            document.getElementById('senha_correct').style.display = "none"
+            document.getElementById('senha_error').style.display = "flex"
+
+            }else if (confirmacaoSenhaVar != senhaVar) {
+
+                document.getElementById('senha_correct').style.display = "flex"
+                document.getElementById('senha_error').style.display = "none"
+                document.getElementById('senha_correct').style.color = "red"
+
+                document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+                document.getElementById('confirmacao_senha_correct').style.display = "none"
+                document.getElementById('confirmacao_senha_error').style.display = "flex"
+
+            }else if (confirmacaoSenhaVar == senhaVar && confirmacaoSenhaVar != "") {
+                    document.getElementById('senha_correct').style.color = "black"
+                    document.getElementById('senha_input').style.borderColor = "black"
+
+                    document.getElementById('confirmacao_senha_input').style.borderColor = "black"
+                    document.getElementById('confirmacao_senha_correct').style.display = "flex"
+                    document.getElementById('confirmacao_senha_error').style.display = "none"
+                } 
+
+        } else if (senhaVar.length < 6) {
+            document.getElementById('nome_input').style.borderColor = "black" 
+            document.getElementById('nome_correct').style.color = "black"
+
+            document.getElementById('email_input').style.borderColor = "black"
+            document.getElementById('email_correct').style.display = "flex"
+            document.getElementById('email_error').style.display = "none"
+
+            document.getElementById('senha_input').style.borderColor = "red"
+            document.getElementById('senha_correct').style.display = "none"
+            document.getElementById('senha_error').style.display = "flex"
+
+        } else if (confirmacaoSenhaVar != senhaVar) {
+
+            document.getElementById('senha_correct').style.display = "flex"
+            document.getElementById('senha_error').style.display = "none"
+            document.getElementById('senha_correct').style.color = "red"
+            
+            document.getElementById('confirmacao_senha_input').style.borderColor = "red"
+            document.getElementById('confirmacao_senha_correct').style.display = "none"
+            document.getElementById('confirmacao_senha_error').style.display = "flex"
+
+        }
         else {
             // setInterval(sumirMensagem, 3000)
 
 
             // Enviando o valor da nova input
-            fetch("/usuarios/cadastrar", {
+            fetch("/usuarios/cadastrarEmpresa", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -194,7 +417,8 @@
                     nomeServer: nomeVar,
                     cpfServer: cpfVar,
                     emailServer: emailVar,
-                    senhaServer: senhaVar
+                    senhaServer: senhaVar,
+                    fkEmpresaServer: fkEmpresa
                 }),
             })
                 .then(function (resposta) {
@@ -278,6 +502,33 @@
             console.log(erro)
         })
 
+    }
+
+    function BuscarUltimaEmpresaCadastrada () {
+        fetch("/usuarios/ultimaEmpresaCadastrada", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta)
+                resposta.json().then(function (empresa) {
+                    console.log(empresa.idEmpresa)
+                    fkEmpresa = empresa.idEmpresa + 1
+                    console.log(fkEmpresa)
+                    console.log(`Dados recebidos: ${JSON.stringify(empresa)}`);
+
+                });
+            } else {
+                fkEmpresa = 1
+                console.error('Nenhum dado encontrado ou erro na API');
+                console.log(resposta)
+                
+            }
+        }).catch(function (erro) {
+            console.log(erro)
+        })
     }
 
 
