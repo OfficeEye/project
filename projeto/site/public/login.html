@@ -56,25 +56,27 @@
         if (emailVar == "") {
             document.getElementById('email_input').style.borderColor = "red"
             document.getElementById('email_correct').style.color = "red"
+
+            document.getElementById('senha_input').style.borderColor = "black"
+            document.getElementById('senha_correct').style.color = "black"
+
+            if (senhaVar == "") {
+                document.getElementById('senha_input').style.borderColor = "red"
+                document.getElementById('senha_correct').style.color = "red"
+
+            }
         } else if (senhaVar == "") {
             document.getElementById('senha_input').style.borderColor = "red"
             document.getElementById('senha_correct').style.color = "red"
-        }
 
-        // if (
-        //     emailVar == "" ||
-        //     senhaVar == ""
-        // ) {
-        //     erro_email.innerHTML =
-        //         "";
-        // } else {
-        //     setInterval(sumirMensagem, 5000)
-        // }
+            document.getElementById('email_input').style.borderColor = "black"
+            document.getElementById('email_correct').style.color = "black"
+        } else{
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+            console.log("FORM LOGIN: ", emailVar);
+            console.log("FORM SENHA: ", senhaVar);
 
-        fetch("/usuarios/logar", {
+            fetch("/usuarios/logar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -84,21 +86,35 @@
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
             if (resposta.ok) {
                 console.log(resposta);
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_EMPRESA = json.email;
-                    sessionStorage.NOME_FANTASIA_EMPRESA = json.nomeFantasia;
-                    sessionStorage.ID_EMPRESA = json.idEmpresa;
+                resposta.json().then(function (usuario) {
+                    console.log(usuario);
+                    console.log(JSON.stringify(usuario));
+                    console.log(usuario.tipo)
+                    console.log(usuario.fkEmpresa)
+                    var gerente = false;
+                    if (usuario.tipo == "gerente") {
+                        gerente = true
+                        console.log(gerente)
+                        localStorage.NOME_USUARIO = usuario.nome;
+                        localStorage.TIPO_USUARIO = usuario.tipo;
+                        localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
 
-                    setTimeout(function () {
-                        window.location = "/dashboards/dashboard-gestor.html";
-                    }, 1000); // apenas para exibir o loading
+                        setTimeout(function () {
+                            window.location = "/dashboards/dashboard-gestor.html";
+                        }, 1000); // apenas para exibir o loading
+
+                    } else if (usuario.tipo == "tecnico") {
+                        localStorage.NOME_USUARIO = usuario.nome;
+                        localStorage.TIPO_USUARIO = usuario.tipo;
+                        localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
+
+                        setTimeout(function () {
+                            window.location = "/dashboards/dashboard-tecnico.html";
+                        }, 1000); // apenas para exibir o loading
+                    }
 
                 });
 
@@ -111,12 +127,11 @@
                     console.error(texto);
                 });
             }
-
         }).catch(function (erro) {
             console.log(erro);
         })
-
         return false;
+        }        
     }
 
     function verSenha(){

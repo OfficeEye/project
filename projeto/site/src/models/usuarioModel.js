@@ -3,7 +3,7 @@ var database = require("../database/config")
 function logar(email, senha) {
     console.log("Script do banco de dados para fazer login - Clonar data viz separadamente e consultar chamado Autenticar")
     var instrucao = `
-        SELECT idEmpresa, nomeFantasia, email, senha FROM empresa WHERE email = '${email}' AND senha = '${senha}';
+        SELECT nome, email, tipo, senha, fkEmpresa FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
