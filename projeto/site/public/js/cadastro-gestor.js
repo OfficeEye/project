@@ -1,6 +1,24 @@
+function validarSessao() {
+    var nome = localStorage.NOME_USUARIO;
+    var empresa = localStorage.EMPRESA_USUARIO
+
+    if(nome == null && empresa == null) {
+        window.location = "../login.html"
+    }
+}
 function getNameUser() {
-    const user = sessionStorage.NOME_FANTASIA_EMPRESA
+    const user = localStorage.NOME_USUARIO;
     nomeUser.innerHTML = `Bem vindo, ${user}`
+}
+function logout() {
+    localStorage.removeItem('EMPRESA_USUARIO')
+    localStorage.removeItem('TIPO_USUARIO')
+    localStorage.removeItem('NOME_USUARIO')
+
+    setTimeout(function () {
+        window.location = "../login.html";
+    }, 300); // apenas para exibir o loading
+
 }
 
 function cadastrarUser() {
@@ -8,7 +26,7 @@ function cadastrarUser() {
 }
 
 function returnIndex() {
-    window.location.href = "../index.html";
+    window.location.href = "../login.html";
 }
 function openModal(texto){
     modalSair.classList.add("active");

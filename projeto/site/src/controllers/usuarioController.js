@@ -136,19 +136,20 @@ function ultimaEmpresaCadastrada(req, res) {
     
         usuarioModel.ultimaEmpresaCadastrada()
             .then(
-                function (resultado) {
-                    if (resultado.length == 1){
-                        res.json(resultado[0])
-                    } else if (resultado.length == 0){
+                function (resultados) {
+                    if (resultados.length == 1){
+                        res.json(resultados[0])
+                    } else if (resultados == undefined){
+                        console.log("achou")
                         res.status(403).send("nenhuma empresa cadastrada")
                     }                    
                 }).catch(
                 function (erro) {
-                    console.log(erro)
+                    // console.log(erro)
+                    console.log(erro.sqlMessage)
                     res.status(500).json(erro.sqlMessage)
                 }
             )
-    
 }
 
 module.exports = {

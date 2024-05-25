@@ -43,10 +43,19 @@ function ultimaEmpresaCadastrada() {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
         SELECT idEmpresa FROM empresa ORDER BY idEmpresa DESC LIMIT 1;
+
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+// function ultimaEmpresaCadastrada() {
+//     var instrucao = `
+//         SELECT TOP 1 idEmpresa FROM empresa ORDER BY idEmpresa DESC;
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
 
 module.exports = {
     logar,

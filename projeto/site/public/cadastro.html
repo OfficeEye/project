@@ -399,9 +399,6 @@
 
         }
         else {
-            // setInterval(sumirMensagem, 3000)
-
-
             // Enviando o valor da nova input
             fetch("/usuarios/cadastrarEmpresa", {
                 method: "POST",
@@ -423,28 +420,13 @@
             })
                 .then(function (resposta) {
                     console.log("resposta: ", resposta);
-
-                    // if (resposta.ok) {
-                        // cardErro.style.display = "block";
-
-                        // mensagem_erro.innerHTML =
-                        //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
                         setTimeout(() => {
                             window.location = "login.html";
                         }, "2000");
-
-                        limparFormulario();
-
-                    // } else {
-                    //     throw "Houve um erro ao tentar realizar o cadastro!";
-                    // }
                 })
                 .catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
-
                 });
-
             return false;
         }
     }
@@ -514,9 +496,9 @@
             if (resposta.ok) {
                 console.log(resposta)
                 resposta.json().then(function (empresa) {
-                    console.log(empresa.idEmpresa)
+                    // console.log(empresa.idEmpresa)
                     fkEmpresa = empresa.idEmpresa + 1
-                    console.log(fkEmpresa)
+                    // console.log(fkEmpresa)
                     console.log(`Dados recebidos: ${JSON.stringify(empresa)}`);
 
                 });
