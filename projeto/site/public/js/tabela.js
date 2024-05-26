@@ -18,7 +18,7 @@ function closeModal(){
 }
 
 function returnIndex() {
-    window.location.href = "../index.html";
+    window.location.href = "../login.html";
 }
 
 function returnDashboard() {

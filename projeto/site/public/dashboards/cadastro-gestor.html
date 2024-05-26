@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body onload="getNameUser()">
+<body onload="getNameUser(), validarSessao()">
     <div class="nav-bar">
         <div class="logo-officeeye">
             <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -25,28 +25,43 @@
         
         <div class="div_header">
             <div class="div_nomeUsuario">
-                <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
+                <h1 id="nomeUser" style="color: white;"></h1>
             </div> 
-           
-            
         </div>
         <div class="div_tabelaUsuarios">
-            <div class="column-1">
-                <label for="">Nome</label>
-                <input class="input-cadastro" type="text">
-                <label for="">E-mail</label>
-                <input class="input-cadastro" type="text">
-                <label for="">Senha</label>
-                <input class="input-cadastro" type="text">
-                <label for="">Máquina</label>
-                <input class="input-cadastro" type="text">
-                <label for="">Permissões do usúario</label>
-                <select name="" id="">
-                    <option value="">Gestor</option>
-                    <option value="">Técnio de Suporte</option>
-                    <option value="">Funcionário</option>
+            <div class="column-1 ">
+
+                <label id="nome_correct" for="nome_input">Nome</label>
+                <input id="nome_input" class="input-cadastro" type="text">
+
+                <label id="email_correct" for="email_input">E-mail</label>
+                <label id="email_error" style="display: none; color: red;" for="email_input">E-mail Invalido</label>
+                <input id="email_input" class="input-cadastro" type="text">
+
+                <label id="cpf_correct" for="cpf_input">CPF</label>
+                <label id="cpf_error" style="display: none; color: red;" for="cpf_input">CPF deve conter 11 caracteres</label>
+                <input id="cpf_input" class="input-cadastro" type="text"> 
+
+                <label for="opitonSelectPermision">Permissões do usúario</label>
+                <select id="optionSelectPermision">
+                    <option selected value="funcionario">Funcionário</option>
+                    <option value="gestor">Gestor</option>
+                    <option value="tecnico">Técnio de Suporte</option>                    
                 </select>
-                <button>Cadastrar</button>
+
+                <label id="cargo_correct" for="cargo_input">Cargo</label>
+                <input id="cargo_input" class="input-cadastro" type="text">
+
+                <label id="senha_correct" for="senha_input">Senha</label>
+                <label id="senha_error" style="display: none; color: red;" for="senha_input">Senha mínima de 6 caracteres</label>
+                <input id="senha_input" class="input-cadastro" type="password">
+
+                <label id="confirmacao_senha_correct" for="confirmacao_senha_input">Confirmar Senha</label>
+                <label id="confirmacao_senha_error" style="display: none; color: red;" for="confirmacao_senha_input">Senhas devem ser iguais</label>
+                <input id="confirmacao_senha_input" class="input-cadastro" type="password">
+
+                <button id="buttonEnviar" onclick="cadastrarFuncionario()">Cadastrar</button>
+
             </div>
             <div class="column-2">
                 <table>
@@ -231,7 +246,7 @@
 
            <div class="buttons-modal">
             <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
-            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+            <button class="botao botao-confirmar" onclick="logout()">Confirmar</button>
            </div>
         </div>
     </dialog>

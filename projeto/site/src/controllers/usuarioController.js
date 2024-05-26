@@ -49,6 +49,7 @@ function cadastrarEmpresa(req, res) {
    var email = req.body.emailServer;
    var senha = req.body.senhaServer;
    var fkEmpresa = req.body.fkEmpresaServer;
+   var permision = req.body.permisionServer;
 
    // Faça as validações dos valores
    if (nomeFantasia == undefined) {
@@ -84,7 +85,7 @@ function cadastrarEmpresa(req, res) {
                }
            );
 
-        usuarioModel.cadastrarUsuario(nome, cpf, email, senha, fkEmpresa).then(
+        usuarioModel.cadastrarUsuario(nome, cpf, email, permision, senha, fkEmpresa).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -136,24 +137,102 @@ function ultimaEmpresaCadastrada(req, res) {
     
         usuarioModel.ultimaEmpresaCadastrada()
             .then(
-                function (resultado) {
-                    if (resultado.length == 1){
-                        res.json(resultado[0])
-                    } else if (resultado.length == 0){
+                function (resultados) {
+                    if (resultados.length == 1){
+                        res.json(resultados[0])
+                    } else if (resultados == undefined){
+                        console.log("achou")
                         res.status(403).send("nenhuma empresa cadastrada")
                     }                    
                 }).catch(
                 function (erro) {
-                    console.log(erro)
+                    // console.log(erro)
+                    console.log(erro.sqlMessage)
                     res.status(500).json(erro.sqlMessage)
                 }
             )
-    
+}
+
+function gestorCadastrarUsuario(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
+    var permision = req.body.permisionServer;
+    var senha = req.body.senhaServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!")
+    }else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!")
+    }else if (cpf == undefined) {
+        res.status(400).send("seu CPF está undefined!")
+    }else if (permision == undefined) {
+        res.status(400).send("Sua permissão está undefined!")
+    }else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!")
+    }else if(fkEmpresa == undefined){
+        res.status(400).send("Sua empresa está undefined!")
+    }else {
+        usuarioModel.cadastrarUsuario(nome, cpf, email, permision, senha, fkEmpresa).then(
+            function (resultados) {
+                res.json(resultados);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }    
+}
+function gestorCadastrarFuncionario(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
+    var cargo = req.body.cargoServer;
+    var senha = req.body.senhaServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!")
+    }else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!")
+    }else if (cpf == undefined) {
+        res.status(400).send("seu CPF está undefined!")
+    }else if(cargo == undefined) {
+        res.status(400).send("Seu cargo está undefined!")
+    }else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!")
+    }else if (fkEmpresa == undefined) {
+        res.status(400).send("Sua empresa está undefined!")
+    }else {
+        usuarioModel.gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa).then(
+            function (resultados) {
+                res.json(resultados);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro de Funcionario! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
 }
 
 module.exports = {
     logar,
     cadastrarEmpresa,
     existeEmpresa,
-    ultimaEmpresaCadastrada
+    ultimaEmpresaCadastrada,
+    gestorCadastrarUsuario,
+    gestorCadastrarFuncionario
 }

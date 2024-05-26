@@ -94,10 +94,10 @@
                     console.log(JSON.stringify(usuario));
                     console.log(usuario.tipo)
                     console.log(usuario.fkEmpresa)
-                    var gerente = false;
-                    if (usuario.tipo == "gerente") {
-                        gerente = true
-                        console.log(gerente)
+                    var gestor = false;
+                    if (usuario.tipo == "gestor") {
+                        gestor = true
+                        console.log(gestor)
                         localStorage.NOME_USUARIO = usuario.nome;
                         localStorage.TIPO_USUARIO = usuario.tipo;
                         localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
