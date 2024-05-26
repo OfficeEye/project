@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="getNameUser(), validarSessao()">
     <div class="nav-bar">
         <div class="logo-officeeye">
         <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -19,12 +19,13 @@
         <img src="../assets/svg/home.svg " alt="" onclick="returnDash()"> 
         <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
         <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
+        <img src="../assets/svg/settings.svg" alt="" onclick="returnConfig()">
 
     </div>
     </div>
     <div class="content">
         <div class="div_nomeUsuario">
-            <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
+            <h1 id="nomeUser" style="color: white;"></h1>
         </div>
         <div class="kpi">
             <div class="kpi-card">
