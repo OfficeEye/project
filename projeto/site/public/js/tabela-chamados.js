@@ -2,14 +2,19 @@ function openModal(texto){
     modalSair.classList.add("active");
     modalBackground.classList.add("active");
 }
+
+function closeModal(){
+   // modalSair.classList.remove("active");
+   // modalRemover.classList.remove("active");
+   // modalEditar.classList.remove("active");
+   // modalBackground.classList.remove("active"); -->
+
+    modalSair.classList.remove("active");
+    modalBackground.classList.remove("active");
+}
+
 function returnIndex() {
     window.location.href = "../index.html";
-}
-function closeModal(){
-    modalSair.classList.remove("active");
-    modalRemover.classList.remove("active");
-    modalEditar.classList.remove("active");
-    modalBackground.classList.remove("active");
 }
 
 function returnCadastrarUsuario() {
@@ -35,4 +40,12 @@ function confirmarRemocao(){
 }
 
 function confirmarEdicao(){
+}
+
+function abrirDeus(){
+    modalBackground.classList.add("active");
+}
+
+function fecharDeus(){
+    modalBackground.classList.remove("active");
 }

@@ -12,10 +12,9 @@ function returnChamados(){
     window.location.href = "../dashboards/tabela-chamados.html";
 }
 
-function openModal(){
-    console.log(modalBackground, modalSair); // Isso mostrará os elementos no console
-    modalBackground.classList.add("active");
+function openModal(texto){
     modalSair.classList.add("active");
+    modalBackground.classList.add("active");
 }
 
 function closeModal(){

@@ -272,14 +272,241 @@ option:checked {
 
 .modal-background {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0000005a;
-    opacity: 0;
-    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    z-index: 2;
+    transition: opacity 0.3s ease;
 }
 
 .modal-background.active {
     opacity: 1;
-    z-index: 2;
+    z-index: 1; /* Certifique-se que o z-index é suficiente para sobrepor outros conteúdos */
 }
+
+.data-request {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 600px;
+    width: 900px;
+    background-color: rgba(255, 255, 255);
+    border: none;
+    border-radius: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.data-request .forms-request{
+    height: 550px;
+    width: 850px;
+}
+
+.data-request .forms-request .line-1{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    color: #1d1d1d;
+}
+
+.data-request .forms-request .line-1 .title {
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.data-request .forms-request .line-1 .title img{
+    height: 35px;
+    width: 55px;
+    margin: 7px;
+}
+
+.data-request .forms-request .line-1 .title h1{
+    font-size: 36px;
+}
+
+.data-request .forms-request .line-1 .number-request h1{
+    color: #3b9b9b;
+    font-size: 38px;
+}   
+
+.data-request .forms-request .line-2{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    color: #3B9B9B;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.data-request .forms-request .line-2 select{
+    color: #fff;
+}
+
+ .forms-request .line-2 .container-1{
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.forms-request .line-2 select{
+    background-color: #1d1d1d;
+    width: 260px;
+    height: 35px;
+    border-radius: 7px;
+}
+
+
+.line.data-request .forms-request .line-2 .container-2{
+    height: 100%;
+    width: 33%;
+}
+
+.line.data-request .forms-request .line-2 .container-3{
+    height: 100%;
+    width: 33%;
+}
+
+.data-request .forms-request .line-2 {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    color: #3B9B9B;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.data-request .forms-request .line-2 select{
+    color: #fff;
+}
+
+ .forms-request .line-2 .container-1{
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.forms-request .line-2 select{
+    background-color: #1d1d1d;
+    width: 250px;
+    height: 35px;
+    border-radius: 7px;
+}
+
+
+ .forms-request .line-2 .container-2{
+    height: 100%;
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.forms-request .line-2 .container-3{
+    height: 100%;
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.forms-request .line-3{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    color: #3B9B9B;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.forms-request .line-3 input{
+    background-color: #1d1d1d;
+    width: 390px;
+    height: 35px;
+    border-radius: 7px;
+    border: none;
+    color: #fff;
+    padding: 6px;
+}
+
+.forms-request .line-3 input:focus{
+    outline: none;
+}
+
+.forms-request .line-3 .container-1{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+ .forms-request .line-3 .container-2{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+}
+
+.forms-request .line-4{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    color: #3B9B9B;
+    font-size: 22px;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: start;
+}
+
+.forms-request input{
+    background-color: #1d1d1d;
+    width: 815px;
+    height: 35px;
+    border-radius: 7px;
+    border: none;
+    color: #fff;
+    padding: 6px;
+}
+
+.forms-request .line-5{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    color: #3B9B9B;
+    font-size: 22px;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: start;
+}
+
+.forms-request .line-5 input{
+    height: 90px;
+ }
+
+ 
