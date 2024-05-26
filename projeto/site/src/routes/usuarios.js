@@ -20,4 +20,12 @@ router.post("/ultimaEmpresaCadastrada", function (req, res) {
     usuarioController.ultimaEmpresaCadastrada(req, res);
 });
 
+router.post("/gestorCadastrarUsuario", function (req, res) {
+    usuarioController.gestorCadastrarUsuario(req, res);
+});
+
+router.post("/gestorCadastrarFuncionario", function (req, res) {
+    usuarioController.gestorCadastrarFuncionario(req, res);
+})
+
 module.exports = router;

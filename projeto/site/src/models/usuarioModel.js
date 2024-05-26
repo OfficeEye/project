@@ -20,9 +20,9 @@ function cadastrarEmpresa(nomeFantasia, razaoSocial, cnpj) {
     return database.executar(instrucao);
 }
 
-function cadastrarUsuario(nome, cpf, email, senha, fkEmpresa) {
+function cadastrarUsuario(nome, cpf, email, permision, senha, fkEmpresa) {
     var instrucao = `
-        INSERT INTO usuario (nome, email, tipo, cpf, senha, fkEmpresa) VALUES ('${nome}', '${email}', 'gerente', ${cpf}, '${senha}', '${fkEmpresa}')
+        INSERT INTO usuario (nome, email, tipo, cpf, senha, fkEmpresa) VALUES ('${nome}', '${email}', '${permision}', ${cpf}, '${senha}', '${fkEmpresa}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -31,11 +31,15 @@ function cadastrarUsuario(nome, cpf, email, senha, fkEmpresa) {
                                                             
 
 function existeEmpresa(nomeFantasia, razaoSocial, cnpj) {
+    var existe = false
+    if (nomeFantasia == "SPTech") {
+        existe = true
+    }
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
         SELECT nomeFantasia, razaoSocial, cnpj FROM empresa WHERE nomeFantasia = "${nomeFantasia}" AND razaoSocial = "${razaoSocial}" AND cnpj = ${cnpj};
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
+    console.log("Executando a instrução SQL: \n" + instrucao + "\n" + existe);
     return database.executar(instrucao);
 }
 
@@ -57,10 +61,22 @@ function ultimaEmpresaCadastrada() {
 //     return database.executar(instrucao);
 // }
 
+function gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    INSERT INTO funcionario (nome, email, area, cpf, senha, fkEmpresa) VALUES ('${nome}', '${email}', '${cargo}', ${cpf}, '${senha}', '${fkEmpresa}');
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);   
+}
+
+
+
 module.exports = {
     logar,
     cadastrarEmpresa,
     existeEmpresa,
     ultimaEmpresaCadastrada,
-    cadastrarUsuario
+    cadastrarUsuario,
+    gestorCadastrarFuncionario
 };

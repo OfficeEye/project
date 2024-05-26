@@ -15,9 +15,9 @@ function logout() {
     localStorage.removeItem('TIPO_USUARIO')
     localStorage.removeItem('NOME_USUARIO')
 
-    setTimeout(function () {
+    closeModal()
+
         window.location = "../login.html";
-    }, 300); // apenas para exibir o loading
 
 }
 function returnIndex() {

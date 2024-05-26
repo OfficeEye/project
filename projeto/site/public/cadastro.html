@@ -96,7 +96,7 @@
 </body>
 </html>
 <script>
-    var fkEmpresa = "";
+    var fkEmpresa = 1;
 
     function cadastrar() {
         var nomeFantasiaVar = nomeFantasia_input.value;
@@ -107,6 +107,7 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        const permisionConst = "gestor"
         
 
         if (nomeFantasiaVar == "") {
@@ -415,7 +416,8 @@
                     cpfServer: cpfVar,
                     emailServer: emailVar,
                     senhaServer: senhaVar,
-                    fkEmpresaServer: fkEmpresa
+                    fkEmpresaServer: fkEmpresa,
+                    permisionServer: permisionConst
                 }),
             })
                 .then(function (resposta) {
@@ -494,7 +496,7 @@
             }
         }).then(function (resposta) {
             if (resposta.ok) {
-                console.log(resposta)
+                // console.log(resposta)
                 resposta.json().then(function (empresa) {
                     // console.log(empresa.idEmpresa)
                     fkEmpresa = empresa.idEmpresa + 1
@@ -504,6 +506,7 @@
                 });
             } else {
                 fkEmpresa = 1
+                console.log(fkEmpresa)
                 console.error('Nenhum dado encontrado ou erro na API');
                 console.log(resposta)
                 
