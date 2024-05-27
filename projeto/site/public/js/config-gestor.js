@@ -16,3 +16,7 @@ function closeModal(){
 function returnConfig() {
     window.location.href = "config-gestor.html"
 }
+function buscarInformacoesUsuario() {
+    var nome = localStorage.NOME_USUARIO;
+
+}

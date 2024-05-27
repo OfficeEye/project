@@ -38,7 +38,7 @@ function cadastrarFuncionario() {
     } else if (confirmarSenhaVar != senhaVar) {
 
     } else {
-        fetch("../usuarios/gestorCadastrarFuncionario", {
+        fetch("../gestor/gestorCadastrarFuncionario", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ function cadastrarUsuario() {
     }else if (confirmarSenhaVar != senhaVar) {
 
     }else {
-        fetch("../usuarios/gestorCadastrarUsuario", {
+        fetch("../gestor/gestorCadastrarUsuario", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -226,7 +226,7 @@ function cadastrar() {
         } else if (confirmarSenhaVar != senhaVar) {
 
         }else {
-            fetch("../usuarios/gestorCadastrarFuncionario", {
+            fetch("../gestor/gestorCadastrarFuncionario", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -257,7 +257,7 @@ function cadastrar() {
 
     } else {
         
-        fetch("../usuarios/gestorCadastrarUsuario", {
+        fetch("../gestor/gestorCadastrarUsuario", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

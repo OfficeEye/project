@@ -61,15 +61,6 @@ function ultimaEmpresaCadastrada() {
     return database.executar(instrucao);
 }
 
-function gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa) {
-    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
-    var instrucao = `
-    INSERT INTO funcionario (nome, email, area, cpf, senha, fkEmpresa) VALUES ('${nome}', '${email}', '${cargo}', ${cpf}, '${senha}', '${fkEmpresa}');
-    `
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);   
-}
-
 
 
 module.exports = {
@@ -77,6 +68,5 @@ module.exports = {
     cadastrarEmpresa,
     existeEmpresa,
     ultimaEmpresaCadastrada,
-    cadastrarUsuario,
-    gestorCadastrarFuncionario
+    cadastrarUsuario
 };
