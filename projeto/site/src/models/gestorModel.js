@@ -33,6 +33,11 @@ function editarInformacoesUsuario(idUsuario, nome, email, cpf, senha) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao); 
 }
+
+excluirContaUsuario {
+    DELETE FROM Usuarios
+WHERE idUsuario = 1;
+}
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
