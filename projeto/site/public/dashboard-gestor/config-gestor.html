@@ -31,8 +31,28 @@
         <input id="cpf_input" type="text">
         
         <label for="senha_input">Senha</label>
-        <input id="senha_input" type="text">        
+        <input id="senha_input" type="text">   
+        <button onclick="editarInformacoesUsuario()">Atualizar</button>     
     </div>
+    <div class="modal-background" id="modalBackground"></div>
+    
+    <dialog id="modalSair">
+        <div class="container-modal">
+
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="logout()">Confirmar</button>
+           </div>
+        </div>
+    </dialog>
 </body>
 </html>
 

@@ -25,12 +25,16 @@ function buscarInformacoesUsuario() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            idServer: idUsuario
+            idUsuarioServer: idUsuario
         })
     }).then(function (resposta) {
         if (resposta.ok) {
             resposta.json().then(function (usuario) {
                 console.log(usuario);
+                nome_input.value = usuario.nome
+                email_input.value =  usuario.email
+                cpf_input.value = usuario.cpf
+                senha_input.value = usuario.senha
             })
         }else {
 
@@ -44,4 +48,43 @@ function buscarInformacoesUsuario() {
         console.log(erro);
     })
     return false;
+}
+function editarInformacoesUsuario() {
+    var idUsuario = localStorage.ID_USUARIO;
+    var nomeVar = nome_input.value
+    var emailVar = email_input.value
+    var cpfVar = cpf_input.value
+    var senhaVar = senha_input.value
+    
+
+    if (nomeVar == "") {
+        
+    } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+        
+    } else if (cpfVar.length != 11) {
+        
+    } else if (senhaVar < 6) {
+
+    } else {
+        
+        fetch("/gestor/editarInformacoesUsuario", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                cpfServer: cpfVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("atualizado!")
+            console.log("resposta: ", resposta);
+        }).catch(function (erro) {
+            console.log("#ERRO: " + erro);
+        })
+        return false;
+    }
 }

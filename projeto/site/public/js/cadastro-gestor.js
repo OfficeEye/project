@@ -303,6 +303,9 @@ function returnCadastrarUsuario() {
 function returnDash() {
     window.location.href = "dashboard-gestor.html"
 }
+function returnConfig() {
+    window.location.href = "config-gestor.html"
+}
 
 function removerMaquina() {
     modalRemover.classList.add("active");

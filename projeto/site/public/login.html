@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body
+onload="PreencherCamposLogin()"
+>
     
     <div class="login-background">
         <div class="login-box">
@@ -49,6 +51,10 @@
 </body>
 </html>
 <script>
+    function PreencherCamposLogin() {
+        email_input.value = "leo@gmail.com"
+        senha_input.value = "111111"
+    }
     function logar() {
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;

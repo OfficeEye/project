@@ -76,31 +76,56 @@ function gestorCadastrarFuncionario(req, res) {
 }
 
 function buscarInformacoesUsuario (req, res) {
-    console.log("Controller do Login - Clonar a data viz separadamente e consultar o controller chamado Autenticar")
     var idUsuario = req.body.idUsuarioServer;
 
     if (idUsuario == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu idUsuario está undefined!");
     } else {
         gestorModel.buscarInformacoesUsuario(idUsuario)
         .then(
-            function (resultadoAutenticar) {
-                console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-                console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
-                if (resultadoAutenticar.length == 1) {
-                    console.log(resultadoAutenticar);
-                    res.json(resultadoAutenticar[0])
-
-                } else if (resultadoAutenticar.length == 0) {
+            function (resultado) {
+                if (resultado.length == 1){
+                    res.json(resultado[0])
+                } else if (resultado.length == 0) {
                     res.status(403).send("idUsuario inválido(s)");
                 }
             }
         ).catch(
             function (erro) {
-                console.log(erro);
-                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function editarInformacoesUsuario(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
+    var senha = req.body.senhaServer;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("Seu idUsuario está undefined!");
+    }else if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!")
+    }else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!")
+    }else if (cpf == undefined) {
+        res.status(400).send("seu CPF está undefined!")
+    }else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!")
+    } else {
+        gestorModel.editarInformacoesUsuario(idUsuario, nome, email, cpf, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
             }
         );
     }
@@ -109,5 +134,6 @@ function buscarInformacoesUsuario (req, res) {
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
-    buscarInformacoesUsuario
+    buscarInformacoesUsuario,
+    editarInformacoesUsuario
 }

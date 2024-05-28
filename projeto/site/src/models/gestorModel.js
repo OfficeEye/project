@@ -16,7 +16,26 @@ function gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa) {
     return database.executar(instrucao);   
 }
 
+function buscarInformacoesUsuario(idUsuario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT nome, email, cpf, senha FROM usuario WHERE idUsuario = ${idUsuario}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
+}
+
+function editarInformacoesUsuario(idUsuario, nome, email, cpf, senha) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        UPDATE usuario SET nome = '${nome}', email = '${email}', cpf = ${cpf}, senha = '${senha}' WHERE usuario.idUsuario = '${idUsuario}';
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
+}
 module.exports = {
     cadastrarUsuario,
-    gestorCadastrarFuncionario
+    gestorCadastrarFuncionario,
+    buscarInformacoesUsuario,
+    editarInformacoesUsuario
 };
