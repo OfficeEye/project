@@ -82,6 +82,32 @@ function editarInformacoesUsuario() {
         }).then(function (resposta) {
             console.log("atualizado!")
             console.log("resposta: ", resposta);
+            localStorage.NOME_USUARIO = nomeVar;
+        }).catch(function (erro) {
+            console.log("#ERRO: " + erro);
+        })
+        return false;
+    }
+}
+
+function excluirContaUsuario() {
+    idUsuario = localStorage.ID_USUARIO;
+
+    if (idUsuario == "") {
+
+    } else {
+        fetch("/gestor/excluirContaUsuario",{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario
+            })
+        }).then(function (resposta) {
+            console.log("Deletado")
+            console.log("resposta: ", resposta);
+            window.location.href = "../login.html"
         }).catch(function (erro) {
             console.log("#ERRO: " + erro);
         })

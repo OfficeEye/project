@@ -131,9 +131,30 @@ function editarInformacoesUsuario(req, res) {
     }
 }
 
+function excluirContaUsuario(req, res) {
+    var idUsuario = req.body.idUsuarioServer;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("Seu idUsuario está undefined!");
+    }else {
+        gestorModel.excluirContaUsuario(idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
-    editarInformacoesUsuario
+    editarInformacoesUsuario,
+    excluirContaUsuario
 }

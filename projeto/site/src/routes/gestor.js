@@ -19,4 +19,8 @@ router.put("/editarInformacoesUsuario", function (req, res) {
     gestorController.editarInformacoesUsuario(req, res);
 });
 
+router.delete("/excluirContaUsuario", function (req, res) {
+    gestorController.excluirContaUsuario(req, res);
+});
+
 module.exports = router;
