@@ -98,6 +98,7 @@
                     if (usuario.tipo == "gestor") {
                         gestor = true
                         console.log(gestor)
+                        localStorage.ID_USUARIO = usuario.idUsuario;
                         localStorage.NOME_USUARIO = usuario.nome;
                         localStorage.TIPO_USUARIO = usuario.tipo;
                         localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;

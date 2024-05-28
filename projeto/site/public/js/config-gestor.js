@@ -17,6 +17,31 @@ function returnConfig() {
     window.location.href = "config-gestor.html"
 }
 function buscarInformacoesUsuario() {
-    var nome = localStorage.NOME_USUARIO;
+    var idUsuario = localStorage.ID_USUARIO;
 
+    fetch("/gestor/buscarInformacoesUsuario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idServer: idUsuario
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(function (usuario) {
+                console.log(usuario);
+            })
+        }else {
+
+            console.log("Houve um erro ao tentar realizar o login!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+    return false;
 }
