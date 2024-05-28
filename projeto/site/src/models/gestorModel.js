@@ -34,13 +34,18 @@ function editarInformacoesUsuario(idUsuario, nome, email, cpf, senha) {
     return database.executar(instrucao); 
 }
 
-excluirContaUsuario {
-    DELETE FROM Usuarios
-WHERE idUsuario = 1;
+function excluirContaUsuario(idUsuario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        DELETE FROM Usuario WHERE idUsuario = ${idUsuario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
 }
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
-    editarInformacoesUsuario
+    editarInformacoesUsuario,
+    excluirContaUsuario
 };

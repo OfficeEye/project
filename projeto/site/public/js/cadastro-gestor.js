@@ -284,6 +284,34 @@ function cadastrar() {
     }
 }
 
+function getDadosFuncionario() {
+    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+
+    if (fkEmpresa == "") {
+
+    } else {
+        fetch("../gestor/getDadosFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
+        return false;
+    } 
+}
+
 
 function openModal(texto){
     modalSair.classList.add("active");

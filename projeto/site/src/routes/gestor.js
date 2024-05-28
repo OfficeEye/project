@@ -23,4 +23,8 @@ router.delete("/excluirContaUsuario", function (req, res) {
     gestorController.excluirContaUsuario(req, res);
 });
 
+router.post("/getDadosFuncionario", function (req, res) {
+    gestorController.getDadosFuncionario(req, res);
+});
+
 module.exports = router;

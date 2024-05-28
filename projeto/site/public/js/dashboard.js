@@ -11,6 +11,7 @@ function getNameUser() {
     nomeUser.innerHTML = `Bem vindo, ${user}`
 }
 function logout() {
+    localStorage.removeItem('ID_USUARIO')
     localStorage.removeItem('EMPRESA_USUARIO')
     localStorage.removeItem('TIPO_USUARIO')
     localStorage.removeItem('NOME_USUARIO')

@@ -107,7 +107,13 @@ function excluirContaUsuario() {
         }).then(function (resposta) {
             console.log("Deletado")
             console.log("resposta: ", resposta);
+
+            localStorage.removeItem('ID_USUARIO')
+            localStorage.removeItem('EMPRESA_USUARIO')
+            localStorage.removeItem('TIPO_USUARIO')
+            localStorage.removeItem('NOME_USUARIO')
             window.location.href = "../login.html"
+            
         }).catch(function (erro) {
             console.log("#ERRO: " + erro);
         })
