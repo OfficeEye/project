@@ -151,10 +151,35 @@ function excluirContaUsuario(req, res) {
     }
 }
 
+function getDadosFuncionario(req, res) {
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.getDadosFuncionario(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
-    excluirContaUsuario
+    excluirContaUsuario,
+    getDadosFuncionario
 }

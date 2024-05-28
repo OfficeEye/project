@@ -42,10 +42,20 @@ function excluirContaUsuario(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao); 
 }
+
+function getDadosFuncionario(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT idFuncionario, nome, cpf, area, email, senha FROM funcionario WHERE fkEmpresa = '${fkEmpresa}';
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
-    excluirContaUsuario
+    excluirContaUsuario,
+    getDadosFuncionario
 };

@@ -55,6 +55,7 @@ function cadastrarFuncionario() {
             function (resposta) {
                 console.log("resposta: ", resposta);
                 // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+                getDadosFuncionario()
             }
         ).catch(
             function (resposta) {
@@ -301,6 +302,16 @@ function getDadosFuncionario() {
         }).then(
             function (resposta) {
                 console.log("resposta: ", resposta);
+                resposta.json().then(function (funcionario) {
+                    console.log(funcionario);
+                    for (let i = 0; i < funcionario.length; i++){
+                        var nome = funcionario[i].nome;
+                        var email = funcionario[i].email;
+                        var cargo = funcionario[i].cargo;
+                        var maquina = false;
+                        console.log(nome, email, cargo, maquina)
+                    }                    
+                })
                 // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
             }
         ).catch(

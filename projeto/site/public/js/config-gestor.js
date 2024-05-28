@@ -56,7 +56,6 @@ function editarInformacoesUsuario() {
     var cpfVar = cpf_input.value
     var senhaVar = senha_input.value
     
-
     if (nomeVar == "") {
         
     } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
