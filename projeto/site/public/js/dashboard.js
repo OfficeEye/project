@@ -45,3 +45,142 @@ function returnDash() {
 function returnConfig() {
     window.location.href = "config-gestor.html"
 }
+
+function getNomeFuncionarios() {
+    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+
+    if (fkEmpresa == "") {
+
+    } else {
+        fetch("../gestor/getDadosFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                resposta.json().then(function (funcionario) {
+                    console.log(funcionario);
+                    for (let i = 0; i < funcionario.length; i++){
+                        var nome = funcionario[i].nome;
+                        var email = funcionario[i].email;
+                        var area = funcionario[i].area;
+                        var idFuncionario = funcionario[i].idFuncionario;
+                        var maquina = "false";
+                        console.log(nome, email, area, maquina, idFuncionario)
+
+                        funcionario_option.innerHTML += `
+                            <option value="${idFuncionario}">${nome}</option>
+                        `
+                    }                    
+                })
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
+        return false;
+    } 
+}
+
+function cadastrarMaquina() {
+    var nomeMaquinaVar = nomeMaquina_input.value;
+    var modeloMaquinaVar = modeloMaquina_input.value;
+    var idFuncionarioVar = funcionario_option.value;
+    var fkEmpresaVar = localStorage.EMPRESA_USUARIO;
+
+    if (nomeMaquinaVar == "") {
+
+    } else if (modeloMaquinaVar == "") {
+
+    } else if (idFuncionarioVar == "") {
+
+    } else if (fkEmpresaVar == "") {
+
+    } else {
+        fetch("/tecnico/tecnicoCadastrarMaquina", {
+            method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeMaquinaServer: nomeMaquinaVar,
+                    modeloMaquinaServer: modeloMaquinaVar,
+                    idFuncionarioServer: idFuncionarioVar,
+                    fkEmpresaServer: fkEmpresaVar
+                }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+                getDadosMaquina()
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
+        return false;
+    }
+}
+
+function getDadosMaquina() {
+    var fkEmpresaVar = localStorage.EMPRESA_USUARIO;
+
+    if (fkEmpresaVar == "") {
+
+    } else {
+        fetch("../tecnico/getDadosMaquina", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresaVar
+            }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                resposta.json().then(function (maquina) {
+                    console.log(maquina);
+                    tbodyRefrigerador.innerHTML = "";
+                    for (let i = 0; i < maquina.length; i++){
+                        var idMaquina = maquina[i].idMaquina;
+                        var nomeFuncionario = maquina[i].nomeFuncionario;
+                        var nomeMaquina = maquina[i].nomeMaquina;
+                        var modelo = maquina[i].modelo;
+                        var sistemaOperacional = maquina[i].sistemaOperacional;
+                        var fabricante = maquina[i].fabricante
+                        console.log(idMaquina, nomeFuncionario, nomeMaquina, modelo, sistemaOperacional, fabricante)
+
+                        tbodyRefrigerador.innerHTML += `
+                            <tr id="${idMaquina}">
+                                <td class="td-funcionario">${nomeFuncionario}</td>
+                                <td class="td-maquina">${nomeMaquina}</td>
+                                <td class="td-modelo">${modelo}</td>
+                                <td class="td-sistemaOperacional">${sistemaOperacional}</td>
+                                <td class="td-fabricante">${fabricante}</td>
+                                <td class="container-img">
+                                    <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(id)">
+                                </td>
+                            </tr>
+                        `
+                    }                    
+                })
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
+        return false;
+    } 
+}

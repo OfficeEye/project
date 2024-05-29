@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
 </head>
-<body
-onload="PreencherCamposLogin()"
->
+<!-- <body onload="PreencherCamposLogin()"> -->
+<body>
     
     <div class="login-background">
         <div class="login-box">
@@ -51,10 +50,10 @@ onload="PreencherCamposLogin()"
 </body>
 </html>
 <script>
-    function PreencherCamposLogin() {
-        email_input.value = "leo@gmail.com"
-        senha_input.value = "111111"
-    }
+    // function PreencherCamposLogin() {
+    //     email_input.value = "gabriel@gmail.com"
+    //     senha_input.value = "111111"
+    // }
     function logar() {
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -114,6 +113,7 @@ onload="PreencherCamposLogin()"
                         }, 1000); // apenas para exibir o loading
 
                     } else if (usuario.tipo == "tecnico") {
+                        localStorage.ID_USUARIO = usuario.idUsuario;
                         localStorage.NOME_USUARIO = usuario.nome;
                         localStorage.TIPO_USUARIO = usuario.tipo;
                         localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;

@@ -69,14 +69,22 @@
                     <thead>
                         <th colspan="2" class="th-nome">Nome</th>
                         <th class="th-email">Email</th>
-                        <th class="th-cargo">Cargo</th>
+                        <th class="th-area">Area</th>
                         <th class="th-maquina">Máquina</th>
                         <th class="th-acoes">Ações</th>
                     </thead>
                     <tbody id="tbodyRefrigerador">
-    
-    
-    
+                        <!-- <tr>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-email">undefined</td>
+                            <td class="td-area">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
                         <tr>
                             <td class="td-nome">undefined</td>
                             <td class="td-email">undefined</td>
@@ -166,17 +174,6 @@
                         </tr>
 
                         <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-email">undefined</td>
-                            <td class="td-cargo">undefined</td>
-                            <td class="td-maquina">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
-                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
-                            </td>
-                        </tr>
-
-                        <tr>
                             <td class="td-id">undefined</td>
                             <td class="td-nome">undefined</td>
                             <td class="td-maquina">undefined</td>
@@ -313,7 +310,7 @@
                             <td class="container-img">
                                 <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
                                 <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
-                            </td>
+                            </td> -->
                         </tr>
 
                     </tbody>
@@ -352,19 +349,15 @@
 
             <div class="container-input">
                 <label for="">Nome</label>
-                <input class="input-cadastro" type="text">
+                <input id="nomeFuncionario_input" class="input-cadastro" type="text">
+                <label for="">CPF</label>
+                <input id="cpfFuncionario_input" class="input-cadastro" type="text">
+                <label for="">Area</label>
+                <input id="areaFuncionario_input" class="input-cadastro" type="text">
                 <label for="">E-mail</label>
-                <input class="input-cadastro" type="text">
+                <input id="emailFuncionario_input" class="input-cadastro" type="text">
                 <label for="">Senha</label>
-                <input class="input-cadastro" type="text">
-                <label for="">Máquina</label>
-                <input class="input-cadastro" type="text">
-                <label for="">Permissões do usúario</label>
-                <select name="" id="">
-                    <option value="">Gestor</option>
-                    <option value="">Técnio de Suporte</option>
-                    <option value="">Funcionário</option>
-                </select>
+                <input id="senhaFuncionario_input" class="input-cadastro" type="text">
             </div>
 
            <div class="buttons-modal">

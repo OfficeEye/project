@@ -5,11 +5,11 @@ const modalSair = document.getElementById('modalSair');
 
 
 function returnTabelaMaquinas(){
-    window.location.href = "../dashboards/tabela-maquinas.html";
+    window.location.href = "../dashboard-tecnico/tabela-maquinas.html";
 }
 
 function returnChamados(){
-    window.location.href = "../dashboards/tabela-chamados.html";
+    window.location.href = "../dashboard-tecnico/tabela-chamados.html";
 }
 
 function openModal(texto){
@@ -28,6 +28,6 @@ function returnIndex() {
 }
 
 function returnDashboard() {
-    window.location.href = "../dashboards/dashboard-tecnico.html";
+    window.location.href = "../dashboard-tecnico/dashboard-tecnico.html";
 }
 

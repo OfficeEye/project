@@ -37,7 +37,7 @@ CREATE TABLE funcionario (
     REFERENCES empresa (idEmpresa));
 
 CREATE TABLE maquina (
-  idmaquina INT NOT NULL auto_increment,
+  idMaquina INT NOT NULL auto_increment,
   modelo VARCHAR(45) NULL,
   fabricante VARCHAR(45) NULL,
   nomeMaquina VARCHAR(45) NULL,

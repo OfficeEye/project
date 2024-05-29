@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="getNomeFuncionarios(), getDadosMaquina()">
     <div class="nav-bar">
         <div class="logo-officeeye">
             <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -29,27 +29,31 @@
     <div class="content">
         <div class="column-1">
             <label for="">Nome da Máquina</label>
-            <input class="input-cadastro" type="text">
+            <input id="nomeMaquina_input" class="input-cadastro" type="text">
+            <label for="">Modelo</label>
+            <input id="modeloMaquina_input" class="input-cadastro" type="text">
             <label for="">Selecione o Funcionário</label>
-            <select name="" id="">
-                <option value="">Funcionário</option>
-                <option value="">Felipe</option>
+            <select name="" id="funcionario_option">
+                <!-- <option value="">Funcionário</option>
+                <option value="">Felipe</option> -->
             </select>
-            <button>Cadastrar</button>
+            <button onclick="cadastrarMaquina()">Cadastrar</button>
         </div>
         <div class="column-2">
             <table>
                 <thead>
-                    <th class="th-nome">Nome</th>
+                    <th class="th-funcionario">Funcionario</th>
                     <th class="th-maquina">Máquina</th>
-                    <th class="th-funcionario">Func. Relacionado</th>
+                    <th class="th-modelo">Modelo</th>
+                    <th class="th-sistemOperacional">Sistema Operacional</th>
+                    <th class="th-fabricante">Fabricante</th>
                     <th class="th-acoes">Ações</th>
                 </thead>
                 <tbody id="tbodyRefrigerador">
 
 
 
-                    <tr>
+                    <!-- <tr>
                         <td class="td-nome">undefined</td>
                         <td class="td-maquina">undefined</td>
                         <td class="td-funcionario">undefined</td>
@@ -107,7 +111,7 @@
                             <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                             <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
                         </td>
-                    </tr>
+                    </tr> -->
 
 
                 </tbody>

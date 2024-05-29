@@ -124,6 +124,7 @@ function getNameUser() {
     nomeUser.innerHTML = `Bem vindo, ${user}`
 }
 function logout() {
+    localStorage.removeItem('ID_USUARIO')
     localStorage.removeItem('EMPRESA_USUARIO')
     localStorage.removeItem('TIPO_USUARIO')
     localStorage.removeItem('NOME_USUARIO')
@@ -304,12 +305,26 @@ function getDadosFuncionario() {
                 console.log("resposta: ", resposta);
                 resposta.json().then(function (funcionario) {
                     console.log(funcionario);
+                    tbodyRefrigerador.innerHTML = "";
                     for (let i = 0; i < funcionario.length; i++){
                         var nome = funcionario[i].nome;
                         var email = funcionario[i].email;
-                        var cargo = funcionario[i].cargo;
-                        var maquina = false;
-                        console.log(nome, email, cargo, maquina)
+                        var area = funcionario[i].area;
+                        var maquina = "false";
+                        console.log(nome, email, area, maquina)
+
+                        tbodyRefrigerador.innerHTML += `
+                            <tr id="${i}">
+                                <td class="td-nome">${nome}</td>
+                                <td class="td-email">${email}</td>
+                                <td class="td-area">${area}</td>
+                                <td class="td-maquina">${maquina}</td>
+                                <td class="container-img">
+                                    <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(id)">
+                                </td>
+                            </tr>
+                        `
                     }                    
                 })
                 // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
@@ -351,7 +366,7 @@ function removerMaquina() {
     modalBackground.classList.add("active");
 }
 
-function editarMaquina() {
+function editarFuncionario() {
     modalEditar.classList.add("active");
     modalBackground.classList.add("active");
 }
