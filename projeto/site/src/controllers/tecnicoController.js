@@ -5,6 +5,7 @@ function tecnicoCadastrarMaquina(req, res) {
     var modeloMaquina = req.body.modeloMaquinaServer;
     var idFuncionario = req.body.idFuncionarioServer;
     var fkEmpresa = req.body.fkEmpresaServer;
+    var fkMaquina = req.body.fkMaquinaServer;
 
     if (nomeMaquina == undefined) {
         res.status(400).send("Seu nomeMaquina está undefined!")
@@ -14,6 +15,8 @@ function tecnicoCadastrarMaquina(req, res) {
         res.status(400).send("seu idFuncionario está undefined!")
     }else if (fkEmpresa == undefined) {
         res.status(400).send("Sua fkEmpresa está undefined!")
+    }else if(fkMaquina == undefined) {
+        res.status(400).send("Sua fkMaquina está undefined!")
     }else {
         tecnicoModel.tecnicoCadastrarMaquina(nomeMaquina, modeloMaquina, idFuncionario, fkEmpresa).then(
             function (resultados) {
@@ -28,8 +31,53 @@ function tecnicoCadastrarMaquina(req, res) {
                 );
                 res.status(500).json(erro.sqlMessage);
             }
-        )
-    }
+        );
+
+        tecnicoModel.cadastrarEspecificacaoMemoria(fkMaquina, fkEmpresa, idFuncionario).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+        tecnicoModel.cadastrarEspecificacaoDisco(fkMaquina, fkEmpresa, idFuncionario).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+        tecnicoModel.cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }   
 }
 
 function getDadosMaquina(req, res) {

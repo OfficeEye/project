@@ -113,7 +113,8 @@ function cadastrarMaquina() {
                     nomeMaquinaServer: nomeMaquinaVar,
                     modeloMaquinaServer: modeloMaquinaVar,
                     idFuncionarioServer: idFuncionarioVar,
-                    fkEmpresaServer: fkEmpresaVar
+                    fkEmpresaServer: fkEmpresaVar,
+                    fkMaquinaServer: fkMaquina
                 }),
         }).then(
             function (resposta) {
@@ -129,7 +130,7 @@ function cadastrarMaquina() {
         return false;
     }
 }
-
+var fkMaquina = 1;
 function getDadosMaquina() {
     var fkEmpresaVar = localStorage.EMPRESA_USUARIO;
 
@@ -146,8 +147,9 @@ function getDadosMaquina() {
             }),
         }).then(
             function (resposta) {
-                console.log("resposta: ", resposta);
-                resposta.json().then(function (maquina) {
+                if (resposta.ok) {
+                    console.log("resposta: ", resposta);
+                    resposta.json().then(function (maquina) {
                     console.log(maquina);
                     tbodyRefrigerador.innerHTML = "";
                     for (let i = 0; i < maquina.length; i++){
@@ -157,6 +159,7 @@ function getDadosMaquina() {
                         var modelo = maquina[i].modelo;
                         var sistemaOperacional = maquina[i].sistemaOperacional;
                         var fabricante = maquina[i].fabricante
+                        fkMaquina = maquina[i].idMaquina + 1;
                         console.log(idMaquina, nomeFuncionario, nomeMaquina, modelo, sistemaOperacional, fabricante)
 
                         tbodyRefrigerador.innerHTML += `
@@ -172,8 +175,16 @@ function getDadosMaquina() {
                                 </td>
                             </tr>
                         `
-                    }                    
+                    }    
+                    console.log(fkMaquina)                
                 })
+                } else {
+                    fkMaquina = 1;
+                    console.log(fkEmpresaVar)
+                    console.error('Nenhum dadoMaquina encontrado ou erro na API');
+                    console.log(resposta)
+                }
+                
                 // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
             }
         ).catch(
