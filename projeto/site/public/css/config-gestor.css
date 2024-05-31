@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+tbody::-webkit-scrollbar {
+    width: 6px;
+}
+
+tbody::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+tbody::-webkit-scrollbar-thumb {
+    background-color: #3B9B9B;
+    border-radius: 30px;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+body {
+    display: flex;
+    background-color: #262525;
+    font-family: 'Montserrat', sans-serif;
+}
+
+label {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 10px 0;
+    text-align:astart;
+}
+
+.nav-bar {
+    width: 5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.nav-bar .logo-officeeye img{
+    width: 60px;
+}
+
+.nav-bar .logo-officeeye{
+    padding-top: 10px;
+    height: 100px;
+}
+.logout-image{
+    margin-left: 11px;
+}
+.shortcuts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.shortcuts img{
+    height: 35px;
+    cursor: pointer;
+}
+
+#modalSair.active, #modalRemover.active, #modalEditar.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.modal-background.active {
+    opacity: 1;
+    z-index: 2;
+}

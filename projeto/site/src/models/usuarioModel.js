@@ -3,7 +3,7 @@ var database = require("../database/config")
 function logar(email, senha) {
     console.log("Script do banco de dados para fazer login - Clonar data viz separadamente e consultar chamado Autenticar")
     var instrucao = `
-        SELECT nome, email, tipo, senha, fkEmpresa FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT idUsuario, nome, email, tipo, senha, fkEmpresa FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -43,31 +43,22 @@ function existeEmpresa(nomeFantasia, razaoSocial, cnpj) {
     return database.executar(instrucao);
 }
 
-function ultimaEmpresaCadastrada() {
-    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
-    var instrucao = `
-        SELECT idEmpresa FROM empresa ORDER BY idEmpresa DESC LIMIT 1;
-
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
 // function ultimaEmpresaCadastrada() {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
 //     var instrucao = `
-//         SELECT TOP 1 idEmpresa FROM empresa ORDER BY idEmpresa DESC;
-//     `
+//         SELECT idEmpresa FROM empresa ORDER BY idEmpresa DESC LIMIT 1;
+
+//     `;
 //     console.log("Executando a instrução SQL: \n" + instrucao);
 //     return database.executar(instrucao);
 // }
 
-function gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa) {
-    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+function ultimaEmpresaCadastrada() {
     var instrucao = `
-    INSERT INTO funcionario (nome, email, area, cpf, senha, fkEmpresa) VALUES ('${nome}', '${email}', '${cargo}', ${cpf}, '${senha}', '${fkEmpresa}');
+        SELECT TOP 1 idEmpresa FROM empresa ORDER BY idEmpresa DESC;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);   
+    return database.executar(instrucao);
 }
 
 
@@ -77,6 +68,5 @@ module.exports = {
     cadastrarEmpresa,
     existeEmpresa,
     ultimaEmpresaCadastrada,
-    cadastrarUsuario,
-    gestorCadastrarFuncionario
+    cadastrarUsuario
 };

@@ -169,13 +169,13 @@ body {
     font-weight: bold;
 }
 
-label {
-    color: #ffffff;
+/* label {
+    color: #1d1d1d;
     font-size: 1.2rem;
     font-weight: 600;
     margin: 10px 0;
     text-align:astart;
-}
+} */
 
 input{
     width: 280px;
@@ -257,10 +257,10 @@ tr {
     width: 100px;
 }
 
-.th-prioritario {
+.th-nome {
     width: 140px;
 }
-.td-prioritario {
+.td-nome {
     width: 130px;
 }
 
@@ -268,20 +268,20 @@ tr {
     width: 100px;
 }
 .td-data {
-    width: 100px;
-}
-
-.th-status{
-    width: 100px;
-}
-.td-status {
     width: 90px;
 }
 
-.th-usuario {
+.th-hora{
     width: 100px;
 }
-.td-usuario {
+.td-hora {
+    width: 90px;
+}
+
+.th-mensagem {
+    width: 100px;
+}
+.td-mensagem {
     width: 90px;
 }
 
@@ -327,7 +327,7 @@ td img {
 
 
 
-#modalSair{
+#modalSair, #modalRemover{
     display: none;
     justify-content: space-between;
     align-items: center;
@@ -347,19 +347,67 @@ td img {
     z-index: 3;
 }
 
-#modalSair.active{
+#modalEditar{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 70%;
+    width: 35%;
+    background-color: rgba(255, 255, 255);
+    border: none;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    padding: 5px;
+    text-align: center;
+    color: #1d1d1d;
+    z-index: 3;
+}
+
+#modalEditar .container-input{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#modalEditar input{
+    background-color: #1d1d1d;
+    color: white;
+}
+
+#modalEditar select{
+    background-color: #1d1d1d;
+    color: white;
+}
+
+#modaEditar select.focus{
+    outline: none;
+    /* box-shadow: ; */
+}
+
+
+#modalSair.active, #modalRemover.active, #modalEditar.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 }
 
 .container-modal{ 
+    width: 90%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
 }
+
 
 .container-modal .title{
     color: #1d1d1d;
@@ -371,7 +419,7 @@ td img {
     width: 70px;
 }
 
-#modalSair .botao{
+#modalSair .botao, #modalRemover .botao, #modalEditar .botao {
     height: 35px;
     width: 100px;
     border: none;
@@ -403,3 +451,6 @@ td img {
     opacity: 1;
     z-index: 2;
 }
+
+
+

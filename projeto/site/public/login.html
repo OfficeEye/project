@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
 </head>
+<!-- <body onload="PreencherCamposLogin()"> -->
 <body>
     
     <div class="login-background">
@@ -49,6 +50,10 @@
 </body>
 </html>
 <script>
+    function PreencherCamposLogin() {
+        email_input.value = "gabriel@gmail.com"
+        senha_input.value = "111111"
+    }
     function logar() {
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -98,21 +103,23 @@
                     if (usuario.tipo == "gestor") {
                         gestor = true
                         console.log(gestor)
+                        localStorage.ID_USUARIO = usuario.idUsuario;
                         localStorage.NOME_USUARIO = usuario.nome;
                         localStorage.TIPO_USUARIO = usuario.tipo;
                         localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
 
                         setTimeout(function () {
-                            window.location = "/dashboards/dashboard-gestor.html";
+                            window.location = "/dashboard-gestor/dashboard-gestor.html";
                         }, 1000); // apenas para exibir o loading
 
                     } else if (usuario.tipo == "tecnico") {
+                        localStorage.ID_USUARIO = usuario.idUsuario;
                         localStorage.NOME_USUARIO = usuario.nome;
                         localStorage.TIPO_USUARIO = usuario.tipo;
                         localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
 
                         setTimeout(function () {
-                            window.location = "/dashboards/dashboard-tecnico.html";
+                            window.location = "/dashboard-tecnico/dashboard-tecnico.html";
                         }, 1000); // apenas para exibir o loading
                     }
 

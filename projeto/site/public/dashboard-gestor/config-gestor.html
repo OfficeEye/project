@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações | OfficeEye</title>
+    <link rel="stylesheet" href="../css/config-gestor.css">
+    <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
+</head>
+
+<body onload="buscarInformacoesUsuario()">
+    <div class="nav-bar">
+        <div class="logo-officeeye">
+            <img src="../assets/svg/icon-officeeye (2).png" alt="">
+        </div>
+        <div class="shortcuts">
+            <img src="../assets/svg/home.svg " alt="" onclick="returnDash()">     
+            <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
+            <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
+            <img src="../assets/svg/settings.svg" alt="" onclick="returnConfig()">
+        </div>
+    </div>
+    <div>
+        <label for="nome_input">Nome</label>
+        <input id="nome_input" type="text">
+
+        <label for="email_input">E-mail</label>
+        <input id="email_input" type="text">
+
+        <label for="cpf_input">CPF</label>
+        <input id="cpf_input" type="text">
+        
+        <label for="senha_input">Senha</label>
+        <input id="senha_input" type="text">   
+
+        <button onclick="editarInformacoesUsuario()">Atualizar</button>
+        
+        <button onclick="excluirContaUsuario()">Excluir Conta</button>
+    </div>
+    <div class="modal-background" id="modalBackground"></div>
+    
+    <dialog id="modalSair">
+        <div class="container-modal">
+
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="logout()">Confirmar</button>
+           </div>
+        </div>
+    </dialog>
+</body>
+</html>
+
+<script src="../js/config-gestor.js"></script>
