@@ -277,14 +277,14 @@ option:checked {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    opacity: 1;
-    z-index: 2;
+    opacity: 0;
+    z-index: -1;
     transition: opacity 0.3s ease;
 }
 
 .modal-background.active {
     opacity: 1;
-    z-index: 1; /* Certifique-se que o z-index é suficiente para sobrepor outros conteúdos */
+    z-index: 2 ; /* Certifique-se que o z-index é suficiente para sobrepor outros conteúdos */
 }
 
 .data-request {
@@ -304,11 +304,15 @@ option:checked {
     padding: 5px;
     text-align: center;
     color: #fff;
-    z-index: 3;
+    z-index: -1;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.data-request.active{
+    z-index: 3;
 }
 
 .data-request .forms-request{
@@ -391,6 +395,7 @@ option:checked {
     color: #3B9B9B;
     font-size: 22px;
     font-weight: bold;
+    gap: 20px;
 }
 
 .data-request .forms-request .line-2 select{
@@ -408,7 +413,7 @@ option:checked {
 
 .forms-request .line-2 select{
     background-color: #1d1d1d;
-    width: 250px;
+    width: 270px;
     height: 35px;
     border-radius: 7px;
 }
@@ -439,11 +444,12 @@ option:checked {
     color: #3B9B9B;
     font-size: 22px;
     font-weight: bold;
+    gap: 30px;
 }
 
 .forms-request .line-3 input{
     background-color: #1d1d1d;
-    width: 390px;
+    width: 410px;
     height: 35px;
     border-radius: 7px;
     border: none;
@@ -486,7 +492,7 @@ option:checked {
 
 .forms-request input{
     background-color: #1d1d1d;
-    width: 815px;
+    width: 850px;
     height: 35px;
     border-radius: 7px;
     border: none;
@@ -509,4 +515,33 @@ option:checked {
     height: 90px;
  }
 
- 
+ .forms-request .line-6{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.forms-request .line-6 .btn-salvar{
+    height: 35px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    background-color: #9afa9a;
+}
+
+.forms-request .line-6 .btn-cancelar{
+    height: 35px;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    background-color: #f46161;
+}

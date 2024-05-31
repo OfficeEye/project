@@ -12,32 +12,26 @@
 <body>
     <div class="content">
         <div class="header">
-
             <div class="logo">
                 <img src="../assets/svg/icon-officeeye (2).png">
             </div>
-
             <div class="images">
-
-                <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
-                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
+                <img src="../assets/svg/home.svg" alt="" onclick="returnDash()">
+                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnCadastrarUsuario()">
                 <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
-
             </div>
         </div>
         <div class="container">
-            <div class="head">
-            </div>
+            <div class="head"></div>
             <main>
                 <div class="content1">
                     <div class="list-1">
-                        <div class="request">
+                        <div class="request" onclick="abrirFormulario()">
                             <div class="line-1">
                                 <div class="container-1">
                                     <span class="number-request">#0365</span>
-                                    <div class="priority">
-                                    </div>
+                                    <div class="priority"></div>
                                 </div>
                                 <div class="container-2">
                                     <select name="" id="" class="select-status">
@@ -49,39 +43,7 @@
                                 </div>
                             </div>
                             <div class="line-2">
-                                <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing
-                                    elit. Sint omnis necessitatibus a ducimus!</span>
-                            </div>
-                            <div class="line-3">
-                                <h3>Responsável:</h3>
-                                <span>José Almeida</span>
-                            </div>
-                            <div class="line-4">
-                                <span class="date">25/05/24 - 10:13</span>
-                            </div>
-                        </div>
-
-                        <!---->
-
-                        <div class="request" onclick="abrirDeus()">
-                            <div class="line-1">
-                                <div class="container-1">
-                                    <span class="number-request">#0365</span>
-                                    <div class="priority">
-                                    </div>
-                                </div>
-                                <div class="container-2">
-                                    <select name="" id="" class="select-status">
-                                        <option value="">Em Análise</option>
-                                        <option value="">Aberto</option>
-                                        <option value="">Cancelado</option>
-                                        <option value="">Concluído</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line-2">
-                                <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing
-                                    elit. Sint omnis necessitatibus a ducimus!</span>
+                                <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint omnis necessitatibus a ducimus!</span>
                             </div>
                             <div class="line-3">
                                 <h3>Responsável:</h3>
@@ -93,13 +55,13 @@
                         </div>
                     </div>
                 </div>
+            </main>
         </div>
-        </main>
     </div>
 
     <div class="modal-background" id="modalBackground"></div>
 
-    <div class="data-request">
+    <div class="data-request" id="modalRequest">
         <div class="forms-request">
             <div class="line-1">
                 <div class="title">
@@ -128,52 +90,49 @@
                     <select name="" id="">
                         <option value=""></option>
                     </select>
-                    <div>
-                    </div>
-                </div> 
-            </div> 
-                <div class="line-3">
-                    <div class="container-1">
-                        <label for="">Solicitante do chamado</label>
-                        <input type="text">
-                    </div>
-                    <div class="container-2">
-                        <label for="">ID da máquina</label>
-                        <input type="text">
-                    </div>
                 </div>
-
-                <div class="line-4">
-                    <label for="">Titúlo do chamado</label>
+            </div>
+            <div class="line-3">
+                <div class="container-1">
+                    <label for="">Solicitante do chamado</label>
                     <input type="text">
                 </div>
-
-                <div class="line-5">
-                    <label for="">Descrição do chamado</label>
-                    <input type="text" class="input-description">
+                <div class="container-2">
+                    <label for="">ID da máquina</label>
+                    <input type="text">
                 </div>
-               
-                </div>
-          
+            </div>
+            <div class="line-4">
+                <label for="">Titúlo do chamado</label>
+                <input type="text">
+            </div>
+            <div class="line-5">
+                <label for="">Descrição do chamado</label>
+                <input type="text" class="input-description">
+            </div>
+            <div class="line-6">
+                <button class="btn-salvar" onclick="salvarFormulario()">Salvar</button>
+                <button class="btn-cancelar" onclick="fecharFormulario()">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
-            <dialog id="modalSair">
-                <div class="container-modal">
+    <dialog id="modalSair">
+        <div class="container-modal">
+            <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+            </div>
+            <div class="img-modal">
+                <img src="../assets/svg/exclamation-mark.svg" alt="">
+            </div>
+            <div class="buttons-modal">
+                <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+                <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+            </div>
+        </div>
+    </dialog>
 
-                    <div class="title">
-                        <h2 id="textoModal">Tem certeza que deseja sair?</h2>
-                    </div>
-
-                    <div class="img-modal">
-                        <img src="../assets/svg/exclamation-mark.svg" alt="">
-                    </div>
-
-                    <div class="buttons-modal">
-                        <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
-                        <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
-                    </div>
-                </div>
-            </dialog>
+    <script src="../js/tabela-chamados.js"></script>
 </body>
 
 </html>
-<script src="../js/tabela-chamados.js"></script>

@@ -1,51 +1,64 @@
-function openModal(texto){
-    modalSair.classList.add("active");
-    modalBackground.classList.add("active");
+const modalRequest = document.querySelector('#modalRequest')
+const modalSair = document.querySelector('#modalSair')
+const modalRemover = document.querySelector('#modalRemover')
+const modalEditar = document.querySelector('#modalEditar')
+const modalBackground = document.querySelector('#modalBackground')
+
+function openModal(texto) {
+    modalSair.classList.add('active')
+    modalBackground.classList.add('active')
 }
 
-function closeModal(){
-   // modalSair.classList.remove("active");
-   // modalRemover.classList.remove("active");
-   // modalEditar.classList.remove("active");
-   // modalBackground.classList.remove("active"); -->
-
-    modalSair.classList.remove("active");
-    modalBackground.classList.remove("active");
+function closeModal() {
+    modalSair.classList.remove('active')
+    modalBackground.classList.remove('active')
 }
 
 function returnIndex() {
-    window.location.href = "../index.html";
+    window.location.href = '../index.html'
 }
 
 function returnCadastrarUsuario() {
-    window.location.href = "cadastro-gestor.html"    
+    window.location.href = 'cadastro-gestor.html'
 }
 
 function returnDash() {
-    window.location.href = "tabela-chamados.html"
+    window.location.href = 'tabela-chamados.html'
 }
 
 function removerChamado() {
-    modalRemover.classList.add("active");
-    modalBackground.classList.add("active");
+    modalRemover.classList.add('active')
+    modalBackground.classList.add('active')
 }
 
 function editarChamado() {
-    modalEditar.classList.add("active");
-    modalBackground.classList.add("active");
+    modalEditar.classList.add('active')
+    modalBackground.classList.add('active')
 }
 
-function confirmarRemocao(){
-
+function confirmarRemocao() {
+    
 }
 
-function confirmarEdicao(){
+function confirmarEdicao() {
+    
 }
 
-function abrirDeus(){
-    modalBackground.classList.add("active");
+function abrirFormulario() {
+    modalBackground.classList.add('active')
+    modalRequest.classList.add('active')
 }
 
-function fecharDeus(){
-    modalBackground.classList.remove("active");
+function fecharDeus() {
+    modalBackground.classList.remove('active')
+}
+
+function salvarFormulario() {
+    modalRequest.classList.remove('active')
+    modalBackground.classList.remove('active')
+}
+
+function fecharFormulario() {
+    modalRequest.classList.remove('active')
+    modalBackground.classList.remove('active')
 }
