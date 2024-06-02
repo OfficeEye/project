@@ -23,6 +23,10 @@ router.post("/removerChamado", function (req, res) {
     tecnicoController.removerChamado(req, res);
 });
 
+router.get("/buscarQuantidadeDeAlertasPorComponente/:fkEmpresa/:dataSelecionada", function (req, res) {
+    tecnicoController.buscarQuantidadeDeAlertas(req, res);
+});
+
 
 
 module.exports = router;

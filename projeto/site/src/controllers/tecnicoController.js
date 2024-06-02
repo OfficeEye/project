@@ -187,10 +187,36 @@ function removerChamado(req, res) {
     }
 }
 
+function buscarQuantidadeDeAlertas(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    var dataSelecionada = req.params.dataSelecionada;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarQuantidadeDeAlertas(fkEmpresa, dataSelecionada)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
     buscarChamadosPendentes,
     validarChamado,
-    removerChamado
+    removerChamado,
+    buscarQuantidadeDeAlertas
 }

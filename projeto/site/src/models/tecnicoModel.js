@@ -80,6 +80,22 @@ function removerChamado(idChamado, fkUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function buscarQuantidadeDeAlertas(fkEmpresa, dataSelecionada) {
+    console.log("Script do banco de dados para buscar a quantidade de alertas por cada componente")
+    var instrucao = `
+   
+        SELECT statusRegistro, nomeComponente, COUNT(*) AS TotalRegistros                     
+        FROM componente c
+        JOIN registroEspecificacaoComponente r ON c.idComponente = r.fkComponente
+        WHERE statusRegistro IN ('Alerta', 'Crítico') 
+        AND fkEmpresa = ${fkEmpresa}
+        AND CAST(dataHoraRegistro AS DATE) = '${dataSelecionada}'
+        GROUP BY statusRegistro, nomeComponente;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
             
 module.exports = {
     tecnicoCadastrarMaquina,
@@ -89,5 +105,6 @@ module.exports = {
     cadastrarEspecificacaoCPU ,
     buscarChamadosPendentes,
     validarChamado,
-    removerChamado   
+    removerChamado,
+    buscarQuantidadeDeAlertas
 }
