@@ -11,4 +11,18 @@ router.post("/getDadosMaquina", function (req, res) {
     tecnicoController.getDadosMaquina(req, res);
 });
 
+router.get("/buscarChamadosPendentes/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarChamadosPendentes(req, res);
+});
+
+router.post("/validarChamado", function (req, res) {
+    tecnicoController.validarChamado(req, res);
+});
+
+router.post("/removerChamado", function (req, res) {
+    tecnicoController.removerChamado(req, res);
+});
+
+
+
 module.exports = router;

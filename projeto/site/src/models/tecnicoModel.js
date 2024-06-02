@@ -44,11 +44,50 @@ function cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+
+function buscarChamadosPendentes(fkEmpresa) {
+    console.log("Script do banco de dados para buscar todos os chamados pendentes em uma determinada empresa")
+    var instrucao = `
+   
+ SELECT idChamado, FORMAT(dataAbertura, 'dd/MM HH:mm') AS data, status, prioridade, fkUsuario, fkFuncionario, c.fkEmpresa, mensagem, email FROM chamado c join funcionario f ON c.fkFuncionario = f.idFuncionario WHERE status =  'PENDENTE_APROVACAO' AND c.fkEmpresa  = ${fkEmpresa};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function validarChamado(nivelPrioridade, idChamado, fkUsuario) {
+    console.log("Script do banco de dados que atualiza os dados do chamado quando o técnico valida ele")
+    var instrucao = `
+   
+    UPDATE chamado 
+    SET status = 'EM_ANDAMENTO', prioridade = '${nivelPrioridade}', fkUsuario = ${fkUsuario} 
+    WHERE idChamado = ${idChamado}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function removerChamado(idChamado, fkUsuario) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = `
+   
+    UPDATE chamado 
+    SET status = 'REMOVIDO', fkUsuario = ${fkUsuario} 
+    WHERE idChamado = ${idChamado}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
             
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
     cadastrarEspecificacaoDisco,
     cadastrarEspecificacaoMemoria,
-    cadastrarEspecificacaoCPU    
+    cadastrarEspecificacaoCPU ,
+    buscarChamadosPendentes,
+    validarChamado,
+    removerChamado   
 }

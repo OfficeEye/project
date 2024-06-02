@@ -104,7 +104,93 @@ function getDadosMaquina(req, res) {
     }
 }
 
+function buscarChamadosPendentes(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarChamadosPendentes(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function validarChamado(req, res) {
+    var nivelPrioridade = req.body.nivelPrioridadeServer;
+    var idChamado = req.body.idChamadoServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+
+    if (nivelPrioridade == undefined) {
+        res.status(400).send("O nivel de prioridade está undefined!");
+    } else if (idChamado == undefined) {
+        res.status(400).send("O id do chamado está undefined!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("A fk do funcionário está undefined!");
+    }else{
+        tecnicoModel.validarChamado(nivelPrioridade, idChamado, fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    return resultado;
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao validar o chamado! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function removerChamado(req, res) {
+    var idChamado = req.body.idChamadoServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+
+   if (idChamado == undefined) {
+        res.status(400).send("O id do chamado está undefined!");
+    } else if (fkUsuario == undefined) {
+        res.status(400).send("A fk do funcionário está undefined!");
+    }else{
+        tecnicoModel.removerChamado(idChamado, fkUsuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    return resultado;
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao remover o chamado! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     tecnicoCadastrarMaquina,
-    getDadosMaquina
+    getDadosMaquina,
+    buscarChamadosPendentes,
+    validarChamado,
+    removerChamado
 }
