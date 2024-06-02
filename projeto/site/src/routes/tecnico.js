@@ -27,6 +27,17 @@ router.get("/buscarQuantidadeDeAlertasPorComponente/:fkEmpresa/:dataSelecionada"
     tecnicoController.buscarQuantidadeDeAlertas(req, res);
 });
 
+router.get("/buscarQuantidadeDeMaquinasEmAlerta/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarQuantidadeDeMaquinasEmAlerta(req, res);
+});
+
+router.get("/buscarQtdChamadosAbertos/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarQtdChamadosAbertos(req, res);
+});
+
+router.get("/buscarQtdMaquinasTotal/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarQtdMaquinasTotal(req, res);
+});
 
 
 module.exports = router;

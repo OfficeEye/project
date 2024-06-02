@@ -96,7 +96,73 @@ function buscarQuantidadeDeAlertas(fkEmpresa, dataSelecionada) {
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function buscarQuantidadeDeMaquinasEmAlerta(fkEmpresa) {
+    console.log("Script do banco de dados para buscar os ultimos registros de cada maquina da empresa")
+    var instrucao = `
+   
+    WITH UltimosRegistros AS (
+        SELECT 
+            r.fkMaquina,
+            r.dataHoraRegistro,
+            r.statusRegistro,
+            f.statusLogin, -- Adiciona statusLogin aqui
             
+            ROW_NUMBER() OVER (PARTITION BY r.fkMaquina ORDER BY r.dataHoraRegistro DESC) AS rn
+        FROM 
+            registroEspecificacaoComponente r
+        JOIN 
+            maquina m ON r.fkMaquina = m.idMaquina
+        JOIN 
+            funcionario f ON m.fkFuncionario = f.idFuncionario
+        WHERE 
+            m.fkEmpresa = ${fkEmpresa} AND f.statusLogin = 'Logado'
+        )
+        SELECT 
+            fkMaquina,
+            dataHoraRegistro,
+            statusRegistro,
+            statusLogin
+            FROM 
+                UltimosRegistros
+            WHERE 
+                rn <= 5
+            ORDER BY 
+            fkMaquina, rn;
+    
+    
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}   
+
+function buscarQtdChamadosAbertos(fkEmpresa) {
+    console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
+    var instrucao = `
+   
+        SELECT COUNT(*) AS TotalChamados                   
+        FROM chamado 
+        WHERE status = 'EM_ANDAMENTO' AND fkEmpresa = ${fkEmpresa}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+function buscarQtdMaquinasTotal(fkEmpresa) {
+    console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
+    var instrucao = `
+       
+		SELECT 
+        (SELECT COUNT(*) FROM maquina WHERE fkEmpresa = ${fkEmpresa}) AS totalMaquinas,
+        (SELECT COUNT(*) FROM funcionario f
+        LEFT JOIN maquina m ON f.idFuncionario = m.fkFuncionario
+        WHERE f.fkEmpresa = ${fkEmpresa}) AS totalFuncionarios
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
@@ -106,5 +172,8 @@ module.exports = {
     buscarChamadosPendentes,
     validarChamado,
     removerChamado,
-    buscarQuantidadeDeAlertas
+    buscarQuantidadeDeAlertas,
+    buscarQuantidadeDeMaquinasEmAlerta,
+    buscarQtdChamadosAbertos,
+    buscarQtdMaquinasTotal
 }

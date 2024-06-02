@@ -136,4 +136,7 @@ function exibirChamadosPendentesDeAprovacao(fkEmpresa) {
             }
         });
     })
+    setTimeout(function() {
+        exibirChamadosPendentesDeAprovacao(fkEmpresa)
+      }, 10000);
 }

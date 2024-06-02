@@ -113,11 +113,7 @@ function buscarChamadosPendentes(req, res) {
         tecnicoModel.buscarChamadosPendentes(fkEmpresa)
         .then(
             function (resultado) {
-                if (resultado.length >= 1){
-                    res.json(resultado)
-                } else if (resultado.length == 0) {
-                    res.status(403).send("fkEmpresa inválido(s)");
-                }
+                res.json(resultado)
             }
         ).catch(
             function (erro) {
@@ -212,11 +208,85 @@ function buscarQuantidadeDeAlertas(req, res) {
     }
 }
 
+function buscarQuantidadeDeMaquinasEmAlerta(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarQuantidadeDeMaquinasEmAlerta(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+
+function buscarQtdChamadosAbertos(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarQtdChamadosAbertos(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+
+function buscarQtdMaquinasTotal(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarQtdMaquinasTotal(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
     buscarChamadosPendentes,
     validarChamado,
     removerChamado,
-    buscarQuantidadeDeAlertas
+    buscarQuantidadeDeAlertas,
+    buscarQuantidadeDeMaquinasEmAlerta,
+    buscarQtdChamadosAbertos,
+    buscarQtdMaquinasTotal
 }

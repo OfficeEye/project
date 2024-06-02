@@ -1,5 +1,3 @@
-
-
 const modalBackground = document.getElementById('modalBackground');
 const modalSair = document.getElementById('modalSair');
 
@@ -65,6 +63,7 @@ function exibirQuantidadeAlertaPorComponente() {
             }
 
             let dadosAlertas = [qtdAlertasCpu, qtdAlertasMemoria, qtdAlertasDisco]
+            console.log(dadosAlertas)
             
             plotarGraficoQuantidadeAlertas(dadosAlertas)
         });
@@ -120,5 +119,108 @@ function plotarGraficoQuantidadeAlertas(dadosAlertas) {
         config
     );
 }
+
+function exibirQuantidadeDeMaquinasEmAlerta() {
+    var fkEmpresa = localStorage.getItem('EMPRESA_USUARIO')
+    fetch(`/tecnico/buscarQuantidadeDeMaquinasEmAlerta/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+            
+
+
+            if (resposta.length > 0) {
+                var qtdTotalMaquinas = 0;
+                var qtdTotalDeMaquinasEmAlerta = 0;
+                var ultimoIndiceAlerta = 0
+                qtdTotalMaquinas = 1
+                var ultimoIdMaquina = resposta[0].fkMaquina;
+
+                for (var i = 0; i < resposta.length; i++) {
+                    if (resposta[i].fkMaquina > ultimoIdMaquina) {
+                        ultimoIdMaquina = resposta[i].fkMaquina
+                        qtdTotalMaquinas++
+                    }
+
+                    if(resposta[i].statusRegistro == 'Crítico' || resposta[i].statusRegistro == 'Alerta' ) {
+                        if (resposta[i].fkMaquina != ultimoIndiceAlerta ) {
+                            qtdTotalDeMaquinasEmAlerta++
+                            ultimoIndiceAlerta = resposta[i].fkMaquina
+                        }
+                    }
+                    
+                }
+
+                var porcentagemIdeal = (qtdTotalMaquinas * 0.25)
+                var porcentagemAlerta = (qtdTotalMaquinas * 0.75)
+                var corIndicador = `red`;
+
+                if (qtdTotalDeMaquinasEmAlerta <= porcentagemIdeal) {
+                    corIndicador = `rgb(0, 161, 0)`
+
+                }else if(qtdTotalDeMaquinasEmAlerta <= porcentagemAlerta) {
+                    corIndicador = ` yellow`
+                }
+
+                let em_alerta = document.getElementById('em_alerta')
+                em_alerta.innerHTML = `${qtdTotalDeMaquinasEmAlerta}/${qtdTotalMaquinas}`
+                em_alerta.style.color = corIndicador
+
+            }else {
+                em_alerta.innerHTML = `0/0`
+                em_alerta.style.color = `rgb(0, 161, 0)`
+            }
+        });
+    })
+    setTimeout(function() {
+        exibirQuantidadeDeMaquinasEmAlerta()
+      }, 10000);
+}
+
+function buscarQtdChamadosAbertos() {
+    var fkEmpresa = localStorage.getItem('EMPRESA_USUARIO')
+    fetch(`/tecnico/buscarQtdChamadosAbertos/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+            
+            chamados_em_andamento.innerHTML = `${resposta[0].TotalChamados}`
+           
+        });
+    })
+}
+
+
+function buscarQtdMaquinasTotal() {
+    var fkEmpresa = localStorage.getItem('EMPRESA_USUARIO')
+    fetch(`/tecnico/buscarQtdMaquinasTotal/${fkEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        response.json().then(function (resposta) {
+            console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
+            
+            if (resposta.length > 0) {
+
+                var qtdMaquinas = resposta[0].totalMaquinas
+                var qtdFuncionarios = resposta[0].totalFuncionarios
+                var cor = ``
+
+                if (qtdMaquinas == qtdFuncionarios) {
+                    cor = `rgb(0, 161, 0)`
+                } else if (qtdMaquinas >= (qtdFuncionarios - 2)) {
+                    cor = `yellow`
+                } else  {
+                    cor = `red`
+                }
+                maquinas_totais.innerHTML = `${qtdMaquinas}/${qtdFuncionarios}`
+                maquinas_totais.style.color = cor;
+            }else{
+                maquinas_totais.innerHTML = `0`
+            }
+           
+           
+        });
+    })
+}
+
+
+
+
 
 

@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body onload="exibirQuantidadeAlertaPorComponente()">
+<body onload="exibirQuantidadeAlertaPorComponente(), exibirQuantidadeDeMaquinasEmAlerta(), buscarQtdChamadosAbertos(), buscarQtdMaquinasTotal()">
     <div class="content">
         <div class="header">
             <div class="logo">
@@ -59,20 +59,20 @@
             <div class="mid">
                 <div class="box">
                     <h2>Computadores em estado de alerta</h2>
-                    <div class="kpi" style="color: red;">
-                        8/50
+                    <div class="kpi"  id="em_alerta">
+                        
                     </div>
                 </div>
                 <div class="box">
-                    <h2>Computadores em risco de alerta</h2>
-                    <div class="kpi" style="color: yellow;">
-                        4/50
+                    <h2>Computadores cadastrados</h2>
+                    <div class="kpi" id="maquinas_totais">
+                        
                     </div>
                 </div>
                 <div class="box">
                     <h2>Chamados abertos no momento</h2>
-                    <div class="kpi" style="color: rgb(0, 161, 0);">
-                        3
+                    <div class="kpi" style="color: rgb(0, 161, 0);" id="chamados_em_andamento">
+                        
                     </div>
                 </div>
             </div>
