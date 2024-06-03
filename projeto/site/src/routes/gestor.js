@@ -27,4 +27,16 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
+router.post("/pegarDadosGrafico1", function (req, res) {
+    console.log("Rota pegarDadosGrafico1");
+    // console.log(req);
+    // console.log(req.body);
+    gestorController.pegarDadosGrafico1(req, res);
+});
+
+router.post("/pegarDadosGrafico2", function (req, res) {
+    console.log("Rota pegarDadosGrafico2");
+    gestorController.pegarDadosGrafico2(req, res);
+});
+
 module.exports = router;
