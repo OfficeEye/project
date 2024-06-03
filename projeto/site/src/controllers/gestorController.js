@@ -175,11 +175,64 @@ function getDadosFuncionario(req, res) {
     }
 }
 
+function pegarDadosGrafico1(req, res){
+    let fkEmpresa = req.body.fkEmpresa;
+
+    console.log('Cheguei no controller')
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.pegarDadosGrafico1(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function pegarDadosGrafico2(req, res){
+    let fkEmpresa = req.body.fkEmpresa;
+
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.pegarDadosGrafico2(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,
-    getDadosFuncionario
+    getDadosFuncionario,
+    pegarDadosGrafico1,
+    pegarDadosGrafico2
 }
