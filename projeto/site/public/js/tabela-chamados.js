@@ -26,6 +26,10 @@ function returnDash() {
     window.location.href = 'tabela-chamados.html'
 }
 
+function returnNewChamado(){
+    window.location.href = 'new-chamados.html'
+}
+
 function removerChamado(idChamado) {
     modalRemover.classList.add('active')
     modalBackground.classList.add('active')
@@ -136,7 +140,8 @@ function exibirChamadosPendentesDeAprovacao(fkEmpresa) {
             }
         });
     })
-    setTimeout(function() {
-        exibirChamadosPendentesDeAprovacao(fkEmpresa)
-      }, 10000);
+    // setTimeout(function() {
+    //     tbodyRefrigerador.innerHTML = ``
+    //     exibirChamadosPendentesDeAprovacao(fkEmpresa)
+    //   }, 10000);
 }
