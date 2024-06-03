@@ -51,11 +51,22 @@ function getDadosFuncionario(fkEmpresa){
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function contarComputadoresEmAlerta(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(status) FROM registrosEspecificacaoComponente WHERE fkEmpresa = '${fkEmpresa}' AND (status = 'Alerta' OR status = 'Critico');
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,
-    getDadosFuncionario
+    getDadosFuncionario,
+    contarComputadoresEmAlerta
 };

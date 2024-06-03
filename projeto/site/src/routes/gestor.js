@@ -27,4 +27,8 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
+router.get("/contarComputadoresEmAlerta", function (req, res) {
+    gestorController.contarComputadoresEmAlerta(req, res);
+});
+
 module.exports = router;

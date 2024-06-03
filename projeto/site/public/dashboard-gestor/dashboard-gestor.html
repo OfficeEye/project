@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body onload="getNameUser(), validarSessao()">
+<body onload="getNameUser(),  // validarSessao">
     <div class="nav-bar">
         <div class="logo-officeeye">
         <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -31,19 +31,19 @@
             <div class="kpi-card">
                 <h2>Computadores em estado de alerta</h2>
                 <div class="stats" style="color: red;">
-                    8/50
+                    <span id="emEstadoAlerta"></span>
                 </div>
             </div>
             <div class="kpi-card">
                 <h2>Chamados priotitários abertos</h2>
                 <div class="stats">
-                    11/50
+                    <span id="prioritariosAbertos"></span>
                 </div>
             </div>
             <div class="kpi-card">
                 <h2>Computadores em Alerta/ Mais de 1h</h2>
                 <div class="stats">
-                    7/50
+                    <span id="alertaMaisTempo"></span>
                 </div>
             </div>
         </div>

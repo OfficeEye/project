@@ -195,3 +195,38 @@ function getDadosMaquina() {
         return false;
     } 
 }
+
+function contarComputadoresEmAlerta() {
+    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+
+    if (!fkEmpresa) {
+        console.log("fkEmpresa está vazio.");
+    } else {
+        fetch('../gestor/contarComputadoresEmAlerta', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            }),
+        }).then(
+            function (resposta) {
+                console.log('resposta: ', resposta);
+                return resposta.json();
+            }
+        ).then(function (maquina) {
+            if (maquina.length > 0) {
+                var quantidade = maquina[0].COUNT;
+                console.log(quantidade);
+                var emEstadoAlerta = document.getElementById('emEstadoAlerta'); // Certifique-se de que o elemento com este ID existe
+                emEstadoAlerta.innerHTML = quantidade;
+            }
+        }).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            }
+        );
+        return false;
+    }
+}
