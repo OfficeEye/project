@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="buscarChamadosAbertos()">
     <div class="content">
         <div class="header">
             <div class="logo">
@@ -25,36 +25,8 @@
         </div>
         <div class="container">
             <div class="head"></div>
-            <main>
-                <div class="content1">
-                    <div class="list-1">
-                        <div class="request" onclick="abrirFormulario()">
-                            <div class="line-1">
-                                <div class="container-1">
-                                    <span class="number-request">#0365</span>
-                                    <div class="priority"></div>
-                                </div>
-                                <div class="container-2">
-                                    <select name="" id="" class="select-status">
-                                        <option value="">Em Andamento</option>
-                                        <option value="">Aberto</option>
-                                        <option value="">Concluído</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="line-2">
-                                <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint omnis necessitatibus a ducimus!</span>
-                            </div>
-                            <div class="line-3">
-                                <h3>Responsável:</h3>
-                                <span>José Almeida</span>
-                            </div>
-                            <div class="line-4">
-                                <span class="date">25/05/24 - 10:13</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <main id="card_chamado_aberto">
+                
             </main>
         </div>
     </div>
@@ -69,31 +41,31 @@
                     <img src="../assets/svg/icon-officeeye (2).png">
                 </div>
                 <div class="number-request">
-                    <h1>#</h1>
+                    <h1 id="id_chamado_form">#</h1>
                 </div>
             </div>
             <div class="line-2">
                 <div class="container-1">
                     <label for="">Responsável</label>
-                    
+                    <p style="color: black;" id="responsavel_form"></p>
                 </div>
                 <div class="container-2">
                     <label for="">Prioridade</label>
-                    
+                    <p style="color: black;" id="prioridade_form"></p>
                 </div>
                 <div class="container-3">
                     <label for="">Status</label>
-                    
+                    <p style="color: black;" id="status_form"></p>
                 </div>
             </div>
             <div class="line-3">
                 <div class="container-1">
                     <label for="">Solicitante do chamado</label>
-                    
+                    <p style="color: black;" id="solicitante_form"></p>
                 </div>
                 <div class="container-2">
                     <label for="">ID da máquina</label>
-                    
+                    <p style="color: black;" id="idMaquina_form"></p>
                 </div>
             </div>
             <div class="line-4">

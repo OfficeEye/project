@@ -278,6 +278,54 @@ function buscarQtdMaquinasTotal(req, res) {
     }
 }
 
+function buscarChamadosAbertos(req, res) {
+    var fkEmpresa = req.params.fkEmpresa;
+    
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarChamadosAbertos(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function exibirDadosDoChamado(req, res) {
+    var idChamado = req.params.idChamado;
+    
+    if (idChamado == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.exibirDadosDoChamado(idChamado)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 
 module.exports = {
     tecnicoCadastrarMaquina,
@@ -288,5 +336,7 @@ module.exports = {
     buscarQuantidadeDeAlertas,
     buscarQuantidadeDeMaquinasEmAlerta,
     buscarQtdChamadosAbertos,
-    buscarQtdMaquinasTotal
+    buscarQtdMaquinasTotal,
+    buscarChamadosAbertos,
+    exibirDadosDoChamado
 }

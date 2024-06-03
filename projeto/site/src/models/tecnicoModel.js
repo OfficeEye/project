@@ -1,3 +1,4 @@
+
 var database = require("../database/config")
 
 function tecnicoCadastrarMaquina(nomeMaquina, modeloMaquina, idFuncionario, fkEmpresa) {
@@ -62,7 +63,7 @@ function validarChamado(nivelPrioridade, idChamado, fkUsuario) {
     var instrucao = `
    
     UPDATE chamado 
-    SET status = 'EM_ANDAMENTO', prioridade = '${nivelPrioridade}', fkUsuario = ${fkUsuario} 
+    SET status = 'ABERTO', prioridade = '${nivelPrioridade}', fkUsuario = ${fkUsuario} 
     WHERE idChamado = ${idChamado}
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -137,12 +138,12 @@ function buscarQuantidadeDeMaquinasEmAlerta(fkEmpresa) {
 }   
 
 function buscarQtdChamadosAbertos(fkEmpresa) {
-    console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
+    console.log("Script do banco de dados para buscar todos os chamados ABERTO de uma determinada empresa")
     var instrucao = `
    
         SELECT COUNT(*) AS TotalChamados                   
         FROM chamado 
-        WHERE status = 'EM_ANDAMENTO' AND fkEmpresa = ${fkEmpresa}
+        WHERE status = 'ABERTO' AND fkEmpresa = ${fkEmpresa}
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -163,6 +164,56 @@ function buscarQtdMaquinasTotal(fkEmpresa) {
     return database.executar(instrucao);
 }
 
+function buscarChamadosAbertos(fkEmpresa) {
+    console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
+    var instrucao = `
+        SELECT 
+            c.idChamado, 
+            FORMAT(c.dataAbertura, 'dd/MM/yyyy HH:mm:ss') AS dataAberturaFormatada, 
+            c.status, 
+            c.prioridade,
+            c.mensagem, 
+            u.nome 
+        FROM 
+            chamado c 
+        JOIN 
+            usuario u ON c.fkUsuario = u.idUsuario 
+        WHERE 
+            c.fkEmpresa = ${fkEmpresa} AND c.status = 'ABERTO'
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function exibirDadosDoChamado(idChamado) {
+    console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
+    var instrucao = `
+        SELECT 
+            c.idChamado, 
+            FORMAT(c.dataAbertura, 'dd/MM/yyyy HH:mm:ss') AS dataAberturaFormatada, 
+            c.status, 
+            c.prioridade,
+            c.mensagem, 
+            u.nome,
+            f.email,
+            m.idMaquina
+        FROM 
+            chamado c 
+        JOIN 
+            usuario u ON c.fkUsuario = u.idUsuario 
+        JOIN 
+            funcionario f ON f.idFuncionario = c.fkFuncionario
+        LEFT JOIN 
+            maquina m ON m.fkFuncionario = f.idFuncionario
+        WHERE 
+            idChamado = ${idChamado}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
@@ -175,5 +226,7 @@ module.exports = {
     buscarQuantidadeDeAlertas,
     buscarQuantidadeDeMaquinasEmAlerta,
     buscarQtdChamadosAbertos,
-    buscarQtdMaquinasTotal
+    buscarQtdMaquinasTotal,
+    buscarChamadosAbertos,
+    exibirDadosDoChamado
 }

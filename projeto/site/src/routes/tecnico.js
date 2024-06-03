@@ -39,5 +39,12 @@ router.get("/buscarQtdMaquinasTotal/:fkEmpresa", function (req, res) {
     tecnicoController.buscarQtdMaquinasTotal(req, res);
 });
 
+router.get("/buscarChamadosAbertos/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarChamadosAbertos(req, res);
+});
+
+router.get("/exibirDadosDoChamado/:idChamado", function (req, res) {
+    tecnicoController.exibirDadosDoChamado(req, res);
+});
 
 module.exports = router;
