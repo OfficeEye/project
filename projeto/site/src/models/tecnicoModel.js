@@ -163,6 +163,23 @@ function buscarQtdMaquinasTotal(fkEmpresa) {
     return database.executar(instrucao);
 }
 
+function buscarNovosChamados(fkEmpresa){
+    console.log("Script do banco de dados para buscar todas as informações dos novos chamados de uma determinada empresa")
+    var instrucao = `
+    
+        SELECT c.idChamado, 
+        c.dataAbertura, 
+        c.status, 
+        c.mensagem, 
+        u.nome 
+        FROM chamado c 
+        JOIN usuario u ON c.fkUsuario = u.idUsuario 
+        WHERE c.fkEmpresa = ${fkEmpresa};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     tecnicoCadastrarMaquina,
     getDadosMaquina,
@@ -175,5 +192,6 @@ module.exports = {
     buscarQuantidadeDeAlertas,
     buscarQuantidadeDeMaquinasEmAlerta,
     buscarQtdChamadosAbertos,
-    buscarQtdMaquinasTotal
+    buscarQtdMaquinasTotal,
+    buscarNovosChamados
 }

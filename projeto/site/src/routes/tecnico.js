@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 var tecnicoController = require("../controllers/tecnicoController");
+const { buscarNovosChamados } = require("../models/tecnicoModel");
 
 router.post("/tecnicoCadastrarMaquina", function (req, res) {
     tecnicoController.tecnicoCadastrarMaquina(req, res);
@@ -39,5 +40,8 @@ router.get("/buscarQtdMaquinasTotal/:fkEmpresa", function (req, res) {
     tecnicoController.buscarQtdMaquinasTotal(req, res);
 });
 
+router.get("/buscarNovosChamados/:fkEmpresa", function (req, res) {
+    tecnicoController.buscarNovosChamados(req, res);
+});
 
 module.exports = router;
