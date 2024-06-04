@@ -27,8 +27,16 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
-router.get("/contarComputadoresEmAlerta", function (req, res) {
+router.post("/contarComputadoresEmAlerta", function (req, res) {
     gestorController.contarComputadoresEmAlerta(req, res);
+});
+
+router.post("/contarChamadosPrioritariosAbertos", function (req, res) {
+    gestorController.contarChamadosPrioritariosAbertos(req, res);
+});
+
+router.post("/contarAlertasMaisTempo", function (req, res) {
+    gestorController.contarAlertasMaisTempo(req, res);
 });
 
 module.exports = router;

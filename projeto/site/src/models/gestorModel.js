@@ -55,11 +55,30 @@ function getDadosFuncionario(fkEmpresa){
 function contarComputadoresEmAlerta(fkEmpresa){
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        SELECT COUNT(status) FROM registrosEspecificacaoComponente WHERE fkEmpresa = '${fkEmpresa}' AND (status = 'Alerta' OR status = 'Critico');
+        SELECT COUNT(idUsuario) FROM usuario;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+function contarChamadosPrioritariosAbertos(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(idUsuario) FROM usuario;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function contarAlertasMaisTempo(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(idUsuario) FROM usuario;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     cadastrarUsuario,
@@ -68,5 +87,10 @@ module.exports = {
     editarInformacoesUsuario,
     excluirContaUsuario,
     getDadosFuncionario,
-    contarComputadoresEmAlerta
+    contarComputadoresEmAlerta,
+    contarChamadosPrioritariosAbertos,
+    contarAlertasMaisTempo
+    
 };
+
+// SELECT COUNT(status) FROM registrosEspecificacaoComponente WHERE fkEmpresa = '${fkEmpresa}' AND (status = 'Alerta' OR status = 'Critico');

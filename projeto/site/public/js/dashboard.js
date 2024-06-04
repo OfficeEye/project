@@ -1,3 +1,5 @@
+
+
 function validarSessao() {
     var nome = localStorage.NOME_USUARIO;
     var empresa = localStorage.EMPRESA_USUARIO
@@ -196,37 +198,92 @@ function getDadosMaquina() {
     } 
 }
 
-function contarComputadoresEmAlerta() {
-    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+function setEmpresaUsuario() {
+    localStorage.setItem('EMPRESA_USUARIO', '1');
+}
 
-    if (!fkEmpresa) {
-        console.log("fkEmpresa está vazio.");
-    } else {
-        fetch('../gestor/contarComputadoresEmAlerta', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                fkEmpresaServer: fkEmpresa
-            }),
-        }).then(
-            function (resposta) {
-                console.log('resposta: ', resposta);
-                return resposta.json();
-            }
-        ).then(function (maquina) {
-            if (maquina.length > 0) {
-                var quantidade = maquina[0].COUNT;
-                console.log(quantidade);
-                var emEstadoAlerta = document.getElementById('emEstadoAlerta'); // Certifique-se de que o elemento com este ID existe
-                emEstadoAlerta.innerHTML = quantidade;
-            }
-        }).catch(
-            function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            }
-        );
-        return false;
-    }
+function contarComputadoresEmAlerta() {
+    fetch("../gestor/contarComputadoresEmAlerta", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (computadores) {
+                console.log(computadores);
+                var quantidade = computadores[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                emEstadoAlerta.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+}
+
+
+
+function contarChamadosPrioritariosAbertos() {
+    fetch("../gestor/contarChamadosPrioritariosAbertos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (chamados) {
+                console.log(chamados);
+                var quantidade = chamados[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                prioritariosAbertos.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+
+}
+
+
+
+function contarAlertasMaisTempo(){
+    fetch("../gestor/contarAlertasMaisTempo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (alertas) {
+                console.log(alertas);
+                var quantidade = alertas[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                alertaMaisTempo.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
 }
