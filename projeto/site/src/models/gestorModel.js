@@ -130,5 +130,10 @@ module.exports = {
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,
-    getDadosFuncionario
+    getDadosFuncionario,
+    pegarDadosGrafico1,
+    pegarDadosGrafico2,
+    contarComputadoresEmAlerta,
+    contarChamadosPrioritariosAbertos,
+    contarAlertasMaisTempo
 };
