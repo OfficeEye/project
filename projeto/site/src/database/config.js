@@ -22,7 +22,7 @@ var mySqlConfig = {
     host: "localhost",
     database: "officeeye",
     user: "root",
-    password: "1234",
+    password: "30112004",
 };
 
 function executar(instrucao) {

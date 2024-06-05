@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Funcionário | OfficeEye</title>
+    <link rel="stylesheet" href="../css/cadastro-gestor.css">
+    <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
+</head>
+
+<body onload="getNameUser()">
+    <div class="nav-bar">
+        <div class="logo-officeeye">
+            <img src="../assets/svg/icon-officeeye (2).png" alt="">
+        </div>
+        <div class="shortcuts">
+            <img src="../assets/svg/home.svg " alt="" onclick="returnDash()">     
+            <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
+            <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
+        </div>
+    </div>
+
+    <div class="div_content">
+        
+        <div class="div_header">
+            <div class="div_nomeUsuario">
+                <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
+            </div> 
+           
+            
+        </div>
+        <div class="div_tabelaUsuarios">
+            <div class="column-1">
+                <label for="">Nome</label>
+                <input class="input-cadastro" type="text">
+                <label for="">E-mail</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Senha</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Máquina</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Permissões do usúario</label>
+                <select name="" id="">
+                    <option value="">Gestor</option>
+                    <option value="">Técnio de Suporte</option>
+                    <option value="">Funcionário</option>
+                </select>
+                <button>Cadastrar</button>
+            </div>
+            <div class="column-2">
+                <table>
+                    <thead>
+                        <th colspan="2" class="th-id">Id</th>
+                        <th class="th-nome">Nome</th>
+                        <th class="th-maquina">Máquina</th>
+                        <th class="th-acoes">Ações</th>
+                    </thead>
+                    <tbody id="tbodyRefrigerador">
+    
+    
+    
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td-id">undefined</td>
+                            <td class="td-nome">undefined</td>
+                            <td class="td-maquina">undefined</td>
+                            <td class="container-img">
+                                <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
+                                <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarMaquina()">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-background" id="modalBackground"></div>
+    
+    <dialog id="modalSair">
+        <div class="container-modal">
+
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+           </div>
+        </div>
+    </dialog>
+
+
+    <dialog id="modalEditar">
+        <div class="container-modal">
+
+            <div class="title">
+                <h2 id="textoModal">Editar máquina</h2>
+           </div>
+
+            <div class="container-input">
+                <label for="">Nome</label>
+                <input class="input-cadastro" type="text">
+                <label for="">E-mail</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Senha</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Máquina</label>
+                <input class="input-cadastro" type="text">
+                <label for="">Permissões do usúario</label>
+                <select name="" id="">
+                    <option value="">Gestor</option>
+                    <option value="">Técnio de Suporte</option>
+                    <option value="">Funcionário</option>
+                </select>
+            </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="confirmarEdicao()">Confirmar</button>
+           </div>
+
+        </div>
+    </dialog>
+
+    <dialog id="modalRemover">
+        <div class="container-modal">
+
+           <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja remover esse usuário?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
+
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="confirmarRemocao()">Confirmar</button>
+           </div>
+        </div>
+    </dialog>
+</body>
+
+</html>
+<script src="../js/cadastro-gestor.js"></script>

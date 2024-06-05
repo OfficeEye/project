@@ -1,3 +1,5 @@
+
+
 function validarSessao() {
     var nome = localStorage.NOME_USUARIO;
     var empresa = localStorage.EMPRESA_USUARIO
@@ -195,6 +197,7 @@ function getDadosMaquina() {
         return false;
     }
 }
+
 // GRAFICO 01(TEMPO MEDIO NA RESOLUÇÃO DE CHAMADOS)
 
 function pegarDadosGrafico1() {
@@ -226,29 +229,35 @@ function pegarDadosGrafico1() {
 }
 
 function plotarGrafico1(dados) {
-    let labels = []; // Armazenar as datas
-    let data = []; // Armazenar os tempos médios em minutos
+    let labels = [] // Armazenar as datas
+    let data = [] // Armazenar os tempos médios em minutos
 
     // Converter os dados
-    for (var i = 0; i < dados.length; i++) {
-        let tempoMedio = dados[i].TempoMedioChamadoHorasMinutos;
-        let horas = parseInt(tempoMedio.substring(0, 2)); // Extrair as horas
-        let minutos = parseInt(tempoMedio.substring(3, 5)); // Extrair os minutos
-
-        // Converter as horas e minutos para minutos totais
-        let tempoTotalMinutos = horas * 60 + minutos;
-
-        // Adicionar as datas e os tempos médios convertidos
-        let dataFormatada = new Date(dados[i].Dia);
-        let label = (dataFormatada.getDate()).toString().padStart(2, '0') + '/' + (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
+    for (let i = 0; i < dados.length; i++) {
+        let tempoMedio = dados[i].TempoMedioChamadoHorasMinutos
         
-        labels.push(label);
-        data.push(tempoTotalMinutos);
+        // Verifique se tempoMedio não é nulo ou indefinido
+        if (tempoMedio) {
+            let horas = parseInt(tempoMedio.substring(0, 2)) // Extrair as horas
+            let minutos = parseInt(tempoMedio.substring(3, 5)) // Extrair os minutos
+
+            // Converter as horas e minutos para minutos totais
+            let tempoTotalMinutos = horas * 60 + minutos
+
+            // Adicionar as datas e os tempos médios convertidos
+            let dataFormatada = new Date(dados[i].Dia)
+            let label = dataFormatada.getDate().toString().padStart(2, '0') + '/' + (dataFormatada.getMonth() + 1).toString().padStart(2, '0')
+            
+            labels.push(label)
+            data.push(tempoTotalMinutos)
+        } else {
+            console.error(`tempoMedio é nulo ou indefinido para o dado na posição ${i}`)
+        }
     }
     
-    let cores = ['rgba(255, 99, 132)','rgba(255, 159, 64)','rgba(255, 205, 86)','rgba(75, 192, 192)','rgba(153, 102, 255)'];
+    let cores = ['rgba(255, 99, 132)', 'rgba(255, 159, 64)', 'rgba(255, 205, 86)', 'rgba(75, 192, 192)', 'rgba(153, 102, 255)']
     
-    const ctx = document.getElementById('barChart');
+    const ctx = document.getElementById('barChart')
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -268,16 +277,17 @@ function plotarGrafico1(dados) {
                     ticks: {
                         callback: function(value) {
                             // Converter minutos para formato "HH:MM"
-                            let horas = Math.floor(value / 60);
-                            let minutos = value % 60;
-                            return horas.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0');
+                            let horas = Math.floor(value / 60)
+                            let minutos = value % 60
+                            return horas.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0')
                         }
                     }
                 }
             }
         }
-    });
+    })
 }
+
 
 function pegarDadosGrafico2(dados) {
     let fkEmpresa = localStorage.EMPRESA_USUARIO;
@@ -361,4 +371,94 @@ function IniciarGraficos() {
     pegarDadosGrafico1();
     // Grafico de linha
     pegarDadosGrafico2();
+}
+
+function setEmpresaUsuario() {
+    localStorage.setItem('EMPRESA_USUARIO', '1');
+}
+
+function contarComputadoresEmAlerta() {
+    fetch("../gestor/contarComputadoresEmAlerta", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (computadores) {
+                console.log(computadores);
+                var quantidade = computadores[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                emEstadoAlerta.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+}
+
+
+
+function contarChamadosPrioritariosAbertos() {
+    fetch("../gestor/contarChamadosPrioritariosAbertos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (chamados) {
+                console.log(chamados);
+                var quantidade = chamados[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                prioritariosAbertos.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+
+}
+
+
+
+function contarAlertasMaisTempo(){
+    fetch("../gestor/contarAlertasMaisTempo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            fkEmpresaServer: 1
+        }),
+    }).then(
+        function (resposta) {
+            console.log("resposta: ", resposta);
+            resposta.json().then(function (alertas) {
+                console.log(alertas);
+                var quantidade = alertas[0]['COUNT(idUsuario)']
+                console.log(quantidade)
+                alertaMaisTempo.innerHTML = quantidade
+            })
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
 }

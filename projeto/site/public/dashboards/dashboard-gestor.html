@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body onload="getNameUser(); contarComputadoresEmAlerta(); setEmpresaUsuario(); contarAlertasMaisTempo(); contarChamadosPrioritariosAbertos(); IniciarGraficos();">
+<body>
     <div class="nav-bar">
         <div class="logo-officeeye">
         <img src="../assets/svg/icon-officeeye (2).png" alt="">
@@ -19,38 +19,37 @@
         <img src="../assets/svg/home.svg " alt="" onclick="returnDash()"> 
         <img src="../assets/svg/add-user (1).svg " alt="" onclick="returnCadastrarUsuario()">       
         <img src="../assets/svg/logout.svg " alt="" onclick="openModal()" class="logout-image">
-        <img src="../assets/svg/settings.svg" alt="" onclick="returnConfig()">
 
     </div>
     </div>
     <div class="content">
         <div class="div_nomeUsuario">
-            <h1 id="nomeUser" style="color: white;"></h1>
+            <h1 id="nomeUser" style="color: white;">Bem vindo, ${}</h1>
         </div>
         <div class="kpi">
             <div class="kpi-card">
                 <h2>Computadores em estado de alerta</h2>
                 <div class="stats" style="color: red;">
-                    <span id="emEstadoAlerta"></span>
+                    8/50
                 </div>
             </div>
             <div class="kpi-card">
                 <h2>Chamados priotitários abertos</h2>
                 <div class="stats">
-                    <span id="prioritariosAbertos"></span>
+                    11/50
                 </div>
             </div>
             <div class="kpi-card">
                 <h2>Computadores em Alerta/ Mais de 1h</h2>
                 <div class="stats">
-                    <span id="alertaMaisTempo"></span>
+                    7/50
                 </div>
             </div>
         </div>
         <div class=" container-charts">
             <div class="chart">
                 <div class="dados">
-                    <h2>Tempo médio na resolução de chamados por hora</h2>
+                    <h2>Tempo médio na resolução de chamados</h2>
                     <canvas id="barChart"></canvas>
                 </div>
             </div>
@@ -87,3 +86,80 @@
 
 <script src="../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Grafico de barra 
+    const labelsDays = ['Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira'];
+    const data = {
+        labels: labelsDays,
+        datasets: [{
+            label: '',
+            data: [12, 7, 2, 8],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+            ],
+            borderWidth: 1
+
+        }]
+    };
+
+    const configBar = {
+        type: 'bar',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+            },
+        },
+    };
+
+    Chart.defaults.color = '#fff';
+    Chart.defaults.borderColor = '#fff';
+
+    const barChart = new Chart(
+        document.getElementById('barChart'),
+        configBar
+    );
+
+    // Grafico de linha
+
+    const dataLine = {
+        labels: labelsDays,
+        datasets: [
+            {
+                label: 'Chamados Abertos',
+                data: [5, 2, 10, 3, 1, 7, 10],
+                backgroundColor: 'rgb(75, 192, 192)',
+                borderColor: 'rgb(75, 192, 192)',
+            },
+            {
+                label: 'Chamados Resolvidos',
+                data: [4, 3, 6, 4, 2, 7, 7],
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+            }
+        ]
+    };
+
+    const configLine = {
+        type: 'line',
+        data: dataLine,
+    };
+
+    const lineChart = new Chart(
+        document.getElementById('lineChart'),
+        configLine
+    );
+
+
+</script>

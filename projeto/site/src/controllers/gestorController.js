@@ -226,6 +226,79 @@ function pegarDadosGrafico2(req, res){
     }
 }
 
+
+function contarComputadoresEmAlerta(req, res) {
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.contarComputadoresEmAlerta(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function contarChamadosPrioritariosAbertos(req, res) {
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.contarChamadosPrioritariosAbertos(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function contarAlertasMaisTempo(req, res) {
+    var fkEmpresa = req.body.fkEmpresaServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.contarAlertasMaisTempo(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
@@ -234,5 +307,8 @@ module.exports = {
     excluirContaUsuario,
     getDadosFuncionario,
     pegarDadosGrafico1,
-    pegarDadosGrafico2
+    pegarDadosGrafico2,
+    contarComputadoresEmAlerta,
+    contarChamadosPrioritariosAbertos,
+    contarAlertasMaisTempo
 }

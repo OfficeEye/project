@@ -39,4 +39,19 @@ router.post("/pegarDadosGrafico2", function (req, res) {
     gestorController.pegarDadosGrafico2(req, res);
 });
 
+
+router.post("/contarComputadoresEmAlerta", function (req, res) {
+    gestorController.contarComputadoresEmAlerta(req, res);
+});
+
+router.post("/contarChamadosPrioritariosAbertos", function (req, res) {
+    gestorController.contarChamadosPrioritariosAbertos(req, res);
+});
+
+router.post("/contarAlertasMaisTempo", function (req, res) {
+    gestorController.contarAlertasMaisTempo(req, res);
+});
+
+
+
 module.exports = router;

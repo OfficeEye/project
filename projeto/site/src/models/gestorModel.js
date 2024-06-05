@@ -95,6 +95,35 @@ ORDER BY
     return database.executar(instrucao);
 }
 
+function contarComputadoresEmAlerta(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(idUsuario) FROM usuario;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function contarChamadosPrioritariosAbertos(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(idUsuario) FROM usuario;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function contarAlertasMaisTempo(fkEmpresa){
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT COUNT(idUsuario) FROM usuario;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
@@ -103,5 +132,8 @@ module.exports = {
     excluirContaUsuario,
     getDadosFuncionario,
     pegarDadosGrafico1,
-    pegarDadosGrafico2
+    pegarDadosGrafico2,
+    contarComputadoresEmAlerta,
+    contarChamadosPrioritariosAbertos,
+    contarAlertasMaisTempo
 };
