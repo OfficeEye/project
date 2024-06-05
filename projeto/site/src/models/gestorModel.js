@@ -52,6 +52,49 @@ function getDadosFuncionario(fkEmpresa){
     return database.executar(instrucao);
 }
 
+function pegarDadosGrafico1(fkEmpresa) {
+    var instrucao = `
+    SELECT 
+    DATE(dataAbertura) AS Dia,
+    CONCAT(
+        LPAD(FLOOR(AVG(TIMESTAMPDIFF(MINUTE, dataAbertura, dataFechamento)) / 60), 2, '0'), 
+        ':', 
+        LPAD(MOD(AVG(TIMESTAMPDIFF(MINUTE, dataAbertura, dataFechamento)), 60), 2, '0')
+    ) AS TempoMedioChamadoHorasMinutos
+FROM 
+    Chamados
+WHERE 
+    status = 'Fechado' -- Considerando apenas os chamados fechados
+    AND fkEmpresa = ${fkEmpresa} -- Condição para a empresa específica
+GROUP BY 
+    DATE(dataAbertura) -- Agrupando por dia de abertura
+ORDER BY 
+    DATE(dataAbertura) LIMIT 5; -- Ordenando por dia de abertura
+
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function pegarDadosGrafico2(fkEmpresa) {
+    var instrucao = `
+    SELECT 
+    DATE(dataAbertura) AS Dia,
+    SUM(CASE WHEN status = 'Aberto' THEN 1 ELSE 0 END) AS ChamadosAbertos,
+    SUM(CASE WHEN status = 'Fechado' THEN 1 ELSE 0 END) AS ChamadosFechados
+FROM 
+    Chamados
+WHERE
+    fkEmpresa = ${fkEmpresa}
+GROUP BY 
+    Dia
+ORDER BY 
+    Dia;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function contarComputadoresEmAlerta(fkEmpresa){
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
@@ -80,17 +123,12 @@ function contarAlertasMaisTempo(fkEmpresa){
 }
 
 
+
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,
-    getDadosFuncionario,
-    contarComputadoresEmAlerta,
-    contarChamadosPrioritariosAbertos,
-    contarAlertasMaisTempo
-    
+    getDadosFuncionario
 };
-
-// SELECT COUNT(status) FROM registrosEspecificacaoComponente WHERE fkEmpresa = '${fkEmpresa}' AND (status = 'Alerta' OR status = 'Critico');
