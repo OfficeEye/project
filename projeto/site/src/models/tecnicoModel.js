@@ -65,7 +65,7 @@ function getUltimoIDFuncionario(fkEmpresa) {
 
 function getUltimoStatusRegistroEspacoDisponivel(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
-    var instrucao = `
+/*    var instrucao = `
     SELECT funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
 	FROM registrosEspecificacaoComponente 
 		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponentes
@@ -75,6 +75,18 @@ function getUltimoStatusRegistroEspacoDisponivel(fkEmpresa, idFuncionario) {
 			WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario} AND tipoRegistro = 'Espaço disponível'
         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC
         LIMIT 1;
+    `
+    */
+    var instrucao = `
+    SELECT funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
+	FROM registrosEspecificacaoComponente 
+		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponentes
+        JOIN componente ON especificacaoComponente.fkComponente = idComponente
+		JOIN maquina ON especificacaoComponente.fkMaquina = idMaquina
+        JOIN funcionario ON maquina.fkFuncionario = idFuncionario
+			WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario}  
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC
+        LIMIT 5;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
