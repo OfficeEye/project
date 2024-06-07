@@ -11,4 +11,16 @@ router.post("/getDadosMaquina", function (req, res) {
     tecnicoController.getDadosMaquina(req, res);
 });
 
+router.post("/cadastrarEspecificacaoMaquina", function (req, res) {
+    tecnicoController.cadastrarEspecificacaoMaquina(req, res);
+});
+
+router.post("/getUltimoIDFuncionario", function (req, res) {
+    tecnicoController.getUltimoIDFuncionario(req, res);
+});
+
+router.post("/getUltimoStatusRegistro", function (req, res) {
+    tecnicoController.getUltimoStatusRegistro(req, res);
+});
+
 module.exports = router;

@@ -24,6 +24,10 @@ function logout() {
 
 }
 function returnIndex() {
+    localStorage.removeItem('ID_USUARIO')
+    localStorage.removeItem('EMPRESA_USUARIO')
+    localStorage.removeItem('TIPO_USUARIO')
+    localStorage.removeItem('NOME_USUARIO')
     window.location.href = "../login.html";
 }
 function openModal() {
@@ -47,6 +51,8 @@ function returnDash() {
 function returnConfig() {
     window.location.href = "config-gestor.html"
 }
+
+
 
 function getNomeFuncionarios() {
     var fkEmpresa = localStorage.EMPRESA_USUARIO;
@@ -129,7 +135,28 @@ function cadastrarMaquina() {
                 console.log(`#ERRO: ${resposta}`)
             }
         );
-        return false;
+        // return false;~
+        fetch("/tecnico/cadastrarEspecificacaoMaquina", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionarioVar,
+                fkEmpresaServer: fkEmpresaVar,
+                fkMaquinaServer: fkMaquina
+            }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+                // getDadosMaquina()
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
     }
 }
 var fkMaquina = 1;
@@ -177,9 +204,9 @@ function getDadosMaquina() {
                                 </td>
                             </tr>
                         `
-                        }
-                        console.log(fkMaquina)
-                    })
+                    }    
+                    console.log("idMaquina:" + fkMaquina)                 
+                })
                 } else {
                     fkMaquina = 1;
                     console.log(fkEmpresaVar)

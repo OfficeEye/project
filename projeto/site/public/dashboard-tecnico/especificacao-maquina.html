@@ -9,22 +9,18 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="plotarGraficoEspecificacaoMaquina()">
     <div class="content">
         <div class="header">
             <div class="logo">
                 <img src="../assets/svg/icon-officeeye (2).png" onclick="openModal()">
             </div>
             <div class="images">
-                <a href="dashboard-tecnico.html">
-                    <img src="../assets/svg/home.svg">
-                </a>
-                <a href="tabela-maquinas.html">
-                    <img src="../assets/svg/computador-portatil.png">
-                </a>
-                <a href="tabela-chamados.html">
-                    <img src="../assets/svg/operador-de-telemarketing.png">
-                </a>
+                <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
+                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
+                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
+                <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
+                
             </div>
         </div>
         <div class="container">
@@ -80,7 +76,7 @@
 </body>
 
 </html>
-<script src="../js/dashboard.js"></script>
+<script src="../js/dashboard-tecnico.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     //CPU

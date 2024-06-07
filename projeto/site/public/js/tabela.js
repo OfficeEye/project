@@ -18,6 +18,10 @@ function closeModal(){
 }
 
 function returnIndex() {
+    localStorage.removeItem('ID_USUARIO')
+    localStorage.removeItem('EMPRESA_USUARIO')
+    localStorage.removeItem('TIPO_USUARIO')
+    localStorage.removeItem('NOME_USUARIO')
     window.location.href = "../login.html";
 }
 
