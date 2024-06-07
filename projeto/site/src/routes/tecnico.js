@@ -19,16 +19,8 @@ router.post("/getUltimoIDFuncionario", function (req, res) {
     tecnicoController.getUltimoIDFuncionario(req, res);
 });
 
-router.post("/getUltimoStatusRegistroEspacoDisponivel", function (req, res) {
-    tecnicoController.getUltimoStatusRegistroEspacoDisponivel(req, res);
-});
-
-router.post("/getUltimoStatusRegistroMemoriaUso", function (req, res) {
-    tecnicoController.getUltimoStatusRegistroMemoriaUso(req, res);
-});
-
-router.post("/getMaquinaAlerta", function (req, res) {
-    tecnicoController.getMaquinaAlerta(req, res);
+router.post("/getUltimoStatusRegistro", function (req, res) {
+    tecnicoController.getUltimoStatusRegistro(req, res);
 });
 
 module.exports = router;

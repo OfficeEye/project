@@ -142,7 +142,7 @@ function getUltimoIDFuncionario(req, res) {
     }
 }
 
-function getUltimoStatusRegistroEspacoDisponivel(req, res) {
+function getUltimoStatusRegistro(req, res) {
     var fkEmpresa = req.body.fkEmpresaServer;
     var idFuncionario = req.body.idFuncionarioServer;
 
@@ -151,7 +151,7 @@ function getUltimoStatusRegistroEspacoDisponivel(req, res) {
     } else if (idFuncionario == undefined) {
         res.status(400).send("Seu idFuncionario está undefined!");
     } else {
-        tecnicoModel.getUltimoStatusRegistroEspacoDisponivel(fkEmpresa, idFuncionario)
+        tecnicoModel.getUltimoStatusRegistro(fkEmpresa, idFuncionario)
         .then(
             function (resultado) {
                 if (resultado.length >= 1){
@@ -169,56 +169,7 @@ function getUltimoStatusRegistroEspacoDisponivel(req, res) {
     }
 }
 
-function getUltimoStatusRegistroMemoriaUso(req, res) {
-    var fkEmpresa = req.body.fkEmpresaServer;
-    var idFuncionario = req.body.idFuncionarioServer;
 
-    if (fkEmpresa == undefined) {
-        res.status(400).send("Seu fkEmpresa está undefined!");
-    } else if (idFuncionario == undefined) {
-        res.status(400).send("Seu idFuncionario está undefined!");
-    } else {
-        tecnicoModel.getUltimoStatusRegistroMemoriaUso(fkEmpresa, idFuncionario)
-        .then(
-            function (resultado) {
-                if (resultado.length >= 1){
-                    res.json(resultado)
-                } else if (resultado.length == 0) {
-                    // res.status(403).send("fkEmpresa ou idFuncionario inválido(s)");
-                }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro)
-                res.status(500).json(erro.sqlMessage)
-            }
-        );
-    }
-}
-
-function getMaquinaAlerta(req, res) {
-    var fkEmpresa = req.body.fkEmpresaServer;
-
-    if (fkEmpresa == undefined) {
-        res.status(400).send("Seu fkEmpresa está undefined!");
-    } else {
-        tecnicoModel.getMaquinaAlerta(fkEmpresa)
-        .then(
-            function (resultado) {
-                if (resultado.length >= 1){
-                    res.json(resultado)
-                } else if (resultado.length == 0) {
-                    res.status(403).send("fkEmpresa inválido(s)");
-                }
-            }
-        ).catch(
-            function (erro) {
-                console.log(erro)
-                res.status(500).json(erro.sqlMessage)
-            }
-        );
-    }
-}
 
 
 
@@ -227,7 +178,5 @@ module.exports = {
     cadastrarEspecificacaoMaquina,
     getDadosMaquina,
     getUltimoIDFuncionario,
-    getUltimoStatusRegistroEspacoDisponivel,
-    getUltimoStatusRegistroMemoriaUso,
-    getMaquinaAlerta
+    getUltimoStatusRegistro
 }

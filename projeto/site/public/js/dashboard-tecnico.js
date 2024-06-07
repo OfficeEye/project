@@ -36,7 +36,7 @@ function returnDashboard() {
 }
 
 function Maquina(idFuncionario){
-    sessionStorage.ID_FUNCIONARIO = idFuncionario
+    // sessionStorage.ID_FUNCIONARIO = idFuncionario
     window.location = "especificacao-maquina.html";
 }
 
@@ -44,7 +44,7 @@ function Maquina(idFuncionario){
 function getMaquinaAlerta() {
     // sessionStorage.clear;
     var fkEmpresa = localStorage.EMPRESA_USUARIO;
-    sessionStorage.removeItem('ID_FUNCIONARIO')
+    // sessionStorage.removeItem('ID_FUNCIONARIO')
 
     if (fkEmpresa == "") {
 
@@ -70,7 +70,7 @@ function getMaquinaAlerta() {
 
                             var idFuncionario = i;
 
-                            fetch("../tecnico/getUltimoStatusRegistroEspacoDisponivel", {
+                            fetch("../tecnico/getUltimoStatusRegistro", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",
@@ -145,9 +145,9 @@ function getMaquinaAlerta() {
                                                 <td class="td-nome">${nomeFuncionario}</td>
                                                 <td class="td-funcionario">${nomeMaquinaFuncionario}</td>
                                                 <td class="td-status" style="color: ${corStatus};">${textoStatus}</td>
-                                                <td class="td-cpu" style="color: ${corCPU};">${registroCpuUso}% Usado</td>
-                                                <td class="td-memoria" style="color: ${corMemoria};">${registroMemoria}% Usado</td>
-                                                <td class="td-disco" style="color: ${corDisco};">${registroDisco}% Usado</td>
+                                                <td class="td-cpu" style="color: ${corCPU};">${registroCpuUso}%</td>
+                                                <td class="td-memoria" style="color: ${corMemoria};">${registroMemoria}%</td>
+                                                <td class="td-disco" style="color: ${corDisco};">${registroDisco}%</td>
                                                 <td class="container-img">
                                                     <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
                                                     <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
