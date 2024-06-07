@@ -27,4 +27,31 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
+router.post("/pegarDadosGrafico1", function (req, res) {
+    console.log("Rota pegarDadosGrafico1");
+    // console.log(req);
+    // console.log(req.body);
+    gestorController.pegarDadosGrafico1(req, res);
+});
+
+router.post("/pegarDadosGrafico2", function (req, res) {
+    console.log("Rota pegarDadosGrafico2");
+    gestorController.pegarDadosGrafico2(req, res);
+});
+
+
+router.post("/contarComputadoresEmAlerta", function (req, res) {
+    gestorController.contarComputadoresEmAlerta(req, res);
+});
+
+router.post("/contarChamadosPrioritariosAbertos", function (req, res) {
+    gestorController.contarChamadosPrioritariosAbertos(req, res);
+});
+
+router.post("/contarAlertasMaisTempo", function (req, res) {
+    gestorController.contarAlertasMaisTempo(req, res);
+});
+
+
+
 module.exports = router;

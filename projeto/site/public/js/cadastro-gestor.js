@@ -111,18 +111,20 @@ function cadastrarUsuario() {
         return false;
     }
 }
+
 function validarSessao() {
     var nome = localStorage.NOME_USUARIO;
     var empresa = localStorage.EMPRESA_USUARIO
-
     if(nome == null && empresa == null) {
-        window.location = "../login.html"
+       window.location = "../login.html"
     }
 }
+
 function getNameUser() {
     const user = localStorage.NOME_USUARIO;
     nomeUser.innerHTML = `Bem vindo, ${user}`
 }
+
 function logout() {
     localStorage.removeItem('ID_USUARIO')
     localStorage.removeItem('EMPRESA_USUARIO')
