@@ -1,247 +1,179 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-*{
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    /* box-sizing: border-box; */
+    font-size: 14px;
+    background-image: url(../assets/svg/background-login.svg);
+    background-size: 100%;
 }
 
-.login-background{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../assets/svg/background-login.svg');
-    background-size: cover;
-    background-position: center;
-    
+#imagem-login {
+    height: 300px;
+    max-width: 400px;
+    margin-top: 100px;
 }
 
-.login-box{
-    width: 70%;
-    height: 85%;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-}
-
-
-
-.login-image{
-    width: 50%;
-    height: 100%;
-    background-color: #fff;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;   
+.login-container {
     position: relative;
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
 }
 
-
-.login-image img{
-    max-width: 100%;
-    height: auto;
-    /* width: 520px; */
+.back-button {
     position: absolute;
-    /* margin-left: 100px; */
-    z-index: 2;
-    top: 0;
-    left: 0;
-}
-
-#image-background{
-    width: 920px;
-    
-}
-
-.box-text{
-    position: absolute;
-    bottom: 20px;
-    /* margin-top: 460px; */
-    transform: translateX(-50%);
-    left: 50%;
-    z-index: 4;
-    text-align: center;
-}
-
-.box-text p{
-    font-weight: 600;
-    font-size: 13px;
-    color: #263238;
-    
-}
-
-.box-text a{
+    top: 10px;
+    left: 10px;
     text-decoration: none;
     color: #399797;
+    font-size: 14px;
+    font-weight: 600;
 }
 
+.login-content {
+    display: flex;
+}
 
-.login-form{
-    width: 50%;
-    /* height: 100%; */
-    background-color: #FFF;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+.login-image img {
+    width: 100%;
+    height: auto;
+}
+
+.login-form {
+    flex: 1;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
 }
 
-
-.login-title h1{
-    font-weight: 600;
-    font-size: 30px;
-    text-transform: uppercase;
-    margin-top: 60px;
-    text-align: center;
-    color: #399797;
+.login-form h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: left;
+    color: #008080;
 }
 
-.login-title h3{
-    font-weight: bold;
-    font-size: 15px;
-    margin-top: 15px;
-    color: #1a1a1a;
-    margin-bottom: 8px;
+p {
+    margin-bottom: 20px;
+    text-align: left;
+    color: #333;
+    font-weight: 300;
 }
 
-.login-field{
-    display:flex;
-    flex-direction: column;
-    
-}
-
-.login-field label{
-    font-size: 12px;
-    font-weight: 600;
-    margin-left: 12px;
-    margin-bottom: 8px;
-    cursor: pointer;
-}
-
-.login-field input{
-    width: 100%;
-    height: 35px;
-    font-size: 12px;
-    border-radius: 20px;
-    border: 1.5px solid #999999;
-    padding: 10px;
-    z-index: 3;
-    transition: all .4s ease-in-out;
-}
-
-input:focus {
+.login-field input:focus,
+#botao-login:focus {
     outline: none;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.52);
+    transition: 0.5s;
+    border: 1px solid #008080;
 }
 
-.login-field .input-container {
+.login-field {
+    margin-bottom: 15px;
+}
+
+.login-field input {
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+.login-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.login-field {
     position: relative;
+    align-items: center;
 }
 
-
-.login-field i{
-    color: #1a1a1a;
-    position: absolute;
-    margin-top: 39px;
-    /* margin-right: 50px; */
-    margin-left: 200px;
-    font-size: 15px;
-    z-index: 5;
+.login-field input {
+    width: 85%;
+    padding: 10px;
+    padding-right: 30px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
 }
 
-#login_field_password_lock, #login_field_password_unlock{
-    cursor: pointer;
-}
-
-.icon-password{
-  
-    height: 60px;
-    position: absolute;
-    margin-bottom: 200px;
-   
-}
-
-.login-button{
-    z-index: 3;
-    margin: 50px;
-}
-.login-button button{
-    
-    width: 150px;
-    height: 44px;
-    /* padding: 8px; */
-    border: none;
-    background-color: #399797;
+.login-form button {
+    padding: 10px;
+    background-color: #008080;
     color: #fff;
-    border-radius: 20px;
-    /* margin-bottom: 50px; */
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 12px;
+    border: none;
+    border-radius: 25px;
     cursor: pointer;
+    font-size: 16px;
     transition: background-color 0.3s ease;
 }
 
-.login-button button:hover{
-    background-color: #407171;
+.login-form button:hover {
+    background-color: #006666;
     color: #1a1a1a;
 }
 
-
-.login-form img{
-    height: 100%;
-    /* margin-right: 80px; */
+.signup-link {
+    margin-top: 20px;
+    text-align: center;
 }
 
+.signup-link a {
+    color: #399797;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+
+/* para celular */
 @media only screen and (max-width: 767px) {
-    .login-box {
-        flex-direction: column; 
-        height: auto; 
-        box-shadow: none;
+    #imagem-login {
+        height: 210px;
+        margin-top: 0px;
+        max-width: none;
     }
 
-    .login-image,
-    .login-form {
-        width: 100%; 
-        border-radius: 15px; 
+    .login-container {
+        margin: 20px;
+    }
+
+    .login-content {
         flex-direction: column;
-    }
-
-    .login-image {
-        justify-content: space-around;
-        margin-top: 70px;
-    }
-
-    .login-title h1 {
-        margin-top: 30px; 
-    }
-
-    .login-image img { 
-        position: relative;
-        transform: none; 
-        max-width: 100%;
-    }
-
-    .box-text {
-        position: relative; 
-        text-align: center; 
-        margin-bottom: 20px; 
         align-items: center;
     }
 
-    .box-text p {
-        font-size: 14px;
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .login-form h2 {
+        font-size: 1.5em;
+    }
+
+    .login-form label {
+        font-size: 0.9em;
+    }
+
+    .login-form input {
+        padding: 8px;
+    }
+
+    .login-form button {
+        padding: 8px;
+        font-size: 1em;
     }
 }
-

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +11,17 @@
     <script src="https://kit.fontawesome.com/4d31589572.js" crossorigin="anonymous"></script>
 </head>
 <!-- <body onload="PreencherCamposLogin()"> -->
+
 <body>
-    
-    <div class="login-background">
-        <div class="login-box">
+    <div class="login-container">
+        <a href="index.html" class="back-button">Voltar</a>
+        <div class="login-content">
             <div class="login-image">
-                
-                <img src="assets/svg/imagem-login.jpg">
-                
-                <div class="box-text">
-                    <p>Ainda não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-                </div>
+                <img src="assets/svg/imagem-login.jpg" id="imagem-login">
             </div>
-            <div class="login-form">
-                <div class="login-title">
-                    <h1>Bem-Vindo!</h1>
-                    <h3>Faça login em sua conta</h3>
-                </div>
+            <form class="login-form">
+                <h2>BEM-VINDO!</h2>
+                <p>Faça login em sua conta</p>
                 <div class="login-field">
                     <label id="email_correct" for="input_email">E-mail</label>
                     <input id="email_input" type="text" id="input_email" autofocus autocomplete="off">
@@ -35,20 +30,21 @@
                 <div class="login-field">
                     <label id="senha_correct" for="input_password">Senha</label>
                     <input id="senha_input" type="password" id="input_password">
-                    <div class="icon-password" id="icon_password">
+                    <span id="icon_password">
                         <i class="fa-solid fa-lock" onclick="verSenha()" id="login_field_password_lock"></i>
-                    </div>
-                   
-                
+                    </span>
                 </div>
-                <div class="login-button">
-                    <button onclick="logar()">Entrar</button>
+                <button type="button" id="botao-login" onclick="logar()">Entrar</button>
+                <div class="signup-link">
+                    <p>Ainda não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>
+
 <script>
     function PreencherCamposLogin() {
         email_input.value = "gabriel@gmail.com"
@@ -76,78 +72,77 @@
 
             document.getElementById('email_input').style.borderColor = "black"
             document.getElementById('email_correct').style.color = "black"
-        } else{
+        } else {
 
             console.log("FORM LOGIN: ", emailVar);
             console.log("FORM SENHA: ", senhaVar);
 
             fetch("/usuarios/logar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    resposta.json().then(function (usuario) {
+                        console.log(usuario);
+                        console.log(JSON.stringify(usuario));
+                        console.log(usuario.tipo)
+                        console.log(usuario.fkEmpresa)
+                        var gestor = false;
+                        if (usuario.tipo == "gestor") {
+                            gestor = true
+                            console.log(gestor)
+                            localStorage.ID_USUARIO = usuario.idUsuario;
+                            localStorage.NOME_USUARIO = usuario.nome;
+                            localStorage.TIPO_USUARIO = usuario.tipo;
+                            localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
+
+                            setTimeout(function () {
+                                window.location = "/dashboard-gestor/dashboard-gestor.html";
+                            }, 1000); // apenas para exibir o loading
+
+                        } else if (usuario.tipo == "tecnico") {
+                            localStorage.ID_USUARIO = usuario.idUsuario;
+                            localStorage.NOME_USUARIO = usuario.nome;
+                            localStorage.TIPO_USUARIO = usuario.tipo;
+                            localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
+
+                            setTimeout(function () {
+                                window.location = "/dashboard-tecnico/dashboard-tecnico.html";
+                            }, 1000); // apenas para exibir o loading
+                        }
+
+                    });
+
+
+                } else {
+
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
             })
-        }).then(function (resposta) {
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(function (usuario) {
-                    console.log(usuario);
-                    console.log(JSON.stringify(usuario));
-                    console.log(usuario.tipo)
-                    console.log(usuario.fkEmpresa)
-                    var gestor = false;
-                    if (usuario.tipo == "gestor") {
-                        gestor = true
-                        console.log(gestor)
-                        localStorage.ID_USUARIO = usuario.idUsuario;
-                        localStorage.NOME_USUARIO = usuario.nome;
-                        localStorage.TIPO_USUARIO = usuario.tipo;
-                        localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
-
-                        setTimeout(function () {
-                            window.location = "/dashboard-gestor/dashboard-gestor.html";
-                        }, 1000); // apenas para exibir o loading
-
-                    } else if (usuario.tipo == "tecnico") {
-                        localStorage.ID_USUARIO = usuario.idUsuario;
-                        localStorage.NOME_USUARIO = usuario.nome;
-                        localStorage.TIPO_USUARIO = usuario.tipo;
-                        localStorage.EMPRESA_USUARIO = usuario.fkEmpresa;
-
-                        setTimeout(function () {
-                            window.location = "/dashboard-tecnico/dashboard-tecnico.html";
-                        }, 1000); // apenas para exibir o loading
-                    }
-
-                });
-
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-        return false;
-        }        
+            return false;
+        }
     }
 
-    function verSenha(){
+    function verSenha() {
         senha_input.type = 'text';
         icon_password.innerHTML = '<i class="fa-solid fa-unlock" onclick="ocultarSenha()" id="login_field_password_unlock"></i>'
     }
-    function ocultarSenha(){
+    function ocultarSenha() {
         senha_input.type = 'password';
         icon_password.innerHTML = '<i class="fa-solid fa-lock" onclick="verSenha()" id="login_field_password_lock"></i>'
     }
 </script>
-
