@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="exibirChamadosPendentesDeAprovacao(localStorage.getItem('EMPRESA_USUARIO'))">
     <div class="content">
         <div class="header">
 
@@ -21,7 +21,8 @@
 
                 <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
                 <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
-                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
+                <img src="../assets/svg/operador-de-telemarketing.png" onclick="returnNewChamado()">
+                <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
 
             </div>
@@ -35,81 +36,15 @@
                 </div>
             </div>
             <div class="block">
-                <table>
+                <table id="tabela-chamados-pendentes">
                     <thead>
-                        <th class="th-nome">Nome</th>
-                        <th class="th-data">Data Abertura</th>
-                        <th class="th-hora">Hora</th>
+                        <th class="th-nome">Número</th>
+                        <th class="th-data">Data e hora da abertura</th>
+                        <th class="th-hora">Aberto por</th>
                         <th class="th-mensagem">Mensagem</th>
                         <th class="th-acoes">Ações</th>
                     </thead>
                     <tbody id="tbodyRefrigerador">
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="td-nome">undefined</td>
-                            <td class="td-data">undefined</td>
-                            <td class="td-hora" style="color: red;">undefined</td>
-                            <td class="td-mensagem">undefined</td>
-                            <td class="container-img">
-                                <img class="btn-editar" src="../assets/svg/White_check.svg" onclick="editarChamado()">
-                                <img class="btn-excluir" src="../assets/svg/x.svg" onclick="removerChamado()">
-                            </td>
-                        </tr>
 
                     </tbody>
                 </table>
@@ -123,7 +58,7 @@
         <div class="container-modal">
 
             <div class="title">
-                <h2 id="textoModal">Tem certeza que deseja remover esse usuário?</h2>
+                <h2 id="textoModal">Tem certeza que deseja remover esse chamado?</h2>
             </div>
 
             <div class="img-modal">
@@ -163,22 +98,11 @@
             </div>
 
             <div class="container-input">
-                <label for="">Atribuir ao Funcionário</label>
-                <select name="" id="">
-                    <option value="">Funcionário 1</option>
-                    <option value="">Funcionário 2</option>
-                    <option value="">Funcionário 3</option>
-                </select>
                 <label for="">Prioridade</label>
-                <select name="" id="">
-                    <option value="">Baixa</option>
-                    <option value="">Média</option>
-                    <option value="">Alta</option>
-                </select>
-                <label for="">Status</label>
-                <select name="" id="">
-                    <option value="">Em andamento</option>
-                    <option value="">Finalizado</option>
+                <select name="" id="nivel_prioridade">
+                    <option value="baixa">Baixa</option>
+                    <option value="media">Média</option>
+                    <option value="alta">Alta</option>
                 </select>
             </div>
 
