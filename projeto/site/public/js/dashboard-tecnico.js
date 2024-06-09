@@ -10,6 +10,11 @@ function returnChamados(){
     window.location.href = "../dashboard-tecnico/tabela-chamados.html";
 }
 
+function returnNewChamado() {
+    window.location.href = 'new-chamados.html'
+}
+
+
 function openModal(texto){
     modalSair.classList.add("active");
     modalBackground.classList.add("active");

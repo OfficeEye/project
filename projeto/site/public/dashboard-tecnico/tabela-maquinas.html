@@ -21,7 +21,7 @@
 
                 <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
                 <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
-                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnNewChamados()">
+                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnNewChamado()">
                 <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
 
@@ -290,4 +290,8 @@
     function Maquina(){
         window.location = "especificacao-maquina.html";
     }
+
+    function returnNewChamado() {
+    window.location.href = 'new-chamados.html'
+}
 </script>

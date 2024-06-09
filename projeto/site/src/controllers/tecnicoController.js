@@ -326,6 +326,151 @@ function exibirDadosDoChamado(req, res) {
     }
 }
 
+function mudarStatusChamado(req, res) {
+    var statusSelecionado = req.body.statusSelecionadoServer;
+    var idChamado = req.body.idChamadoServer;
+    var dataFechamento = req.body.dataFechamentoServer;
+
+   
+        tecnicoModel.mudarStatusChamado(statusSelecionado, idChamado, dataFechamento)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    return resultado;
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao remover o chamado! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+}
+
+
+function buscarInformacoesChamado(req, res) {
+    var idChamado = req.params.idChamado;
+    
+    if (idChamado == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarInformacoesChamado(idChamado)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+
+function buscarInformacoesHistorico(req, res) {
+    var idChamado = req.params.idChamado;
+    
+    if (idChamado == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.buscarInformacoesHistorico(idChamado)
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function salvarHistoricoChamado(req, res) {
+    var idChamado= req.body.idChamadoServer;
+    var descricaoProblema = req.body.descricaoProblemaServer;
+    var descricaoSolucao = req.body.descricaoSolucaoServer;
+    var idFuncionario = req.body.idFuncionarioServer;
+    var idUsuario = req.body.idUsuarioServer;
+    var idMaquina = req.body.idMaquinaServer;
+    var fkEmpresa = req.body.fkEmpresaServer
+
+   
+        tecnicoModel.salvarHistoricoChamado(idChamado, descricaoProblema, descricaoSolucao, idFuncionario, idUsuario, idMaquina, fkEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    return resultado;
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao remover o chamado! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+}
+
+function atualizarHistoricoChamado(req, res) {
+    var idChamado= req.body.idChamadoServer;
+    var descricaoProblema = req.body.descricaoProblemaServer;
+    var descricaoSolucao = req.body.descricaoSolucaoServer;
+   
+   
+        tecnicoModel.atualizarHistoricoChamado(idChamado, descricaoProblema, descricaoSolucao)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                    return resultado;
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao remover o chamado! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    
+}
+
+function verificarSeExisteHistorico(req, res) {
+    var idChamado = req.params.idChamado;
+    
+    if (idChamado == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        tecnicoModel.verificarSeExisteHistorico(idChamado)
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 
 module.exports = {
     tecnicoCadastrarMaquina,
@@ -338,5 +483,11 @@ module.exports = {
     buscarQtdChamadosAbertos,
     buscarQtdMaquinasTotal,
     buscarChamadosAbertos,
-    exibirDadosDoChamado
+    exibirDadosDoChamado,
+    mudarStatusChamado,
+    buscarInformacoesChamado,
+    salvarHistoricoChamado,
+    atualizarHistoricoChamado,
+    buscarInformacoesHistorico,
+    verificarSeExisteHistorico
 }
