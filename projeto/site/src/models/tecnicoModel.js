@@ -145,17 +145,114 @@ function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
 function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT registrosEspecificacaoComponente.dataHoraRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+    SELECT date_format(registrosEspecificacaoComponente.dataHoraRegistro, '%i:%s') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
     maquina.nomeMaquina FROM registrosEspecificacaoComponente
 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
-		WHERE registrosEspecificacaoComponente.fkEmpresa = 1 AND registrosEspecificacaoComponente.fkFuncionario = 1 AND registrosEspecificacaoComponente.tipoRegistro = "Uso do processador"
-        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 45;       
+		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = "Uso do processador"
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
+// function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+//     var instrucao = `
+//     SELECT format(registrosEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+//     maquina.nomeMaquina FROM registrosEspecificacaoComponente
+// 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+//     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+// 		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = "Uso do processador"
+//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
+
+function getUltimosRegistroComponentesUsoMemoriaRam(fkEmpresa, idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT date_format(registrosEspecificacaoComponente.dataHoraRegistro, '%i:%s') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina FROM registrosEspecificacaoComponente
+	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+    JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Memória em uso'
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// function getUltimosRegistroComponentesUsoMemoriaRam(fkEmpresa, idFuncionario) {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+//     var instrucao = `
+//     SELECT format(registrosEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+//     maquina.nomeMaquina FROM registrosEspecificacaoComponente
+// 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+//     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+// 		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Memória em uso'
+//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
+
+function getUltimosRegistroComponentesUsoDisco(fkEmpresa, idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT date_format(registrosEspecificacaoComponente.dataHoraRegistro, '%i:%s') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina FROM registrosEspecificacaoComponente
+	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+    JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Espaço disponível'
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// function getUltimosRegistroComponentesUsoDisco(fkEmpresa, idFuncionario) {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+//     var instrucao = `
+//     SELECT format(registrosEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+//     maquina.nomeMaquina FROM registrosEspecificacaoComponente
+// 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+//     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+// 		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Espaço disponível'
+//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
+
+function getUltimosRegistroComponentesTemperaturaCpu(fkEmpresa, idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT date_format(registrosEspecificacaoComponente.dataHoraRegistro, '%i:%s') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina FROM registrosEspecificacaoComponente
+	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+    JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Temperatura da CPU'
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+// function getUltimosRegistroComponentesTemperaturaCpu(fkEmpresa, idFuncionario) {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+//     var instrucao = `
+//     SELECT format(registrosEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+//     maquina.nomeMaquina FROM registrosEspecificacaoComponente
+// 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+//     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+// 		WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registrosEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registrosEspecificacaoComponente.tipoRegistro = 'Temperatura da CPU'
+//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 10;       
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
 
 function buscarChamadosPendentes(fkEmpresa) {
     console.log("Script do banco de dados para buscar todos os chamados pendentes em uma determinada empresa")
@@ -411,6 +508,9 @@ module.exports = {
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
     getUltimosRegistroComponentesUsoCpu,
+    getUltimosRegistroComponentesUsoMemoriaRam,
+    getUltimosRegistroComponentesUsoDisco,
+    getUltimosRegistroComponentesTemperaturaCpu,
     cadastrarEspecificacaoCPU ,
     buscarChamadosPendentes,
     validarChamado,

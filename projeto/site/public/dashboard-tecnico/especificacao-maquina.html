@@ -35,13 +35,13 @@
                 <div class="stats">
                     <div class="box">
                         <div class="dados">
-                            <h3>CPU</h3>
+                            <h3>Uso CPU</h3>
                             <canvas id="chartCpu"></canvas>
                         </div>
                     </div>
                     <div class="box">
                         <div class="dados">
-                            <h3>Memória RAM</h3>
+                            <h3>Uso Memória RAM</h3>
                             <canvas id="chartMemoria"></canvas>
                         </div>
                     </div>
@@ -49,13 +49,13 @@
                 <div class="stats">
                     <div class="box">
                         <div class="dados">
-                            <h3>Disco</h3>
+                            <h3>Espaço Disponivel Disco</h3>
                             <canvas id="chartDisco"></canvas>
                         </div>
                     </div>
                     <div class="box">
                         <div class="dados">
-                            <h3>Rede</h3>
+                            <h3>Temperatura CPU</h3>
                             <canvas id="chartJanela"></canvas>
                         </div>
                     </div>
@@ -123,131 +123,131 @@
     // );
 
     //Memoria
-    const dataMemoria = {
-        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
-        datasets: [{
-            label: '',
-            data: [65, 59, 80, 81],
-            backgroundColor: [
-                'rgba(255, 99, 132)',
-                'rgba(255, 159, 64)',
-                'rgba(255, 205, 86)',
-                'rgba(75, 192, 192)',
-            ],
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-            ],
-            borderWidth: 1
+    // const dataMemoria = {
+    //     labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+    //     datasets: [{
+    //         label: '',
+    //         data: [65, 59, 80, 81],
+    //         backgroundColor: [
+    //             'rgba(255, 99, 132)',
+    //             'rgba(255, 159, 64)',
+    //             'rgba(255, 205, 86)',
+    //             'rgba(75, 192, 192)',
+    //         ],
+    //         borderColor: [
+    //             'rgb(255, 99, 132)',
+    //             'rgb(255, 159, 64)',
+    //             'rgb(255, 205, 86)',
+    //             'rgb(75, 192, 192)',
+    //         ],
+    //         borderWidth: 1
 
-        }]
-    };
+    //     }]
+    // };
 
-    const configMemoria = {
-        type: 'line',
-        data: dataMemoria,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                },
-            },
-        },
-    };
+    // const configMemoria = {
+    //     type: 'line',
+    //     data: dataMemoria,
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             },
+    //         },
+    //     },
+    // };
 
-    Chart.defaults.color = '#fff';
-    Chart.defaults.borderColor = '#fff';
+    // Chart.defaults.color = '#fff';
+    // Chart.defaults.borderColor = '#fff';
 
-    const chartMemoria = new Chart(
-        document.getElementById('chartMemoria'),
-        configMemoria
-    );
+    // const chartMemoria = new Chart(
+    //     document.getElementById('chartMemoria'),
+    //     configMemoria
+    // );
 
     //Disco
-    const dataDisco = {
-        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
-                datasets: [{
-            label: '',
-            data: [65, 59, 80, 81],
-            backgroundColor: [
-                'rgba(255, 99, 132)',
-                'rgba(255, 159, 64)',
-                'rgba(255, 205, 86)',
-                'rgba(75, 192, 192)',
-            ],
-            borderColor: [
-                'rgb(85, 173, 250)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-            ],
-            borderWidth: 1
+    // const dataDisco = {
+    //     labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+    //             datasets: [{
+    //         label: '',
+    //         data: [65, 59, 80, 81],
+    //         backgroundColor: [
+    //             'rgba(255, 99, 132)',
+    //             'rgba(255, 159, 64)',
+    //             'rgba(255, 205, 86)',
+    //             'rgba(75, 192, 192)',
+    //         ],
+    //         borderColor: [
+    //             'rgb(85, 173, 250)',
+    //             'rgb(255, 159, 64)',
+    //             'rgb(255, 205, 86)',
+    //             'rgb(75, 192, 192)',
+    //         ],
+    //         borderWidth: 1
 
-        }]
-    };
+    //     }]
+    // };
 
-    const configDisco = {
-        type: 'line',
-        data: dataDisco,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                },
-            },
-        },
-    };
+    // const configDisco = {
+    //     type: 'line',
+    //     data: dataDisco,
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             },
+    //         },
+    //     },
+    // };
 
-    Chart.defaults.color = '#fff';
-    Chart.defaults.borderColor = '#fff';
+    // Chart.defaults.color = '#fff';
+    // Chart.defaults.borderColor = '#fff';
 
-    const chartDisco = new Chart(
-        document.getElementById('chartDisco'),
-        configDisco
-    );
+    // const chartDisco = new Chart(
+    //     document.getElementById('chartDisco'),
+    //     configDisco
+    // );
     //Janelas
-    const dataJanela = {
-        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
-            datasets: [{
-            label: '',
-            data: [65, 59, 80, 81],
-            backgroundColor: [
-                'rgba(85, 250, 126)',
-                'rgba(85, 250, 126)',
-                'rgba(85, 250, 126)',
-                'rgba(75, 192, 192)',
-            ],
-            borderColor: [
-                'rgb(85, 250, 126)',
-                'rgb(85, 250, 126)',
-                'rgb(85, 250, 126)',
-                'rgb(85, 250, 126)',
+    // const dataJanela = {
+    //     labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+    //         datasets: [{
+    //         label: '',
+    //         data: [65, 59, 80, 81],
+    //         backgroundColor: [
+    //             'rgba(85, 250, 126)',
+    //             'rgba(85, 250, 126)',
+    //             'rgba(85, 250, 126)',
+    //             'rgba(75, 192, 192)',
+    //         ],
+    //         borderColor: [
+    //             'rgb(85, 250, 126)',
+    //             'rgb(85, 250, 126)',
+    //             'rgb(85, 250, 126)',
+    //             'rgb(85, 250, 126)',
 
-            ],
-            borderWidth: 1
+    //         ],
+    //         borderWidth: 1
 
-        }]
-    };
+    //     }]
+    // };
 
-    const configJanela = {
-        type: 'line',
-        data: dataJanela,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                },
-            },
-        },
-    };
+    // const configJanela = {
+    //     type: 'line',
+    //     data: dataJanela,
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             },
+    //         },
+    //     },
+    // };
 
-    Chart.defaults.color = '#fff';
-    Chart.defaults.borderColor = '#fff';
+    // Chart.defaults.color = '#fff';
+    // Chart.defaults.borderColor = '#fff';
 
-    const chartJanela = new Chart(
-        document.getElementById('chartJanela'),
-        configJanela   
-    );
+    // const chartJanela = new Chart(
+    //     document.getElementById('chartJanela'),
+    //     configJanela   
+    // );
 </script>

@@ -31,6 +31,18 @@ router.post("/getUltimosRegistroComponentesUsoCpu", function (req, res) {
     tecnicoController.getUltimosRegistroComponentesUsoCpu(req, res);
 });
 
+router.post("/getUltimosRegistroComponentesUsoMemoriaRam", function (req, res) {
+    tecnicoController.getUltimosRegistroComponentesUsoMemoriaRam(req, res);
+});
+
+router.post("/getUltimosRegistroComponentesUsoDisco", function (req, res) {
+    tecnicoController.getUltimosRegistroComponentesUsoDisco(req, res);
+});
+
+router.post("/getUltimosRegistroComponentesTemperaturaCpu", function (req, res) {
+    tecnicoController.getUltimosRegistroComponentesTemperaturaCpu(req, res);
+});
+
 router.post("/getUltimoEspecificacaoMaquinaCadastrada", function (req, res) {
     tecnicoController.getUltimoEspecificacaoMaquinaCadastrada(req, res);
 });

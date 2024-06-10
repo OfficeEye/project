@@ -63,15 +63,21 @@ function plotarGraficoEspecificacaoMaquina() {
                     div_nome_maquina.innerHTML = `
                     <b>${registro[0].nomeMaquina}</b>
                     `
+
+                    let labels = []
+                    let data = []
                     
-                    for(let i = 0; i < registro.length; i++) {
-                        
+                    for(let i = registro.length- 1; i > 0; i--) {
+                        var registroUsoCpu = registro[i].registroNumero
+                        var dataHora = registro[i].dataRegistro
+                        data.push(registroUsoCpu)
+                        labels.push(dataHora)
                     }
                     const dataCpu = {
-                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+                        labels: labels,
                                 datasets: [{
                             label: '',
-                            data: [65, 59, 80, 81],
+                            data: data,
                             backgroundColor: [
                                 'rgba(85, 173, 250)',
                                 'rgba(85, 173, 250)',
@@ -106,6 +112,235 @@ function plotarGraficoEspecificacaoMaquina() {
                     const chartCpu = new Chart(
                         document.getElementById('chartCpu'),
                         configCpu
+                    );
+                })
+            }
+        
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        )
+
+        fetch("../tecnico/getUltimosRegistroComponentesUsoMemoriaRam", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa,
+                idFuncionarioServer: idFuncionario
+            }),
+        }).then(
+            function (resposta) {
+                resposta.json().then(function (registro) {
+                    console.log(registro)
+                    div_nome_maquina.innerHTML = `
+                    <b>${registro[0].nomeMaquina}</b>
+                    `
+
+                    let labels = []
+                    let data = []
+                    
+                    for(let i = registro.length- 1; i > 0; i--) {
+                        var registroUsoMemoriaRam = registro[i].registroNumero
+                        var dataHora = registro[i].dataRegistro
+                        data.push(registroUsoMemoriaRam)
+                        labels.push(dataHora)
+                    }
+                    const dataMemoria = {
+                        labels: labels,
+                        datasets: [{
+                            label: '',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132)',
+                                'rgba(255, 159, 64)',
+                                'rgba(255, 205, 86)',
+                                'rgba(75, 192, 192)',
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 1
+                
+                        }]
+                    };
+                
+                    const configMemoria = {
+                        type: 'line',
+                        data: dataMemoria,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false
+                                },
+                            },
+                        },
+                    };
+                
+                    Chart.defaults.color = '#fff';
+                    Chart.defaults.borderColor = '#fff';
+                
+                    const chartMemoria = new Chart(
+                        document.getElementById('chartMemoria'),
+                        configMemoria
+                    );
+                })
+            }
+        
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        )
+
+        fetch("../tecnico/getUltimosRegistroComponentesUsoDisco", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa,
+                idFuncionarioServer: idFuncionario
+            }),
+        }).then(
+            function (resposta) {
+                resposta.json().then(function (registro) {
+                    console.log(registro)
+                    div_nome_maquina.innerHTML = `
+                    <b>${registro[0].nomeMaquina}</b>
+                    `
+
+                    let labels = []
+                    let data = []
+                    
+                    for(let i = registro.length- 1; i > 0; i--) {
+                        var registroUsoDisco = registro[i].registroNumero
+                        var dataHora = registro[i].dataRegistro
+                        data.push(registroUsoDisco)
+                        labels.push(dataHora)
+                    }
+                    const dataDisco = {
+                        labels: labels,
+                                datasets: [{
+                            label: '',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132)',
+                                'rgba(255, 159, 64)',
+                                'rgba(255, 205, 86)',
+                                'rgba(75, 192, 192)',
+                            ],
+                            borderColor: [
+                                'rgb(85, 173, 250)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                            ],
+                            borderWidth: 1
+                
+                        }]
+                    };
+                
+                    const configDisco = {
+                        type: 'line',
+                        data: dataDisco,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false
+                                },
+                            },
+                        },
+                    };
+                
+                    Chart.defaults.color = '#fff';
+                    Chart.defaults.borderColor = '#fff';
+                
+                    const chartDisco = new Chart(
+                        document.getElementById('chartDisco'),
+                        configDisco
+                    );
+                })
+            }
+        
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        )
+
+        fetch("../tecnico/getUltimosRegistroComponentesTemperaturaCpu", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa,
+                idFuncionarioServer: idFuncionario
+            }),
+        }).then(
+            function (resposta) {
+                resposta.json().then(function (registro) {
+                    console.log(registro)
+                    div_nome_maquina.innerHTML = `
+                    <b>${registro[0].nomeMaquina}</b>
+                    `
+
+                    let labels = []
+                    let data = []
+                    
+                    for(let i = registro.length- 1; i > 0; i--) {
+                        var registroTemperaturaCpu = registro[i].registroNumero
+                        var dataHora = registro[i].dataRegistro
+                        data.push(registroTemperaturaCpu)
+                        labels.push(dataHora)
+                    }
+                    const dataTemperatura = {
+                        labels: labels,
+                            datasets: [{
+                            label: '',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(85, 250, 126)',
+                                'rgba(85, 250, 126)',
+                                'rgba(85, 250, 126)',
+                                'rgba(75, 192, 192)',
+                            ],
+                            borderColor: [
+                                'rgb(85, 250, 126)',
+                                'rgb(85, 250, 126)',
+                                'rgb(85, 250, 126)',
+                                'rgb(85, 250, 126)',
+                
+                            ],
+                            borderWidth: 1
+                
+                        }]
+                    };
+                
+                    const configTemperatura = {
+                        type: 'line',
+                        data: dataTemperatura,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false
+                                },
+                            },
+                        },
+                    };
+                
+                    Chart.defaults.color = '#fff';
+                    Chart.defaults.borderColor = '#fff';
+                
+                    const chartTemperatura = new Chart(
+                        document.getElementById('chartJanela'),
+                        configTemperatura   
                     );
                 })
             }
