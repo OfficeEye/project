@@ -39,6 +39,9 @@ function cadastrarEspecificacaoMaquina(req, res) {
     var idFuncionario = req.body.idFuncionarioServer;
     var fkEmpresa = req.body.fkEmpresaServer;
     var fkMaquina = req.body.fkMaquinaServer;
+    let fkEspecificacaoTamanhoTotalDisco = req.body.fkEspecificacaoTamanhoTotalDiscoServer;
+    let fkEspecificacaoMemoriaTotalRam = req.body.fkEspecificacaoMemoriaTotalRamServer;
+    let fkEspecificacaoFrequenciaCpu = req.body.fkEspecificacaoFrequenciaCpuServer;
 
     if (idFuncionario == undefined) {
         res.status(400).send("seu idFuncionario está undefined!")
@@ -47,7 +50,9 @@ function cadastrarEspecificacaoMaquina(req, res) {
     }else if(fkMaquina == undefined) {
         res.status(400).send("Sua fkMaquina está undefined!")
     }else {
-        tecnicoModel.cadastrarEspecificacaoMemoria(fkMaquina, fkEmpresa, idFuncionario).then(
+        
+
+        tecnicoModel.cadastrarEspecificacaoDisco(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoTamanhoTotalDisco).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -62,7 +67,7 @@ function cadastrarEspecificacaoMaquina(req, res) {
             }
         );
 
-        tecnicoModel.cadastrarEspecificacaoDisco(fkMaquina, fkEmpresa, idFuncionario).then(
+        tecnicoModel.cadastrarEspecificacaoMemoria(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoMemoriaTotalRam).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -77,7 +82,7 @@ function cadastrarEspecificacaoMaquina(req, res) {
             }
         );
 
-        tecnicoModel.cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario).then(
+        tecnicoModel.cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoFrequenciaCpu).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -89,6 +94,99 @@ function cadastrarEspecificacaoMaquina(req, res) {
                     erro.sqlMessage
                 );
                 res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+
+function cadastrarMetricaMaquina(req, res) {
+    let fkEmpresa = req.body.fkEmpresaServer;
+    let fkFuncionario = req.body.fkFuncionarioServer;
+    let fkMaquina = req.body.fkMaquinaServer;
+    let fkEspecificacaoTamanhoTotalDisco = req.body.fkEspecificacaoTamanhoTotalDiscoServer;
+    let fkEspecificacaoMemoriaTotalRam = req.body.fkEspecificacaoMemoriaTotalRamServer;
+    let fkEspecificacaoFrequenciaCpu = req.body.fkEspecificacaoFrequenciaCpuServer;
+    let fkComponenteDisco = req.body.fkComponenteDiscoServer;
+    let fkComponenteMemoria = req.body.fkComponenteMemoriaServer;
+    let fkComponenteCpu = req.body.fkComponenteCpuServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else if (fkFuncionario == undefined) {
+        res.status(400).send("Seu fkFuncionario está undefined!");
+    } else if (fkMaquina == undefined) {
+        res.status(400).send("Seu fkMaquina está undefined!");
+    } else if (fkEspecificacaoTamanhoTotalDisco == undefined) {
+        res.status(400).send("Seu fkEspecificacaoTamanhoTotalDisco está undefined!");
+    } else if (fkEspecificacaoMemoriaTotalRam == undefined) {
+        res.status(400).send("Seu fkEspecificacaoMemoriaTotalRam está undefined!");
+    } else if (fkEspecificacaoFrequenciaCpu == undefined) {
+        res.status(400).send("Seu fkEspecificacaoFrequenciaCpu está undefined!");
+    } else if (fkComponenteDisco == undefined) {
+        res.status(400).send("Seu fkComponenteDisco está undefined!");
+    } else if (fkComponenteMemoria == undefined) {
+        res.status(400).send("Seu fkComponenteMemoria está undefined!");
+    } else if (fkComponenteCpu == undefined) {
+        res.status(400).send("Seu fkComponenteCpu está undefined!");
+    } else {
+        tecnicoModel.cadastrarMetricaMaquinaEspaçoDisponivel(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoTamanhoTotalDisco, fkComponenteDisco)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEspecificacao inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+        tecnicoModel.cadastrarMetricaMaquinaMemoriaUso(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoMemoriaTotalRam, fkComponenteMemoria)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEspecificacao inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+        tecnicoModel.cadastrarMetricaMaquinaUsoProcessador(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoFrequenciaCpu, fkComponenteCpu)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEspecificacao inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+        tecnicoModel.cadastrarMetricaMaquinaTemperaturaCpu(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoFrequenciaCpu, fkComponenteCpu)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEspecificacao inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
             }
         );
     }
@@ -116,6 +214,20 @@ function getDadosMaquina(req, res) {
             }
         );
     }
+}
+
+function getUltimoEspecificacaoMaquinaCadastrada(req, res) {
+    tecnicoModel.getUltimoEspecificacaoMaquinaCadastrada()
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
 }
 
 function getUltimoIDFuncionario(req, res) {
@@ -525,7 +637,9 @@ module.exports = {
     cadastrarEspecificacaoMaquina,
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
+    cadastrarMetricaMaquina,
     getDadosMaquina,
+    getUltimoEspecificacaoMaquinaCadastrada,
     buscarChamadosPendentes,
     validarChamado,
     removerChamado,

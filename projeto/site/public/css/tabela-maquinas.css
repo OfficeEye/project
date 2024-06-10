@@ -391,12 +391,12 @@ td img {
 }
 
 .botao-confirmar {
-    background-color: #c21f1f;
+    background-color: #3B9B9B;
     margin-left: 10px;
 }
 
 .botao-cancelar {
-    background-color: #3B9B9B;
+    background-color: #c21f1f;
 }
 
 .modal-background {

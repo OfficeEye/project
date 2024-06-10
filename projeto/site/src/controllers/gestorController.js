@@ -175,6 +175,30 @@ function getDadosFuncionario(req, res) {
     }
 }
 
+function excluirContaFuncionario(req, res) {
+    var idFuncionario = req.body.idFuncionarioServer;
+
+    if (idFuncionario == undefined) {
+        res.status(400).send("Seu idFuncionario está undefined!");
+    } else {
+        gestorModel.excluirContaFuncionario(idFuncionario)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("idFuncionario inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 function pegarDadosGrafico1(req, res){
     let fkEmpresa = req.body.fkEmpresa;
 
@@ -306,6 +330,7 @@ module.exports = {
     editarInformacoesUsuario,
     excluirContaUsuario,
     getDadosFuncionario,
+    excluirContaFuncionario,
     pegarDadosGrafico1,
     pegarDadosGrafico2,
     contarComputadoresEmAlerta,

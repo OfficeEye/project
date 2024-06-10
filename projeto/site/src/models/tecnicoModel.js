@@ -4,7 +4,43 @@ var database = require("../database/config")
 function tecnicoCadastrarMaquina(fkMaquina, nomeMaquina, modeloMaquina, idFuncionario, fkEmpresa) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        INSERT INTO maquina (idMaquina, modelo, nomeMaquina, sistemaOperacional, fabricante, fkFuncionario, fkEmpresa) VALUES (${fkMaquina}, '${modeloMaquina}', '${nomeMaquina}', null, null, '${idFuncionario}', '${fkEmpresa}')
+        INSERT INTO maquina (idMaquina, modelo, nomeMaquina, sistemaOperacional, fabricanteSO, fkFuncionario, fkEmpresa) VALUES (${fkMaquina}, '${modeloMaquina}', '${nomeMaquina}', null, null, '${idFuncionario}', '${fkEmpresa}')
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarMetricaMaquinaEspaçoDisponivel(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoTamanhoTotalDisco, fkComponenteDisco) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        INSERT INTO metricaComponente (porcentagemIdeal, porcentagemAlerta, porcentagemCritico, fkEspecificacaoComponente, fkComponente, fkMaquina, fkFuncionario, fkEmpresa, nomeMetrica) VALUES (20.00, 19.00, 9.00, ${fkEspecificacaoTamanhoTotalDisco}, ${fkComponenteDisco}, ${fkMaquina}, '${fkFuncionario}', '${fkEmpresa}', 'Espaço disponível no disco');
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarMetricaMaquinaMemoriaUso(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoMemoriaTotalRam, fkComponenteMemoria) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        INSERT INTO metricaComponente (porcentagemIdeal, porcentagemAlerta, porcentagemCritico, fkEspecificacaoComponente, fkComponente, fkMaquina, fkFuncionario, fkEmpresa, nomeMetrica) VALUES (70.00, 71.00, 81.00, ${fkEspecificacaoMemoriaTotalRam}, ${fkComponenteMemoria}, ${fkMaquina}, '${fkFuncionario}', '${fkEmpresa}', 'Memória em uso');
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarMetricaMaquinaUsoProcessador(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoFrequenciaCpu, fkComponenteCpu) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        INSERT INTO metricaComponente (porcentagemIdeal, porcentagemAlerta, porcentagemCritico, fkEspecificacaoComponente, fkComponente, fkMaquina, fkFuncionario, fkEmpresa, nomeMetrica) VALUES (30.00, 71.00, 90.00, ${fkEspecificacaoFrequenciaCpu}, ${fkComponenteCpu}, ${fkMaquina}, '${fkFuncionario}', '${fkEmpresa}', 'Uso do processador');
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarMetricaMaquinaTemperaturaCpu(fkEmpresa, fkFuncionario, fkMaquina, fkEspecificacaoFrequenciaCpu, fkComponenteCpu) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        INSERT INTO metricaComponente (porcentagemIdeal, porcentagemAlerta, porcentagemCritico, fkEspecificacaoComponente, fkComponente, fkMaquina, fkFuncionario, fkEmpresa, nomeMetrica) VALUES (79.00, 80.00, 90.00, ${fkEspecificacaoFrequenciaCpu}, ${fkComponenteCpu}, ${fkMaquina}, '${fkFuncionario}', '${fkEmpresa}', 'Temperatura da CPU');
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -13,34 +49,52 @@ function tecnicoCadastrarMaquina(fkMaquina, nomeMaquina, modeloMaquina, idFuncio
 function getDadosMaquina(fkEmpresa) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT maquina.idMaquina, funcionario.nome AS nomeFuncionario, maquina.nomeMaquina, maquina.modelo, maquina.sistemaOperacional, maquina.fabricante FROM maquina JOIN funcionario ON fkFuncionario = idFuncionario WHERE funcionario.fkEmpresa = ${fkEmpresa};
+    SELECT maquina.idMaquina, funcionario.nome AS nomeFuncionario, maquina.nomeMaquina, maquina.modelo, maquina.sistemaOperacional, maquina.fabricanteSO FROM maquina JOIN funcionario ON fkFuncionario = idFuncionario WHERE funcionario.fkEmpresa = ${fkEmpresa};
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarEspecificacaoDisco(fkMaquina, fkEmpresa, idFuncionario) {
+function getUltimoEspecificacaoMaquinaCadastrada() {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        INSERT INTO especificacaoComponente (nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES ('Tamanho total', null, 1, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
+    SELECT idEspecificacaoComponente, nomeEspecificacao FROM especificacaoComponente ORDER BY idEspecificacaoComponente DESC LIMIT 3;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function cadastrarEspecificacaoDisco(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoTamanhoTotalDisco) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        INSERT INTO especificacaoComponente (idEspecificacaoComponente, nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES (${fkEspecificacaoTamanhoTotalDisco}, 'Tamanho total', null, 1, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
             
-function cadastrarEspecificacaoMemoria(fkMaquina, fkEmpresa, idFuncionario) {
+function cadastrarEspecificacaoMemoria(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoMemoriaTotalRam) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    INSERT INTO especificacaoComponente (nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES ('Memória total', null, 2, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
+    INSERT INTO especificacaoComponente (idEspecificacaoComponente, nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES (${fkEspecificacaoMemoriaTotalRam}, 'Memória total', null, 2, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
             
-function cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario) {
+function cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario, fkEspecificacaoFrequenciaCpu) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    INSERT INTO especificacaoComponente (nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES ('Frequência', null, 3, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
+    INSERT INTO especificacaoComponente (idEspecificacaoComponente, nomeEspecificacao, informacaoTotalEspecificacao, fkComponente, fkMaquina, fkFuncionario, fkEmpresa) VALUES (${fkEspecificacaoFrequenciaCpu}, 'Frequência', null, 3, ${fkMaquina}, ${idFuncionario}, ${fkEmpresa});
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function getUltimoIDFuncionario(fkEmpresa) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT idFuncionario FROM funcionario WHERE fkEmpresa = ${fkEmpresa} ORDER BY idFuncionario DESC LIMIT 1;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -49,33 +103,7 @@ function cadastrarEspecificacaoCPU(fkMaquina, fkEmpresa, idFuncionario) {
 // function getUltimoIDFuncionario(fkEmpresa) {
 //     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
 //     var instrucao = `
-//     SELECT idFuncionario FROM funcionario WHERE fkEmpresa = ${fkEmpresa} ORDER BY idFuncionario DESC LIMIT 1;
-//     `
-//     console.log("Executando a instrução SQL: \n" + instrucao);
-//     return database.executar(instrucao);
-// }
-
-function getUltimoIDFuncionario(fkEmpresa) {
-    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
-    var instrucao = `
-    SELECT TOP 1 idFuncionario FROM funcionario WHERE fkEmpresa = ${fkEmpresa} ORDER BY idFuncionario DESC;
-    `
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-// function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
-//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
-//     var instrucao = `
-//     SELECT funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
-// 	FROM registrosEspecificacaoComponente 
-// 		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponentes
-//         JOIN componente ON especificacaoComponente.fkComponente = idComponente
-// 		JOIN maquina ON especificacaoComponente.fkMaquina = idMaquina
-//         JOIN funcionario ON maquina.fkFuncionario = idFuncionario
-// 			WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario}  
-//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC
-//         LIMIT 5;
+//     SELECT TOP 1 idFuncionario FROM funcionario WHERE fkEmpresa = ${fkEmpresa} ORDER BY idFuncionario DESC;
 //     `
 //     console.log("Executando a instrução SQL: \n" + instrucao);
 //     return database.executar(instrucao);
@@ -84,18 +112,35 @@ function getUltimoIDFuncionario(fkEmpresa) {
 function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT TOP 5 funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
+    SELECT funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
 	FROM registrosEspecificacaoComponente 
-		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponentes
+		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponente
         JOIN componente ON especificacaoComponente.fkComponente = idComponente
 		JOIN maquina ON especificacaoComponente.fkMaquina = idMaquina
         JOIN funcionario ON maquina.fkFuncionario = idFuncionario
 			WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario}  
-        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC;
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC
+        LIMIT 5;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
+
+// function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
+//     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+//     var instrucao = `
+//     SELECT TOP 5 funcionario.idFuncionario, funcionario.nome, maquina.nomeMaquina, componente.nomeComponente, registrosEspecificacaoComponente.tipoRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.statusRegistro, registrosEspecificacaoComponente.dataHoraRegistro
+// 	FROM registrosEspecificacaoComponente 
+// 		JOIN especificacaoComponente ON registrosEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponentes
+//         JOIN componente ON especificacaoComponente.fkComponente = idComponente
+// 		JOIN maquina ON especificacaoComponente.fkMaquina = idMaquina
+//         JOIN funcionario ON maquina.fkFuncionario = idFuncionario
+// 			WHERE registrosEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario}  
+//         ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC;
+//     `
+//     console.log("Executando a instrução SQL: \n" + instrucao);
+//     return database.executar(instrucao);
+// }
 
 
 function buscarChamadosPendentes(fkEmpresa) {
@@ -341,7 +386,12 @@ function verificarSeExisteHistorico(idChamado) {
 
 module.exports = {
     tecnicoCadastrarMaquina,
+    cadastrarMetricaMaquinaEspaçoDisponivel,
+    cadastrarMetricaMaquinaMemoriaUso,
+    cadastrarMetricaMaquinaUsoProcessador,
+    cadastrarMetricaMaquinaTemperaturaCpu,
     getDadosMaquina,
+    getUltimoEspecificacaoMaquinaCadastrada,
     cadastrarEspecificacaoDisco,
     cadastrarEspecificacaoMemoria,
     getUltimoIDFuncionario,

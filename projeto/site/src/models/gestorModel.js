@@ -37,7 +37,7 @@ function editarInformacoesUsuario(idUsuario, nome, email, cpf, senha) {
 function excluirContaUsuario(idUsuario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        DELETE FROM Usuario WHERE idUsuario = ${idUsuario};
+        DELETE FROM usuario WHERE idUsuario = ${idUsuario};
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao); 
@@ -50,6 +50,15 @@ function getDadosFuncionario(fkEmpresa){
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+}
+
+function excluirContaFuncionario(idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        DELETE FROM funcionario WHERE idFuncionario = ${idFuncionario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
 }
 
 function pegarDadosGrafico1(fkEmpresa) {
@@ -131,6 +140,7 @@ module.exports = {
     editarInformacoesUsuario,
     excluirContaUsuario,
     getDadosFuncionario,
+    excluirContaFuncionario,
     pegarDadosGrafico1,
     pegarDadosGrafico2,
     contarComputadoresEmAlerta,

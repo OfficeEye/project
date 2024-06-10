@@ -15,12 +15,20 @@ router.post("/cadastrarEspecificacaoMaquina", function (req, res) {
     tecnicoController.cadastrarEspecificacaoMaquina(req, res);
 });
 
+router.post("/cadastrarMetricaMaquina", function (req, res) {
+    tecnicoController.cadastrarMetricaMaquina(req, res);
+});
+
 router.post("/getUltimoIDFuncionario", function (req, res) {
     tecnicoController.getUltimoIDFuncionario(req, res);
 });
 
 router.post("/getUltimoStatusRegistro", function (req, res) {
     tecnicoController.getUltimoStatusRegistro(req, res);
+});
+
+router.post("/getUltimoEspecificacaoMaquinaCadastrada", function (req, res) {
+    tecnicoController.getUltimoEspecificacaoMaquinaCadastrada(req, res);
 });
 
 router.get("/buscarChamadosPendentes/:fkEmpresa", function (req, res) {

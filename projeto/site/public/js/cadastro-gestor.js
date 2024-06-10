@@ -309,21 +309,20 @@ function getDadosFuncionario() {
                     console.log(funcionario);
                     tbodyRefrigerador.innerHTML = "";
                     for (let i = 0; i < funcionario.length; i++){
+                        var idFuncionario = funcionario[i].idFuncionario;
                         var nome = funcionario[i].nome;
                         var email = funcionario[i].email;
                         var area = funcionario[i].area;
-                        var maquina = "false";
-                        console.log(nome, email, area, maquina)
+                        console.log(idFuncionario, nome, email, area)
 
                         tbodyRefrigerador.innerHTML += `
                             <tr id="${i}">
                                 <td class="td-nome">${nome}</td>
                                 <td class="td-email">${email}</td>
                                 <td class="td-area">${area}</td>
-                                <td class="td-maquina">${maquina}</td>
                                 <td class="container-img">
-                                    <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
-                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(id)">
+                                    <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerFuncionario(${idFuncionario})">
+                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(${idFuncionario})">
                                 </td>
                             </tr>
                         `
@@ -363,7 +362,12 @@ function returnConfig() {
     window.location.href = "config-gestor.html"
 }
 
-function removerMaquina() {
+function removerFuncionario(idFuncionario) {
+    var button = document.getElementById('button_remover_funcionario')
+    console.log(idFuncionario)
+    button.onclick = function() {
+        confirmarRemocao(idFuncionario);
+    };
     modalRemover.classList.add("active");
     modalBackground.classList.add("active");
 }
@@ -373,9 +377,37 @@ function editarFuncionario() {
     modalBackground.classList.add("active");
 }
 
-function confirmarRemocao(){
+function confirmarRemocao(idFuncionario){
+    let idFuncionarioVar = idFuncionario
 
+    console.log(idFuncionario)
+
+    if(idFuncionarioVar == ""){
+        console.log("idFuncionario nulo")
+    } else {
+        fetch("/gestor/excluirContaFuncionario",{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionarioVar
+            })
+        }).then(function (resposta) {
+            console.log("Deletado")
+            console.log("resposta: ", resposta);
+
+            closeModal()
+            getDadosFuncionario()
+            
+        }).catch(function (erro) {
+            console.log("#ERRO: " + erro);
+        })
+        return false;
+    }
+    
 }
 
 function confirmarEdicao(){
+    closeModal()
 }

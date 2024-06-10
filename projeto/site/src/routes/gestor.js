@@ -27,6 +27,10 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
+router.post("/excluirContaFuncionario", function (req, res) {
+    gestorController.excluirContaFuncionario(req, res);
+});
+
 router.post("/pegarDadosGrafico1", function (req, res) {
     console.log("Rota pegarDadosGrafico1");
     // console.log(req);

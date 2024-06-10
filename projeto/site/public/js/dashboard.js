@@ -70,16 +70,16 @@ function getNomeFuncionarios() {
             }),
         }).then(
             function (resposta) {
-                console.log("resposta: ", resposta);
+                // console.log("resposta: ", resposta);
                 resposta.json().then(function (funcionario) {
-                    console.log(funcionario);
+                    // console.log(funcionario);
                     for (let i = 0; i < funcionario.length; i++) {
                         var nome = funcionario[i].nome;
                         var email = funcionario[i].email;
                         var area = funcionario[i].area;
                         var idFuncionario = funcionario[i].idFuncionario;
                         var maquina = "false";
-                        console.log(nome, email, area, maquina, idFuncionario)
+                        // console.log(nome, email, area, maquina, idFuncionario)
 
                         funcionario_option.innerHTML += `
                             <option value="${idFuncionario}">${nome}</option>
@@ -144,7 +144,10 @@ function cadastrarMaquina() {
             body: JSON.stringify({
                 idFuncionarioServer: idFuncionarioVar,
                 fkEmpresaServer: fkEmpresaVar,
-                fkMaquinaServer: fkMaquina
+                fkMaquinaServer: fkMaquina,
+                fkEspecificacaoTamanhoTotalDiscoServer: idTamanhoTotalDisco,
+                fkEspecificacaoMemoriaTotalRamServer: idMemoriaTotalRam,
+                fkEspecificacaoFrequenciaCpuServer: idFrequenciaCpu,
             }),
         }).then(
             function (resposta) {
@@ -157,9 +160,44 @@ function cadastrarMaquina() {
                 console.log(`#ERRO: ${resposta}`)
             }
         );
+
+        fetch("/tecnico/cadastrarMetricaMaquina", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresaVar,
+                fkFuncionarioServer: idFuncionarioVar,
+                fkMaquinaServer: fkMaquina,
+                fkEspecificacaoTamanhoTotalDiscoServer: idTamanhoTotalDisco,
+                fkEspecificacaoMemoriaTotalRamServer: idMemoriaTotalRam,
+                fkEspecificacaoFrequenciaCpuServer: idFrequenciaCpu,
+                fkComponenteDiscoServer: 1,
+                fkComponenteMemoriaServer: 2,
+                fkComponenteCpuServer: 3,
+            }),
+        }).then(
+            function (resposta) {
+                console.log("resposta: ", resposta);
+                resposta.json().then(function (maquina) {
+                    console.log(maquina)
+                })
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+                // getDadosMaquina()
+            }
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        );
     }
 }
 var fkMaquina = 1;
+var idTamanhoTotalDisco = 1;
+var idMemoriaTotalRam = 2;
+var idFrequenciaCpu = 3;
+
 function getDadosMaquina() {
     var fkEmpresaVar = localStorage.EMPRESA_USUARIO;
 
@@ -177,9 +215,9 @@ function getDadosMaquina() {
         }).then(
             function (resposta) {
                 if (resposta.ok) {
-                    console.log("resposta: ", resposta);
+                    // console.log("resposta: ", resposta);
                     resposta.json().then(function (maquina) {
-                        console.log(maquina);
+                        // console.log(maquina);
                         tbodyRefrigerador.innerHTML = "";
                         for (let i = 0; i < maquina.length; i++) {
                             var idMaquina = maquina[i].idMaquina;
@@ -187,7 +225,7 @@ function getDadosMaquina() {
                             var nomeMaquina = maquina[i].nomeMaquina;
                             var modelo = maquina[i].modelo;
                             var sistemaOperacional = maquina[i].sistemaOperacional;
-                            var fabricante = maquina[i].fabricante
+                            var fabricante = maquina[i].fabricanteSO
                             fkMaquina = maquina[i].idMaquina + 1;
                             console.log(idMaquina, nomeFuncionario, nomeMaquina, modelo, sistemaOperacional, fabricante)
 
@@ -209,19 +247,65 @@ function getDadosMaquina() {
                 })
                 } else {
                     fkMaquina = 1;
-                    console.log(fkEmpresaVar)
-                    console.error('Nenhum dadoMaquina encontrado ou erro na API');
-                    console.log(resposta)
+                    console.log("fkMaquina: " + fkMaquina)
+                    // console.error('Nenhum dadoMaquina encontrado ou erro na API');
+                    // // console.log(resposta)
                 }
 
                 // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
             }
         ).catch(
             function (resposta) {
-                console.log(`#ERRO: ${resposta}`)
+                // console.log(`#ERRO: ${resposta}`)
             }
         );
-        return false;
+
+        fetch("../tecnico/getUltimoEspecificacaoMaquinaCadastrada", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(
+            function (resposta) {
+                if (resposta.ok) {
+                    // console.log("resposta: ", resposta);
+                    resposta.json().then(function (especificacaoComponente) {
+                        // console.log(especificacaoComponente);
+                    if(especificacaoComponente.length == 0) {
+                        idTamanhoTotalDisco = 1;
+                        idMemoriaTotalRam = 2;
+                        idFrequenciaCpu = 3;
+                        console.log("idEspecificacaoComponente Tamanho total: " + idTamanhoTotalDisco)
+                        console.log("idEspecificacaoComponente Memória total: " + idMemoriaTotalRam)
+                        console.log("idEspecificacaoComponente Frequência: " + idFrequenciaCpu)
+                    } else {
+                        idTamanhoTotalDisco = especificacaoComponente[2].idEspecificacaoComponente + 3;
+                        idMemoriaTotalRam = especificacaoComponente[1].idEspecificacaoComponente + 3;
+                        idFrequenciaCpu = especificacaoComponente[0].idEspecificacaoComponente + 3;
+                        console.log("idEspecificacaoComponente Tamanho total: " + idTamanhoTotalDisco)
+                        console.log("idEspecificacaoComponente Memória total: " + idMemoriaTotalRam)
+                        console.log("idEspecificacaoComponente Frequência: " + idFrequenciaCpu)
+                    }                                   
+                })
+                } else {
+                    idTamanhoTotalDisco = 1;
+                    idMemoriaTotalRam = 2;
+                    idFrequenciaCpu = 3;
+                    console.log("idEspecificacaoComponente Tamanho total: " + idTamanhoTotalDisco)
+                    console.log("idEspecificacaoComponente Memória total: " + idMemoriaTotalRam)
+                    console.log("idEspecificacaoComponente Frequência: " + idFrequenciaCpu)
+                    
+                    // console.log(resposta)
+                }
+
+                // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+            }
+        ).catch(
+            function (resposta) {
+                // console.log(`#ERRO: ${resposta}`)
+            }
+        );
+
     }
 }
 
