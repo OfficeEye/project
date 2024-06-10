@@ -378,6 +378,29 @@ function getUltimoStatusRegistro(req, res) {
     }
 }
 
+function getUltimosRegistroComponentes(req, res) {
+    var fkEmpresa = req.body.fkEmpresaServer;
+    var idFuncionario = req.body.idFuncionarioServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEpresa está undefined!");
+    } else if (idFuncionario == undefined) {
+        res.status(400).send("Seu idFuncionario está undefined!")
+    } else {
+        tecnicoModel.getUltimosRegistroComponentes(fkEmpresa, idFuncionario)
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.lod(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
+    }
+}
+
 function buscarQuantidadeDeMaquinasEmAlerta(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
     
@@ -648,6 +671,7 @@ module.exports = {
     cadastrarEspecificacaoMaquina,
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
+    getUltimosRegistroComponentes,
     cadastrarMetricaMaquina,
     getDadosMaquina,
     getUltimoEspecificacaoMaquinaCadastrada,

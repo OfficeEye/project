@@ -142,6 +142,20 @@ function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
 //     return database.executar(instrucao);
 // }
 
+function getUltimosRegistroComponentes(fkEmpresa, idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT registrosEspecificacaoComponente.dataHoraRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina FROM registrosEspecificacaoComponente
+	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
+    JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
+		WHERE registrosEspecificacaoComponente.fkEmpresa = 1 AND registrosEspecificacaoComponente.fkFuncionario = 1 AND registrosEspecificacaoComponente.tipoRegistro = "Uso do processador"
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 60;       
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 function buscarChamadosPendentes(fkEmpresa) {
     console.log("Script do banco de dados para buscar todos os chamados pendentes em uma determinada empresa")
@@ -396,6 +410,7 @@ module.exports = {
     cadastrarEspecificacaoMemoria,
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
+    getUltimosRegistroComponentes,
     cadastrarEspecificacaoCPU ,
     buscarChamadosPendentes,
     validarChamado,

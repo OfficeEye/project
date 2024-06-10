@@ -34,15 +34,51 @@ function returnDashboard() {
 }
 
 function Maquina(idFuncionario){
-    // sessionStorage.ID_FUNCIONARIO = idFuncionario
+    sessionStorage.ID_FUNCIONARIO = idFuncionario
     window.location = "especificacao-maquina.html";
+}
+
+function plotarGraficoEspecificacaoMaquina() {
+    var idFuncionario = sessionStorage.ID_FUNCIONARIO;
+    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+
+    if (idFuncionario == "") {
+
+    } else if (fkEmpresa == ""){
+
+    }else {
+        fetch("../tecnico/getUltimosRegistroComponentes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa,
+                idFuncionarioServer: idFuncionario
+            }),
+        }).then(
+            function (resposta) {
+                resposta.json().then(function (registro) {
+                    console.log(registro)
+                })
+            }
+        
+        ).catch(
+            function (resposta) {
+                console.log(`#ERRO: ${resposta}`)
+            }
+        )
+    }
 }
 
 
 function getMaquinaAlerta() {
-    // sessionStorage.clear;
+    
+    if(sessionStorage.getItem('ID_FUNCIONARIO')) {
+        location.reload();
+    }
     var fkEmpresa = localStorage.EMPRESA_USUARIO;
-    // sessionStorage.removeItem('ID_FUNCIONARIO')
+    sessionStorage.removeItem('ID_FUNCIONARIO')
 
     if (fkEmpresa == "") {
 
@@ -189,7 +225,9 @@ function exibirQuantidadeAlertaPorComponente() {
 
     }
     
-    fetch(`/tecnico/buscarQuantidadeDeAlertasPorComponente/${fkEmpresa}/${dataSelecionada}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/tecnico/buscarQuantidadeDeAlertasPorComponente/${fkEmpresa}/${dataSelecionada}`, {
+         cache: 'no-store' 
+        }).then(function (response) {
         response.json().then(function (resposta) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
             

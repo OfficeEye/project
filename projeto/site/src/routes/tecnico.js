@@ -27,6 +27,10 @@ router.post("/getUltimoStatusRegistro", function (req, res) {
     tecnicoController.getUltimoStatusRegistro(req, res);
 });
 
+router.post("/getUltimosRegistroComponentes", function (req, res) {
+    tecnicoController.getUltimosRegistroComponentes(req, res);
+});
+
 router.post("/getUltimoEspecificacaoMaquinaCadastrada", function (req, res) {
     tecnicoController.getUltimoEspecificacaoMaquinaCadastrada(req, res);
 });
