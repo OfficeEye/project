@@ -16,9 +16,9 @@
                 <img src="../assets/svg/icon-officeeye (2).png">
             </div>
             <div class="images">
-                <img src="../assets/svg/home.svg" alt="" onclick="returnDash()">
-                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnCadastrarUsuario()">
-                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnNewChamados()">
+                <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
+                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
+                <img src="../assets/svg/operador-de-telemarketing.png" onclick="returnNewChamado()">
                 <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
             </div>
@@ -69,16 +69,15 @@
                 </div>
             </div>
             <div class="line-4">
-                <label for="">Titúlo do chamado</label>
-                <input type="text">
+                <label for="">Descrição do problema</label>
+                <input type="text" id="descricao_problema" class="input-description">
             </div>
             <div class="line-5">
-                <label for="">Descrição do chamado</label>
-                <input type="text" class="input-description">
+                <label for="">Descrição da solução</label>
+                <input type="text" id="descricao_solucao" class="input-description">
             </div>
-            <div class="line-6">
-                <button class="btn-salvar" onclick="salvarFormulario()">Salvar</button>
-                <button class="btn-cancelar" onclick="fecharFormulario()">Cancelar</button>
+            <div class="line-6" id="buttons">
+               
             </div>
         </div>
     </div>
@@ -98,7 +97,8 @@
         </div>
     </dialog>
 
-    <script src="../js/tabela-chamados.js"></script>
 </body>
 
 </html>
+<script src="../js/tabela-chamados.js"></script>
+<script src="../js/tabela.js"></script>

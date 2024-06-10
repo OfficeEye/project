@@ -218,19 +218,19 @@ function buscarQtdMaquinasTotal(fkEmpresa) {
 function buscarChamadosAbertos(fkEmpresa) {
     console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
     var instrucao = `
-        SELECT 
-            c.idChamado, 
-            FORMAT(c.dataAbertura, 'dd/MM/yyyy HH:mm:ss') AS dataAberturaFormatada, 
-            c.status, 
-            c.prioridade,
-            c.mensagem, 
-            u.nome 
-        FROM 
-            chamado c 
-        JOIN 
-            usuario u ON c.fkUsuario = u.idUsuario 
-        WHERE 
-            c.fkEmpresa = ${fkEmpresa} AND c.status = 'ABERTO'
+    SELECT 
+        c.idChamado, 
+        FORMAT(c.dataAbertura, 'dd/MM/yyyy HH:mm:ss') AS dataAberturaFormatada, 
+        c.status, 
+        c.prioridade,
+        c.mensagem, 
+        u.nome 
+    FROM 
+        chamado c 
+    JOIN 
+        usuario u ON c.fkUsuario = u.idUsuario 
+    WHERE 
+        c.fkEmpresa = ${fkEmpresa} AND c.status IN('ABERTO', 'EM_ANDAMENTO', 'CONCLUIDO')
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -239,15 +239,20 @@ function buscarChamadosAbertos(fkEmpresa) {
 function exibirDadosDoChamado(idChamado) {
     console.log("Script do banco de dados para buscar todos os chamados EM_ANDAMENTO de uma determinada empresa")
     var instrucao = `
-        SELECT 
+    SELECT 
             c.idChamado, 
             FORMAT(c.dataAbertura, 'dd/MM/yyyy HH:mm:ss') AS dataAberturaFormatada, 
             c.status, 
             c.prioridade,
             c.mensagem, 
             u.nome,
+            u.idUsuario,
             f.email,
-            m.idMaquina
+            f.idFuncionario,
+            m.idMaquina,
+            m.fkEmpresa,
+            h.descricaoProblema,
+            h.descricaoSolucao
         FROM 
             chamado c 
         JOIN 
@@ -256,11 +261,80 @@ function exibirDadosDoChamado(idChamado) {
             funcionario f ON f.idFuncionario = c.fkFuncionario
         LEFT JOIN 
             maquina m ON m.fkFuncionario = f.idFuncionario
+        LEFT JOIN 
+            historicoChamado h on h.fkChamado = c.idChamado
         WHERE 
             idChamado = ${idChamado}
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+}
+
+function mudarStatusChamado(statusSelecionado, idChamado, dataFechamento) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = ``
+
+    if(dataFechamento != null) {
+        instrucao = `
+    
+        UPDATE chamado 
+        SET status = '${statusSelecionado}', dataFechamento = '${dataFechamento}'
+        WHERE idChamado = ${idChamado}
+        `
+    }else{
+        instrucao = `
+    
+        UPDATE chamado 
+        SET status = '${statusSelecionado}'
+        WHERE idChamado = ${idChamado}
+        `
+    }
+    
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarInformacoesHistorico(idChamado) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = `
+   
+    SELECT motivo, descricaoProblema, descricaoSolucao from historicoChamado where fkChamado = ${idChamado}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
+}
+
+function salvarHistoricoChamado(idChamado, descricaoProblema, descricaoSolucao, idFuncionario, idUsuario, idMaquina, fkEmpresa) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = `
+   
+        INSERT INTO historicoChamado VALUES (${idMaquina}, ${idChamado}, ${idUsuario}, ${idFuncionario}, ${fkEmpresa}, null, '${descricaoProblema}', '${descricaoSolucao}')
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarHistoricoChamado(idChamado, descricaoProblema, descricaoSolucao) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = `
+   
+    UPDATE historicoChamado 
+    SET descricaoProblema = '${descricaoProblema}', descricaoSolucao = '${descricaoSolucao}'
+    WHERE fkChamado = ${idChamado}
+    
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function verificarSeExisteHistorico(idChamado) {
+    console.log("Script do banco de dados que atualiza o status de um chamado para removido")
+    var instrucao = `
+   
+    select * from historicoChamado where fkChamado = ${idChamado}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao)
 }
 
 
@@ -281,5 +355,11 @@ module.exports = {
     buscarQtdChamadosAbertos,
     buscarQtdMaquinasTotal,
     buscarChamadosAbertos,
-    exibirDadosDoChamado
+    exibirDadosDoChamado,
+    mudarStatusChamado,
+    buscarInformacoesHistorico,
+    salvarHistoricoChamado,
+    atualizarHistoricoChamado,
+    verificarSeExisteHistorico,
+    
 }

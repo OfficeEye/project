@@ -58,5 +58,24 @@ router.get("/buscarChamadosAbertos/:fkEmpresa", function (req, res) {
 router.get("/exibirDadosDoChamado/:idChamado", function (req, res) {
     tecnicoController.exibirDadosDoChamado(req, res);
 });
+router.post("/mudarStatusChamado", function (req, res) {
+    tecnicoController.mudarStatusChamado(req, res);
+});
+
+router.get("/buscarInformacoesHistorico/:idChamado", function (req, res) {
+    tecnicoController.buscarInformacoesHistorico(req, res);
+});
+
+router.post("/salvarHistoricoChamado", function (req, res) {
+    tecnicoController.salvarHistoricoChamado(req, res);
+});
+
+router.post("/atualizarHistoricoChamado", function (req, res) {
+    tecnicoController.atualizarHistoricoChamado(req, res);
+});
+
+router.get("/verificarSeExisteHistorico/:idChamado", function (req, res) {
+    tecnicoController.verificarSeExisteHistorico(req, res);
+});
 
 module.exports = router;

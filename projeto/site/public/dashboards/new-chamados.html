@@ -9,117 +9,96 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
-<body>
+<body onload="buscarChamadosAbertos()">
     <div class="content">
         <div class="header">
-
             <div class="logo">
                 <img src="../assets/svg/icon-officeeye (2).png">
             </div>
-
             <div class="images">
-              
                 <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
                 <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
-                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnChamados()">
+                <img src="../assets/svg/operador-de-telemarketing.png" onclick="returnNewChamado()">
+                <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
-
             </div>
         </div>
         <div class="container">
-        <div class="head">
+            <div class="head"></div>
+            <main id="card_chamado_aberto">
+                
+            </main>
         </div>
-        <main>
-            <div class="content1">
-                <div class="list-1">
-                    <div class="request">
-                        <div class="line-1">
-                            <div class="container-1">
-                            <span class="number-request">#0365</span>
-                            <div class="priority">
-                            </div>
-                        </div>
-                            <div class="container-2">
-                                <select name="" id="" class="select-status">
-                                    <option value="">Em Análise</option>
-                                    <option value="">Aberto</option>
-                                    <option value="">Cancelado</option>
-                                    <option value="">Concluído</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="line-2">
-                            <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint omnis necessitatibus a ducimus!</span>
-                        </div>
-                        <div class="line-3">
-                            <h3>Responsável:</h3>
-                            <span>José Almeida</span>
-                        </div>
-                        <div class="line-4">
-                            <span class="date">25/05/24 - 10:13</span>
-                        </div>
-                    </div>
-
-                    <!---->
-
-                    <div class="request">
-                        <div class="line-1">
-                            <div class="container-1">
-                            <span class="number-request">#0365</span>
-                            <div class="priority">
-                            </div>
-                        </div>
-                            <div class="container-2">
-                                <select name="" id="" class="select-status">
-                                    <option value="">Em Análise</option>
-                                    <option value="">Aberto</option>
-                                    <option value="">Cancelado</option>
-                                    <option value="">Concluído</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="line-2">
-                            <span class="description-request">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint omnis necessitatibus a ducimus!</span>
-                        </div>
-                        <div class="line-3">
-                            <h3>Responsável:</h3>
-                            <span>José Almeida</span>
-                        </div>
-                        <div class="line-4">
-                            <span class="date">25/05/24 - 10:13</span>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </main>
     </div>
 
     <div class="modal-background" id="modalBackground"></div>
 
+    <div class="data-request" id="modalRequest">
+        <div class="forms-request">
+            <div class="line-1">
+                <div class="title">
+                    <h1>Ficha de chamado</h1>
+                    <img src="../assets/svg/icon-officeeye (2).png">
+                </div>
+                <div class="number-request">
+                    <h1 id="id_chamado_form">#</h1>
+                </div>
+            </div>
+            <div class="line-2">
+                <div class="container-1">
+                    <label for="">Responsável</label>
+                    <p style="color: black;" id="responsavel_form"></p>
+                </div>
+                <div class="container-2">
+                    <label for="">Prioridade</label>
+                    <p style="color: black;" id="prioridade_form"></p>
+                </div>
+                <div class="container-3">
+                    <label for="">Status</label>
+                    <p style="color: black;" id="status_form"></p>
+                </div>
+            </div>
+            <div class="line-3">
+                <div class="container-1">
+                    <label for="">Solicitante do chamado</label>
+                    <p style="color: black;" id="solicitante_form"></p>
+                </div>
+                <div class="container-2">
+                    <label for="">ID da máquina</label>
+                    <p style="color: black;" id="idMaquina_form"></p>
+                </div>
+            </div>
+            <div class="line-4">
+                <label for="">Descrição do problema</label>
+                <input type="text" id="descricao_problema" class="input-description">
+            </div>
+            <div class="line-5">
+                <label for="">Descrição da solução</label>
+                <input type="text" id="descricao_solucao" class="input-description">
+            </div>
+            <div class="line-6" id="buttons">
+               
+            </div>
+        </div>
+    </div>
+
     <dialog id="modalSair">
         <div class="container-modal">
-
-           <div class="title">
+            <div class="title">
                 <h2 id="textoModal">Tem certeza que deseja sair?</h2>
-           </div>
-
-           <div class="img-modal">
-            <img src="../assets/svg/exclamation-mark.svg" alt="">
-           </div>
-
-           <div class="buttons-modal">
-            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
-            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
-           </div>
+            </div>
+            <div class="img-modal">
+                <img src="../assets/svg/exclamation-mark.svg" alt="">
+            </div>
+            <div class="buttons-modal">
+                <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+                <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+            </div>
         </div>
     </dialog>
+
 </body>
 
 </html>
-<script src="../js/dashboard-tecnico.js"></script>
-<script>
-    function ChangeScreen(){
-        window.location = "cadastro-chamado.html";
-    }
-</script>
+<script src="../js/tabela-chamados.js"></script>
+<script src="../js/tabela.js"></script>
