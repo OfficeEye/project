@@ -142,7 +142,7 @@ function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
 //     return database.executar(instrucao);
 // }
 
-function getUltimosRegistroComponentes(fkEmpresa, idFuncionario) {
+function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
     SELECT registrosEspecificacaoComponente.dataHoraRegistro, registrosEspecificacaoComponente.registroNumero, registrosEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registrosEspecificacaoComponente.statusRegistro,
@@ -150,7 +150,7 @@ function getUltimosRegistroComponentes(fkEmpresa, idFuncionario) {
 	JOIN maquina ON registrosEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registrosEspecificacaoComponente.fkComponente = idComponente
 		WHERE registrosEspecificacaoComponente.fkEmpresa = 1 AND registrosEspecificacaoComponente.fkFuncionario = 1 AND registrosEspecificacaoComponente.tipoRegistro = "Uso do processador"
-        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 60;       
+        ORDER BY registrosEspecificacaoComponente.dataHoraRegistro DESC LIMIT 45;       
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -410,7 +410,7 @@ module.exports = {
     cadastrarEspecificacaoMemoria,
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
-    getUltimosRegistroComponentes,
+    getUltimosRegistroComponentesUsoCpu,
     cadastrarEspecificacaoCPU ,
     buscarChamadosPendentes,
     validarChamado,

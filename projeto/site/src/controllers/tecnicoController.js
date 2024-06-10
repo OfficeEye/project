@@ -378,7 +378,7 @@ function getUltimoStatusRegistro(req, res) {
     }
 }
 
-function getUltimosRegistroComponentes(req, res) {
+function getUltimosRegistroComponentesUsoCpu(req, res) {
     var fkEmpresa = req.body.fkEmpresaServer;
     var idFuncionario = req.body.idFuncionarioServer;
 
@@ -387,7 +387,7 @@ function getUltimosRegistroComponentes(req, res) {
     } else if (idFuncionario == undefined) {
         res.status(400).send("Seu idFuncionario está undefined!")
     } else {
-        tecnicoModel.getUltimosRegistroComponentes(fkEmpresa, idFuncionario)
+        tecnicoModel.getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario)
         .then(
             function (resultado) {
                 res.json(resultado)
@@ -671,7 +671,7 @@ module.exports = {
     cadastrarEspecificacaoMaquina,
     getUltimoIDFuncionario,
     getUltimoStatusRegistro,
-    getUltimosRegistroComponentes,
+    getUltimosRegistroComponentesUsoCpu,
     cadastrarMetricaMaquina,
     getDadosMaquina,
     getUltimoEspecificacaoMaquinaCadastrada,

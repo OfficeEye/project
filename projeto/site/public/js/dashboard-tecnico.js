@@ -47,7 +47,7 @@ function plotarGraficoEspecificacaoMaquina() {
     } else if (fkEmpresa == ""){
 
     }else {
-        fetch("../tecnico/getUltimosRegistroComponentes", {
+        fetch("../tecnico/getUltimosRegistroComponentesUsoCpu", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -60,6 +60,53 @@ function plotarGraficoEspecificacaoMaquina() {
             function (resposta) {
                 resposta.json().then(function (registro) {
                     console.log(registro)
+                    div_nome_maquina.innerHTML = `
+                    <b>${registro[0].nomeMaquina}</b>
+                    `
+                    
+                    for(let i = 0; i < registro.length; i++) {
+                        
+                    }
+                    const dataCpu = {
+                        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+                                datasets: [{
+                            label: '',
+                            data: [65, 59, 80, 81],
+                            backgroundColor: [
+                                'rgba(85, 173, 250)',
+                                'rgba(85, 173, 250)',
+                                'rgba(85, 173, 250)',
+                                'rgba(85, 173, 250)',
+                            ],
+                            borderColor: [
+                                'rgb(85, 173, 250)',
+                                'rgb(85, 173, 250)',
+                                'rgb(85, 173, 250)',
+                                'rgb(85, 173, 250)',
+                            ],
+                            borderWidth: 1
+                
+                        }]
+                    };
+                    const configCpu = {
+                        type: 'line',
+                        data: dataCpu,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false
+                                },
+                            },
+                        },
+                    };
+                
+                    Chart.defaults.color = '#fff';
+                    Chart.defaults.borderColor = '#fff';
+                
+                    const chartCpu = new Chart(
+                        document.getElementById('chartCpu'),
+                        configCpu
+                    );
                 })
             }
         

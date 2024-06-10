@@ -26,7 +26,7 @@
         <div class="container">
             <div class="top">
                 <div class="hello">
-                    <div class="text">
+                    <div id="div_nome_maquina" class="text">
                         <b>Máquina 01</b>
                     </div>
                 </div>
@@ -80,47 +80,47 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     //CPU
-    const dataCpu = {
-        labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
-                datasets: [{
-            label: '',
-            data: [65, 59, 80, 81],
-            backgroundColor: [
-                'rgba(85, 173, 250)',
-                'rgba(85, 173, 250)',
-                'rgba(85, 173, 250)',
-                'rgba(85, 173, 250)',
-            ],
-            borderColor: [
-                'rgb(85, 173, 250)',
-                'rgb(85, 173, 250)',
-                'rgb(85, 173, 250)',
-                'rgb(85, 173, 250)',
-            ],
-            borderWidth: 1
+    // const dataCpu = {
+    //     labels: ['Segunda', 'Terça', 'Quarta', 'Quinta'],
+    //             datasets: [{
+    //         label: '',
+    //         data: [65, 59, 80, 81],
+    //         backgroundColor: [
+    //             'rgba(85, 173, 250)',
+    //             'rgba(85, 173, 250)',
+    //             'rgba(85, 173, 250)',
+    //             'rgba(85, 173, 250)',
+    //         ],
+    //         borderColor: [
+    //             'rgb(85, 173, 250)',
+    //             'rgb(85, 173, 250)',
+    //             'rgb(85, 173, 250)',
+    //             'rgb(85, 173, 250)',
+    //         ],
+    //         borderWidth: 1
 
-        }]
-    };
+    //     }]
+    // };
 
-    const configCpu = {
-        type: 'line',
-        data: dataCpu,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
-                },
-            },
-        },
-    };
+    // const configCpu = {
+    //     type: 'line',
+    //     data: dataCpu,
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: false
+    //             },
+    //         },
+    //     },
+    // };
 
-    Chart.defaults.color = '#fff';
-    Chart.defaults.borderColor = '#fff';
+    // Chart.defaults.color = '#fff';
+    // Chart.defaults.borderColor = '#fff';
 
-    const chartCpu = new Chart(
-        document.getElementById('chartCpu'),
-        configCpu
-    );
+    // const chartCpu = new Chart(
+    //     document.getElementById('chartCpu'),
+    //     configCpu
+    // );
 
     //Memoria
     const dataMemoria = {
