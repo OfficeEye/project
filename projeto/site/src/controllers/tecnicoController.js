@@ -365,8 +365,19 @@ function getUltimoStatusRegistro(req, res) {
         res.status(400).send("Seu idFuncionario está undefined!");
     } else {
         tecnicoModel.getUltimoStatusRegistro(fkEmpresa, idFuncionario)
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
     }
 }
+
 function buscarQuantidadeDeMaquinasEmAlerta(req, res) {
     var fkEmpresa = req.params.fkEmpresa;
     

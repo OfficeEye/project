@@ -146,10 +146,6 @@ function getMaquinaAlerta() {
                                                 <td class="td-cpu" style="color: ${corCPU};">${registroCpuUso}%</td>
                                                 <td class="td-memoria" style="color: ${corMemoria};">${registroMemoria}%</td>
                                                 <td class="td-disco" style="color: ${corDisco};">${registroDisco}%</td>
-                                                <td class="container-img">
-                                                    <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="">
-                                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="">
-                                                </td>
                                             </tr>
                                             `
                                         }
