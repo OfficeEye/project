@@ -394,7 +394,7 @@ function getUltimosRegistroComponentesUsoCpu(req, res) {
             }
         ).catch(
             function (erro) {
-                console.lod(erro)
+                console.log(erro)
                 res.status(500).json(erro.sqlMessage)
             }
         )
@@ -417,7 +417,7 @@ function getUltimosRegistroComponentesUsoMemoriaRam(req, res) {
             }
         ).catch(
             function (erro) {
-                console.lod(erro)
+                console.log(erro)
                 res.status(500).json(erro.sqlMessage)
             }
         )
@@ -440,7 +440,7 @@ function getUltimosRegistroComponentesUsoDisco(req, res) {
             }
         ).catch(
             function (erro) {
-                console.lod(erro)
+                console.log(erro)
                 res.status(500).json(erro.sqlMessage)
             }
         )
@@ -463,7 +463,7 @@ function getUltimosRegistroComponentesTemperaturaCpu(req, res) {
             }
         ).catch(
             function (erro) {
-                console.lod(erro)
+                console.log(erro)
                 res.status(500).json(erro.sqlMessage)
             }
         )

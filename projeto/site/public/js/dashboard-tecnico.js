@@ -10,7 +10,7 @@ function returnChamados() {
     window.location.href = "../dashboard-tecnico/tabela-chamados.html";
 }
 
-function openModal(texto) {
+function openModal() {
     modalSair.classList.add("active");
     modalBackground.classList.add("active");
 }
@@ -79,18 +79,12 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                'rgba(85, 173, 250)',
-                                'rgba(85, 173, 250)',
-                                'rgba(85, 173, 250)',
-                                'rgba(85, 173, 250)',
+                                '#3b9b9b'
                             ],
                             borderColor: [
-                                'rgb(85, 173, 250)',
-                                'rgb(85, 173, 250)',
-                                'rgb(85, 173, 250)',
-                                'rgb(85, 173, 250)',
+                                '#3b9b9b'
                             ],
-                            borderWidth: 1
+                            borderWidth: 3
                 
                         }]
                     };
@@ -154,18 +148,12 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                'rgba(255, 99, 132)',
-                                'rgba(255, 159, 64)',
-                                'rgba(255, 205, 86)',
-                                'rgba(75, 192, 192)',
+                                '#3b9b9b'
                             ],
                             borderColor: [
-                                'rgb(255, 99, 132)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
+                                '#3b9b9b'
                             ],
-                            borderWidth: 1
+                            borderWidth: 3
                 
                         }]
                     };
@@ -230,18 +218,12 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                'rgba(255, 99, 132)',
-                                'rgba(255, 159, 64)',
-                                'rgba(255, 205, 86)',
-                                'rgba(75, 192, 192)',
+                                '#3b9b9b'
                             ],
                             borderColor: [
-                                'rgb(85, 173, 250)',
-                                'rgb(255, 159, 64)',
-                                'rgb(255, 205, 86)',
-                                'rgb(75, 192, 192)',
+                                '#3b9b9b'
                             ],
-                            borderWidth: 1
+                            borderWidth: 3
                 
                         }]
                     };
@@ -306,19 +288,13 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                'rgba(85, 250, 126)',
-                                'rgba(85, 250, 126)',
-                                'rgba(85, 250, 126)',
-                                'rgba(75, 192, 192)',
+                                '#3b9b9b'
                             ],
                             borderColor: [
-                                'rgb(85, 250, 126)',
-                                'rgb(85, 250, 126)',
-                                'rgb(85, 250, 126)',
-                                'rgb(85, 250, 126)',
+                                '#3b9b9b'
                 
                             ],
-                            borderWidth: 1
+                            borderWidth: 3
                 
                         }]
                     };
@@ -463,7 +439,7 @@ function getMaquinaAlerta() {
                                                 <td class="td-status" style="color: ${corStatus};">${textoStatus}</td>
                                                 <td class="td-cpu" style="color: ${corCPU};">${registroCpuUso}%</td>
                                                 <td class="td-memoria" style="color: ${corMemoria};">${registroMemoria}%</td>
-                                                <td class="td-disco" style="color: ${corDisco};">${registroDisco}%</td>
+                                                <td class="td-disco" style="color: ${corDisco};">${registroDisco}Gb</td>
                                             </tr>
                                             `
                                         }

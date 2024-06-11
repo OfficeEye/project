@@ -64,13 +64,22 @@
         </div>
     </div>
 
-    <dialog id="modal">
-        <div class="paiNosso">
-            <h2>ops! certeza que deseja sair?</h2>
+    <div class="modal-background" id="modalBackground"></div>
+    <dialog id="modalSair">
+        <div class="container-modal">
+            <div class="title">
+                <h2 id="textoModal">Tem certeza que deseja sair?</h2>
+           </div>
+
+           <div class="img-modal">
+            <img src="../assets/svg/exclamation-mark.svg" alt="">
+           </div>
 
 
-            <button onclick="closeModal()" class="botao botao-cancelar">Cancelar</button>
-            <button onclick="returnIndex()" class="botao botao-confirmar">Confirmar</button>
+           <div class="buttons-modal">
+            <button class="botao botao-cancelar" onclick="closeModal()">Cancelar</button>
+            <button class="botao botao-confirmar" onclick="returnIndex()">Confirmar</button>
+           </div>
         </div>
     </dialog>
 </body>
