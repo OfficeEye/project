@@ -399,7 +399,7 @@ function getMaquinaAlerta() {
                                             let corMemoria = 'white';
                                             let corCPU = 'white';
                                             let corStatus = 'yellow'
-                                            let textoStatus = 'Critico'
+                                            let textoStatus = 'Crítico'
                                             
                                             if(funcionario[0].statusRegistro == 'Crítico') {
                                                 corDisco = "red"                             
