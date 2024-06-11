@@ -329,6 +329,7 @@ function plotarGraficoEspecificacaoMaquina() {
     }
 }
 
+var maquinaAlerta = 0;
 
 function getMaquinaAlerta() {
     
@@ -357,6 +358,7 @@ function getMaquinaAlerta() {
                     resposta.json().then(function (funcionario) {
                         console.log(funcionario[0].idFuncionario)
                         var ultimoIDFuncionario = funcionario[0].idFuncionario
+                        var now = new Date();
 
                         for (var i = 1; i <= ultimoIDFuncionario; i++) {
 
@@ -394,6 +396,21 @@ function getMaquinaAlerta() {
                                             let registroCpuUso = funcionario[2].registroNumero;
                                             let registroCpuTotalProcessos = funcionario[3].registroNumero;
                                             let registroCpuTemperatura = funcionario[4].registroNumero;
+                                            let horaRegistro = new Date(funcionario[0].dataHoraRegistro)
+                                            const diferencaMs = now - horaRegistro;
+                                            const diffInSeconds = diferencaMs / 1000;
+                                            const diffInMinutes = diffInSeconds / 60;
+                                            const diffInHours = diffInMinutes / 60;
+
+                                            // console.log(now, horaRegistro, diffInHours)
+
+                                            if(diffInHours > 1)  {
+                                                maquinaAlerta += 1
+                                            }
+
+                                            
+
+                                            console.log(maquinaAlerta)
                                             
                                             let corDisco = 'white';
                                             let corMemoria = 'white';

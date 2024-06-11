@@ -309,6 +309,113 @@ function getDadosMaquina() {
     }
 }
 
+var maquinaAlerta = 0;
+
+function getMaquinaAlerta() {
+    
+    if(sessionStorage.getItem('ID_FUNCIONARIO')) {
+        location.reload();
+    }
+    var fkEmpresa = localStorage.EMPRESA_USUARIO;
+    sessionStorage.removeItem('ID_FUNCIONARIO')
+
+    if (fkEmpresa == "") {
+
+    } else {
+
+        fetch("../tecnico/getUltimoIDFuncionario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkEmpresaServer: fkEmpresa
+            }),
+        }).then(
+            function (resposta) {
+                if (resposta.ok) {
+                    // console.log(resposta)
+                    resposta.json().then(function (funcionario) {
+                        console.log("id do ultimo funcionario: " + funcionario[0].idFuncionario)
+                        var ultimoIDFuncionario = funcionario[0].idFuncionario
+                        var now = new Date();
+
+                        for (var i = 1; i <= ultimoIDFuncionario; i++) {
+
+                            var idFuncionario = i;
+
+                            fetch("../tecnico/getUltimoStatusRegistro", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    fkEmpresaServer: fkEmpresa,
+                                    idFuncionarioServer: idFuncionario
+                                }),
+                            }).then(
+                                function (resposta) {
+                                    resposta.json().then(function (funcionario) {
+                                        // console.log(funcionario)
+                                        if(
+                                            funcionario[0].statusRegistro == 'Crítico' ||
+                                            funcionario[0].statusRegistro == 'Alerta' ||
+                                            funcionario[1].statusRegistro == 'Crítico' ||
+                                            funcionario[1].statusRegistro == 'Alerta' ||
+                                            funcionario[2].statusRegistro == 'Crítico' ||
+                                            funcionario[2].statusRegistro == 'Alerta' ||
+                                            funcionario[4].statusRegistro == 'Crítico' ||
+                                            funcionario[4].statusRegistro == 'Alerta' 
+                                        ) {
+
+                                            let nomeFuncionario = funcionario[0].nome;
+                                            let nomeMaquinaFuncionario = funcionario[0].nomeMaquina;
+                                            let idFuncionario = funcionario[0].idFuncionario;
+                                            let registroDisco = funcionario[0].registroNumero;
+                                            let registroMemoria = funcionario[1].registroNumero;
+                                            let registroCpuUso = funcionario[2].registroNumero;
+                                            let registroCpuTotalProcessos = funcionario[3].registroNumero;
+                                            let registroCpuTemperatura = funcionario[4].registroNumero;
+                                            let horaRegistro = new Date(funcionario[4].dataHoraRegistro)
+                                            const diferencaMs = now - horaRegistro;
+                                            const diffInSeconds = diferencaMs / 1000;
+                                            const diffInMinutes = diffInSeconds / 60;
+                                            const diffInHours = diffInMinutes / 60;
+
+                                            console.log(now, horaRegistro, diffInHours)
+
+                                            if(diffInHours > 1)  {
+                                                maquinaAlerta += 1
+                                            }
+                                            console.log(maquinaAlerta)
+
+                                            alertaMaisTempo.innerHTML = maquinaAlerta
+                                        }
+                                        })
+                                    }
+                            ).catch(
+                                function (resposta) {
+                                    // console.log(`#ERRO: ${resposta}`)
+                                }
+                            )
+                        }
+
+                    })
+                } else {
+                    console.log("nenhum Funcionario cadastrado")
+                }
+
+            }
+        ).catch(
+            function (resposta) {
+                // console.log(`#ERRO: ${resposta}`)
+            }
+        )
+
+        
+    }
+}
+
 // GRAFICO 01(TEMPO MEDIO NA RESOLUÇÃO DE CHAMADOS)
 
 function pegarDadosGrafico1() {
