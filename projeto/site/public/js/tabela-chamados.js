@@ -163,11 +163,17 @@ function exibirDadosDoChamado(idChamado) {
             idMaquina.innerHTML = `${msgMaquina}`
             descricaoProblema.value = `${resposta[0].descricaoProblema == null ? `` : resposta[0].descricaoProblema}`
             descricaoSolucao.value = `${resposta[0].descricaoSolucao == null ? `` : resposta[0].descricaoSolucao}`
-
-            buttons.innerHTML = `
+            
+            if(resposta[0].status != 'CONCLUIDO') {
+                buttons.innerHTML = `
                 <button class="btn-salvar" onclick="salvarFormulario(${resposta[0].idChamado}, ${resposta[0].idFuncionario}, ${resposta[0].idUsuario}, ${resposta[0].idMaquina}, ${resposta[0].fkEmpresa})">Salvar</button>
                 <button class="btn-cancelar" onclick="fecharFormulario()">Cancelar</button>
             `
+            } else {
+                buttons.innerHTML = `
+                <button class="btn-cancelar" onclick="fecharFormulario()">Fechar</button>
+                `
+            }
         });
     })
 }

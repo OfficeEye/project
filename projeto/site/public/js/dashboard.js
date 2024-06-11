@@ -356,10 +356,11 @@ function plotarGrafico1(dados) {
             let tempoTotalMinutos = horas * 60 + minutos
 
             // Adicionar as datas e os tempos médios convertidos
-            let dataFormatada = new Date(dados[i].Dia)
-            let label = dataFormatada.getDate().toString().padStart(2, '0') + '/' + (dataFormatada.getMonth() + 1).toString().padStart(2, '0')
+            let dataFormatada = dados[i].Data
+            console.log(dados+"aaaaaaa")
+            let label = dados[i].Data
             
-            labels.push(label)
+            labels.push(dataFormatada)
             data.push(tempoTotalMinutos)
         } else {
             console.error(`tempoMedio é nulo ou indefinido para o dado na posição ${i}`)
@@ -435,10 +436,10 @@ function plotarGrafico2(dados) {
 
     for( let i = 0; i < dados.length; i++) {
         // Extrair dia e mês da data
-        let dataFormatada = new Date(dados[i].Dia);
-        let dia = (dataFormatada.getDate()).toString().padStart(2, '0');
-        let mes = (dataFormatada.getMonth() + 1).toString().padStart(2, '0');
-        let dataLabel = dia + '/' + mes;
+        let dataFormatada = dados[i].Dia;
+        console.log(dados+"aaaaaaaaaaaaaaaa")
+       
+        let dataLabel = dados[i].Dia
 
         labels.push(dataLabel);
         abertos.push(dados[i].ChamadosAbertos);
@@ -501,10 +502,29 @@ function contarComputadoresEmAlerta() {
         function (resposta) {
             console.log("resposta: ", resposta);
             resposta.json().then(function (computadores) {
-                console.log(computadores);
-                var quantidade = computadores[0]['COUNT(idUsuario)']
-                console.log(quantidade)
-                emEstadoAlerta.innerHTML = quantidade
+                if (computadores.length > 0) {
+                    var qtdTotalDeMaquinasEmAlerta = 0;
+                    var ultimoIndiceAlerta = 0
+                    
+    
+                    for (var i = 0; i < computadores.length; i++) {
+                    
+                        if(computadores[i].statusRegistro == 'Crítico' || computadores[i].statusRegistro == 'Alerta' ) {
+                            if (computadores[i].fkMaquina != ultimoIndiceAlerta ) {
+                                qtdTotalDeMaquinasEmAlerta++
+                                ultimoIndiceAlerta = computadores[i].fkMaquina
+                            }
+                        }
+                        
+                    }
+    
+                    emEstadoAlerta.innerHTML = qtdTotalDeMaquinasEmAlerta
+    
+                }else {
+                    emEstadoAlerta.innerHTML = `0`
+                    emEstadoAlerta.style.color = `white`
+                }
+               
             })
             // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
         }
@@ -531,7 +551,7 @@ function contarChamadosPrioritariosAbertos() {
             console.log("resposta: ", resposta);
             resposta.json().then(function (chamados) {
                 console.log(chamados);
-                var quantidade = chamados[0]['COUNT(idUsuario)']
+                var quantidade = chamados[0].Quantidade
                 console.log(quantidade)
                 prioritariosAbertos.innerHTML = quantidade
             })

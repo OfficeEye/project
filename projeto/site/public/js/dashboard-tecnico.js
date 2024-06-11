@@ -625,7 +625,7 @@ function exibirQuantidadeDeMaquinasEmAlerta() {
                 }else if(qtdTotalDeMaquinasEmAlerta <= porcentagemAlerta) {
                     corIndicador = ` yellow`
                 }
-
+                console.log(qtdTotalDeMaquinasEmAlerta)
                 let em_alerta = document.getElementById('em_alerta')
                 em_alerta.innerHTML = `${qtdTotalDeMaquinasEmAlerta}/${qtdTotalMaquinas}`
                 em_alerta.style.color = corIndicador

@@ -64,21 +64,20 @@ function excluirContaFuncionario(idFuncionario) {
 function pegarDadosGrafico1(fkEmpresa) {
     var instrucao = `
     SELECT 
-    DATE(dataAbertura) AS Dia,
-    CONCAT(
-        LPAD(FLOOR(AVG(TIMESTAMPDIFF(MINUTE, dataAbertura, dataFechamento)) / 60), 2, '0'), 
-        ':', 
-        LPAD(MOD(AVG(TIMESTAMPDIFF(MINUTE, dataAbertura, dataFechamento)), 60), 2, '0')
-    ) AS TempoMedioChamadoHorasMinutos
-FROM 
-    Chamados
-WHERE 
-    status = 'Fechado' -- Considerando apenas os chamados fechados
-    AND fkEmpresa = ${fkEmpresa} -- Condição para a empresa específica
-GROUP BY 
-    DATE(dataAbertura) -- Agrupando por dia de abertura
-ORDER BY 
-    DATE(dataAbertura) LIMIT 5; -- Ordenando por dia de abertura
+    FORMAT(CONVERT(date, dataFechamento), 'dd/MM') AS Data,
+    AVG(DATEDIFF(MINUTE, dataAbertura, dataFechamento)) AS TempoMedioChamadoMinutos,
+    CAST(FLOOR(AVG(DATEDIFF(MINUTE, dataAbertura, dataFechamento)) / 60) AS VARCHAR) 
+    + ':' + 
+    RIGHT('0' + CAST(AVG(DATEDIFF(MINUTE, dataAbertura, dataFechamento)) % 60 AS VARCHAR), 2) 
+    AS TempoMedioChamadoHorasMinutos
+    FROM 
+        Chamado
+    WHERE 
+        status = 'CONCLUIDO' -- Considerando apenas os chamados fechados
+        AND fkEmpresa = ${fkEmpresa} -- Condição para a empresa específica
+    GROUP BY 
+        CONVERT(date, dataFechamento);
+
 
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
@@ -87,18 +86,67 @@ ORDER BY
 
 function pegarDadosGrafico2(fkEmpresa) {
     var instrucao = `
+    WITH Abertos AS (
+        SELECT 
+            CAST(dataAbertura AS DATE) AS Dia,
+            COUNT(*) AS ChamadosAbertos
+        FROM 
+            Chamado
+        WHERE
+            fkEmpresa = ${fkEmpresa}
+        GROUP BY 
+            CAST(dataAbertura AS DATE)
+    ),
+    Fechados AS (
+        SELECT 
+            CAST(dataFechamento AS DATE) AS Dia,
+            COUNT(*) AS ChamadosFechados
+        FROM 
+            Chamado
+        WHERE
+            fkEmpresa = ${fkEmpresa} AND status = 'CONCLUIDO'
+        GROUP BY 
+            CAST(dataFechamento AS DATE)
+    ),
+    EmAndamento AS (
+        SELECT 
+            CAST(dataAbertura AS DATE) AS Dia,
+            COUNT(*) AS ChamadosEmAndamento
+        FROM 
+            Chamado
+        WHERE
+            fkEmpresa = ${fkEmpresa} AND status = 'EM_ANDAMENTO'
+        GROUP BY 
+            CAST(dataAbertura AS DATE)
+    ),
+    Removidos AS (
+        SELECT 
+            CAST(dataAbertura AS DATE) AS Dia,
+            COUNT(*) AS ChamadosRemovidos
+        FROM 
+            Chamado
+        WHERE
+            fkEmpresa = ${fkEmpresa} AND status = 'REMOVIDO'
+        GROUP BY 
+            CAST(dataAbertura AS DATE)
+    )
     SELECT 
-    DATE(dataAbertura) AS Dia,
-    SUM(CASE WHEN status = 'Aberto' THEN 1 ELSE 0 END) AS ChamadosAbertos,
-    SUM(CASE WHEN status = 'Fechado' THEN 1 ELSE 0 END) AS ChamadosFechados
-FROM 
-    Chamados
-WHERE
-    fkEmpresa = ${fkEmpresa}
-GROUP BY 
-    Dia
-ORDER BY 
-    Dia;
+        FORMAT(COALESCE(A.Dia, F.Dia, EA.Dia, R.Dia), 'dd/MM') AS Dia,
+        COALESCE(ChamadosAbertos, 0) AS ChamadosAbertos,
+        COALESCE(ChamadosFechados, 0) AS ChamadosFechados,
+        COALESCE(ChamadosEmAndamento, 0) AS ChamadosEmAndamento,
+        COALESCE(ChamadosRemovidos, 0) AS ChamadosRemovidos
+    FROM 
+        Abertos A
+    FULL OUTER JOIN 
+        Fechados F ON A.Dia = F.Dia
+    FULL OUTER JOIN
+        EmAndamento EA ON A.Dia = EA.Dia
+    FULL OUTER JOIN
+        Removidos R ON A.Dia = R.Dia
+    ORDER BY 
+        COALESCE(A.Dia, F.Dia, EA.Dia, R.Dia);
+
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -107,7 +155,34 @@ ORDER BY
 function contarComputadoresEmAlerta(fkEmpresa){
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        SELECT COUNT(idUsuario) FROM usuario;
+    WITH UltimosRegistros AS (
+        SELECT 
+            r.fkMaquina,
+            r.dataHoraRegistro,
+            r.statusRegistro,
+            f.statusLogin, -- Adiciona statusLogin aqui
+            
+            ROW_NUMBER() OVER (PARTITION BY r.fkMaquina ORDER BY r.dataHoraRegistro DESC) AS rn
+        FROM 
+            registroEspecificacaoComponente r
+        JOIN 
+            maquina m ON r.fkMaquina = m.idMaquina
+        JOIN 
+            funcionario f ON m.fkFuncionario = f.idFuncionario
+        WHERE 
+            m.fkEmpresa = ${fkEmpresa} AND f.statusLogin = 'Logado'
+        )
+        SELECT 
+            fkMaquina,
+            dataHoraRegistro,
+            statusRegistro,
+            statusLogin
+            FROM 
+                UltimosRegistros
+            WHERE 
+                rn <= 5
+            ORDER BY 
+            fkMaquina, rn;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -116,7 +191,14 @@ function contarComputadoresEmAlerta(fkEmpresa){
 function contarChamadosPrioritariosAbertos(fkEmpresa){
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-        SELECT COUNT(idUsuario) FROM usuario;
+    SELECT 
+        COUNT(*) AS Quantidade
+    FROM 
+        Chamado
+    WHERE 
+        status = 'ABERTO'
+        AND prioridade = 'alta'
+        AND fkEmpresa = ${fkEmpresa};
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
