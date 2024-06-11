@@ -304,11 +304,7 @@ function contarAlertasMaisTempo(req, res) {
         gestorModel.contarAlertasMaisTempo(fkEmpresa)
         .then(
             function (resultado) {
-                if (resultado.length >= 1){
-                    res.json(resultado)
-                } else if (resultado.length == 0) {
-                    res.status(403).send("fkEmpresa inválido(s)");
-                }
+                res.json(resultado)
             }
         ).catch(
             function (erro) {

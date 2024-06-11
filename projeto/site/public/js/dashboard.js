@@ -490,13 +490,14 @@ function setEmpresaUsuario() {
 }
 
 function contarComputadoresEmAlerta() {
+    let fkEmpresa = localStorage.getItem('EMPRESA_USUARIO');
     fetch("../gestor/contarComputadoresEmAlerta", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            fkEmpresaServer: 1
+            fkEmpresaServer: fkEmpresa
         }),
     }).then(
         function (resposta) {
@@ -538,13 +539,14 @@ function contarComputadoresEmAlerta() {
 
 
 function contarChamadosPrioritariosAbertos() {
+    let fkEmpresa = localStorage.getItem('EMPRESA_USUARIO');
     fetch("../gestor/contarChamadosPrioritariosAbertos", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            fkEmpresaServer: 1
+            fkEmpresaServer: fkEmpresa
         }),
     }).then(
         function (resposta) {
@@ -568,22 +570,50 @@ function contarChamadosPrioritariosAbertos() {
 
 
 function contarAlertasMaisTempo(){
+    let fkEmpresa = localStorage.getItem('EMPRESA_USUARIO');
     fetch("../gestor/contarAlertasMaisTempo", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            fkEmpresaServer: 1
+            fkEmpresaServer: fkEmpresa
         }),
     }).then(
         function (resposta) {
             console.log("resposta: ", resposta);
             resposta.json().then(function (alertas) {
-                console.log(alertas);
-                var quantidade = alertas[0]['COUNT(idUsuario)']
-                console.log(quantidade)
-                alertaMaisTempo.innerHTML = quantidade
+                if (alertas.length > 0) {
+                    var qtdTotalDeMaquinasEmAlerta = 0;
+                    var ultimoIndiceAlerta = 0;
+                    var contagemSegundos = 0;
+                    var maquinaEmAlertaMaisTempo = 0;
+                   
+    
+                    for (var i = 0; i < alertas.length; i++) {
+                       
+                        if(alertas[i].statusRegistro == 'Crítico' || alertas[i].statusRegistro == 'Alerta' ) {
+                            if (alertas[i].fkMaquina != ultimoIndiceAlerta ) {
+                                qtdTotalDeMaquinasEmAlerta++
+                                ultimoIndiceAlerta = alertas[i].fkMaquina
+                                
+                            }
+                            contagemSegundos += 30;
+                        }
+
+                        if(contagemSegundos >= 60) {
+                            maquinaEmAlertaMaisTempo++
+                        }
+                        
+                    }
+                    alertaMaisTempo.innerHTML = maquinaEmAlertaMaisTempo
+    
+                }else {
+                     alertaMaisTempo.innerHTML = `0`
+                     alertaMaisTempo.style.color = `white`
+                }
+               
+               
             })
             // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
         }
