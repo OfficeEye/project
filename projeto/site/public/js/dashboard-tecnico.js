@@ -376,13 +376,13 @@ function getMaquinaAlerta() {
                                     resposta.json().then(function (funcionario) {
                                         console.log(funcionario)
                                         if(
-                                            funcionario[0].statusRegistro == 'Crtico' ||
+                                            funcionario[0].statusRegistro == 'Crítico' ||
                                             funcionario[0].statusRegistro == 'Alerta' ||
-                                            funcionario[1].statusRegistro == 'Crtico' ||
+                                            funcionario[1].statusRegistro == 'Crítico' ||
                                             funcionario[1].statusRegistro == 'Alerta' ||
-                                            funcionario[2].statusRegistro == 'Crtico' ||
+                                            funcionario[2].statusRegistro == 'Crítico' ||
                                             funcionario[2].statusRegistro == 'Alerta' ||
-                                            funcionario[4].statusRegistro == 'Crtico' ||
+                                            funcionario[4].statusRegistro == 'Crítico' ||
                                             funcionario[4].statusRegistro == 'Alerta' 
                                         ) {
 
@@ -401,21 +401,21 @@ function getMaquinaAlerta() {
                                             let corStatus = 'yellow'
                                             let textoStatus = 'Critico'
                                             
-                                            if(funcionario[0].statusRegistro == 'Critico') {
+                                            if(funcionario[0].statusRegistro == 'Crítico') {
                                                 corDisco = "red"                             
                                                 
                                             } else if (funcionario[0].statusRegistro == 'Alerta') {
                                                 corDisco = 'yellow' 
                                             }
                                             
-                                            if(funcionario[1].statusRegistro == 'Critico') {
+                                            if(funcionario[1].statusRegistro == 'Crítico') {
                                                 corMemoria = "red"                            
                                                 
                                             } else if (funcionario[1].statusRegistro == 'Alerta') {
                                                 corMemoria = 'yellow'
                                             }
                                             
-                                            if(funcionario[2].statusRegistro == 'Critico' || funcionario[4].statusRegistro == 'Critico') {
+                                            if(funcionario[2].statusRegistro == 'Crítico' || funcionario[4].statusRegistro == 'Crítico') {
                                                 corCPU = "red"                    
                                                 
                                             } else if (funcionario[2].statusRegistro == 'Alerta' || funcionario[4].statusRegistro == 'Alerta') {
@@ -423,7 +423,7 @@ function getMaquinaAlerta() {
                                             }
                                             
                                             for(let i = 0; i < funcionario.length; i++) {
-                                                if(funcionario[i].statusRegistro == 'Critico') {
+                                                if(funcionario[i].statusRegistro == 'Crítico') {
                                                     corStatus = 'red'
                                                 }
                                             }
