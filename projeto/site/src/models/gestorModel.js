@@ -207,34 +207,11 @@ function contarChamadosPrioritariosAbertos(fkEmpresa){
 function contarAlertasMaisTempo(fkEmpresa){
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    WITH UltimosRegistros AS (
-        SELECT 
-            r.fkMaquina,
-            DATEPART(SECOND, r.dataHoraRegistro) AS segundos,
-            r.statusRegistro,
-            f.statusLogin, -- Adiciona statusLogin aqui
-            
-            ROW_NUMBER() OVER (PARTITION BY r.fkMaquina ORDER BY r.dataHoraRegistro DESC) AS rn
-        FROM 
-            registroEspecificacaoComponente r
-        JOIN 
-            maquina m ON r.fkMaquina = m.idMaquina
-        JOIN 
-            funcionario f ON m.fkFuncionario = f.idFuncionario
-        WHERE 
-            m.fkEmpresa = ${fkEmpresa} AND f.statusLogin = 'Logado'
-        )
-        SELECT 
-            fkMaquina,
-            segundos,
-            statusRegistro,
-            statusLogin
-            FROM 
-                UltimosRegistros
-            WHERE 
-                rn <= 5
-            ORDER BY 
-            fkMaquina, rn;
+    SELECT fkMaquina, COUNT(*) AS total_alerts
+    FROM registroEspecificacaoComponente
+    WHERE dataHoraRegistro >= DATEADD(MINUTE, -181, GETDATE()) AND statusRegistro in ('Alerta', 'Crítico') AND fkEmpresa = ${fkEmpresa}
+    GROUP BY fkMaquina
+    HAVING COUNT(*) >= 2;
     
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
