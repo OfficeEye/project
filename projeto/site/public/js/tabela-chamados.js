@@ -29,6 +29,16 @@ function closeModal() {
     modalBackground.classList.remove('active')
 }
 
+function closeModalEditar() {
+    modalEditar.classList.remove('active')
+    modalBackground.classList.remove('active')
+}
+
+function closeModalRemover() {
+    modalRemover.classList.remove('active')
+    modalBackground.classList.remove('active')
+}
+
 function returnIndex() {
     localStorage.removeItem('ID_USUARIO')
     localStorage.removeItem('EMPRESA_USUARIO')
@@ -84,7 +94,9 @@ function confirmarRemocao() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-    return false;
+    
+    modalEditar.classList.remove('active')
+    modalBackground.classList.remove('active')
 }
 
 function confirmarEdicao() {
@@ -324,9 +336,7 @@ function buscarChamadosAbertos() {
                     statusFormat = `Concluído`
                 }
 
-                if(i/3 == 0){
-                    card_chamado_aberto.innerHTML += `<br>`
-                }
+                
 
                 card_chamado_aberto.innerHTML += `
                     <div class="content1">
@@ -367,8 +377,11 @@ function buscarChamadosAbertos() {
                                     </div>
                                 </div>
                             </div>
-                    </div><br>
+                    </div>
                 `
+                if(i/3 == 0){
+                    card_chamado_aberto.innerHTML += `<br>`
+                }
             }
         });
     })
