@@ -315,7 +315,7 @@ function buscarChamadosAbertos() {
         response.json().then(function (resposta) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
 
-            for (var i = 0; i < resposta.length; i++) {
+            for (var i = resposta.length - 1; i > 0; i--) {
 
                 var classPriority = '';
                 if (resposta[i].prioridade == 'baixa') {
@@ -379,9 +379,7 @@ function buscarChamadosAbertos() {
                             </div>
                     </div>
                 `
-                if(i/3 == 0){
-                    card_chamado_aberto.innerHTML += `<br>`
-                }
+                
             }
         });
     })
