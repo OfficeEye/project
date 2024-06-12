@@ -72,7 +72,7 @@ body {
 
 .content .column-1 {
     height: 100%;
-    width: 50%;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,14 +119,15 @@ button {
 
 .content .column-2 {
     height: 100%;
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-right: 30px;
 }
 
 table {
-    width: 600px;
+    width: 900px;
     height: 70%;
     border: 2px solid #3B9B9B;
     border-radius: 10px;
@@ -167,9 +168,13 @@ td {
 
 tr {
     width: 100%;
+    max-width: 896px;
     display: flex;
-    justify-content: space-between;
 
+}
+
+.tr-tabela-maquina {
+    
 }
 
 .td-nome{
@@ -180,29 +185,62 @@ tr {
     /* justify-content: center; */
 }
 
-.th-maquina {
-    width: 190px;
-}
-.td-maquina {
-    width: 90px;
-}
-
 .th-funcionario {
     width: 190px;
 }
-.td-funcionario {
-    width: 150px;
+
+.th-maquina {
+    width: 190px;
+    padding-right: 60px;
 }
 
-.th-acoes,
+.th-modelo {
+    padding-right: 70px;
+}
+
+.th-sistemOperacional {
+    padding-right: 70px;
+}
+
+.th-acoes {
+    padding-left: 70px;
+    padding-right: 30px;
+}
+
+.td-funcionario {
+    width: 100px;
+    padding-left: 30px;
+
+}
+
+.td-maquina {
+    width: 90px;
+    padding-left: 110px;
+}
+
+.td-modelo {
+    padding-left: 90px;
+}
+
+.td-sistemaOperacional {
+    padding-left: 110px;
+    width: 100px;
+}
+
+.td-fabricante {
+    padding-left: 190px;
+    width: 100px;
+}
+
 .td-acoes {
     width: 120px;
-}
 
+}
 
 .container-img {
     display: flex;
     width: 80px;
+    padding-left: 130px;
 }
 
 td img {

@@ -68,13 +68,13 @@ function plotarGraficoEspecificacaoMaquina() {
                     let data = []
                     var colorLine = '#3b9b9b'
 
-                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                    if(registro[0].statusRegistro == 'Crítico') {
                         colorLine = 'RGB(255, 0, 0)'
-                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                    } else if (registro[0].statusRegistro == 'Alerta') {
                         colorLine = 'RGB(255, 255, 0)'
                     }
                     
-                    for(let i = registro.length- 1; i > 0; i--) {
+                    for(let i = registro.length- 1; i >= 0; i--) {
                         var registroUsoCpu = registro[i].registroNumero
                         var dataHora = registro[i].dataRegistro
                         data.push(registroUsoCpu)
@@ -146,13 +146,13 @@ function plotarGraficoEspecificacaoMaquina() {
                     let data = []
                     var colorLine = '#3b9b9b'
 
-                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                    if(registro[0].statusRegistro == 'Crítico') {
                         colorLine = 'RGB(255, 0, 0)'
-                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                    } else if (registro[0].statusRegistro == 'Alerta') {
                         colorLine = 'RGB(255, 255, 0)'
                     }
                     
-                    for(let i = registro.length- 1; i > 0; i--) {
+                    for(let i = registro.length- 1; i >= 0; i--) {
                         var registroUsoMemoriaRam = registro[i].registroNumero
                         var dataHora = registro[i].dataRegistro
                         data.push(registroUsoMemoriaRam)
@@ -223,16 +223,16 @@ function plotarGraficoEspecificacaoMaquina() {
 
                     let labels = []
                     let data = []
-                    let maxDisco = registro[0].informacaoTotalEspecificacao
+                    let maxDisco = registro[registro.length-1].informacaoTotalEspecificacao
                     var colorLine = '#3b9b9b'
 
-                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                    if(registro[0].statusRegistro == 'Crítico') {
                         colorLine = 'RGB(255, 0, 0)'
-                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                    } else if (registro[0].statusRegistro == 'Alerta') {
                         colorLine = 'RGB(255, 255, 0)'
                     }
                     
-                    for(let i = registro.length- 1; i > 0; i--) {
+                    for(let i = registro.length- 1; i >= 0; i--) {
                         var registroUsoDisco = registro[i].registroNumero
                         var dataHora = registro[i].dataRegistro
                         data.push(registroUsoDisco)
@@ -305,13 +305,13 @@ function plotarGraficoEspecificacaoMaquina() {
                     let data = []
                     var colorLine = '#3b9b9b'
 
-                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                    if(registro[0].statusRegistro == 'Crítico') {
                         colorLine = 'RGB(255, 0, 0)'
-                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                    } else if (registro[0].statusRegistro == 'Alerta') {
                         colorLine = 'RGB(255, 255, 0)'
                     }
                     
-                    for(let i = registro.length- 1; i > 0; i--) {
+                    for(let i = registro.length- 1; i >= 0; i--) {
                         var registroTemperaturaCpu = registro[i].registroNumero
                         var dataHora = registro[i].dataRegistro
                         data.push(registroTemperaturaCpu)

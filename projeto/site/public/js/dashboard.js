@@ -230,7 +230,9 @@ function getDadosMaquina() {
                             console.log(idMaquina, nomeFuncionario, nomeMaquina, modelo, sistemaOperacional, fabricante)
 
                             tbodyRefrigerador.innerHTML += `
-                            <tr id="${idMaquina}">
+                            
+                            <tr class="tr-tabela-maquina" id="${idMaquina}">
+                                
                                 <td class="td-funcionario">${nomeFuncionario}</td>
                                 <td class="td-maquina">${nomeMaquina}</td>
                                 <td class="td-modelo">${modelo}</td>
@@ -240,6 +242,7 @@ function getDadosMaquina() {
                                     <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
                                     <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(id)">
                                 </td>
+                                
                             </tr>
                         `
                     }    
