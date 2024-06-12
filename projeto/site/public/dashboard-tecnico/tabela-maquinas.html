@@ -9,6 +9,30 @@
     <link rel="shortcut icon" href="../assets/svg/icon-officeeye (2).png" type="image/x-icon">
 </head>
 
+<style>
+    .paginaAtual {
+        border-radius: 10px;
+        background-color: #565252;
+        padding: 5px;
+    }
+
+    .th-funcionario {
+        padding-left: 30px;
+    }
+
+    .th-status {
+        padding-left: 70px;
+    }
+
+    .th-cpu {
+        padding-left: 50px;
+    }
+
+    .th-disco {
+        padding-right: 30px;
+    }
+</style>
+
 <body onload="getMaquinaAlerta()">
     <div class="content">
 
@@ -20,7 +44,9 @@
             <div class="images">
 
                 <img src="../assets/svg/home.svg" alt="" onclick="returnDashboard()">
-                <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
+                <div class="paginaAtual">
+                    <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
+                </div>                
                 <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnNewChamados()">
                 <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">

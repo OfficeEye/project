@@ -272,7 +272,7 @@ function exibirChamadosPendentesDeAprovacao(fkEmpresa) {
             console.log(`Dados obtidos: ${JSON.stringify(resposta)}`);
 
             for(var i = 0; i < resposta.length; i++) {
-
+                
                 tbodyRefrigerador.innerHTML += `
                 
                     <tr>
@@ -324,6 +324,10 @@ function buscarChamadosAbertos() {
                     statusFormat = `Concluído`
                 }
 
+                if(i/3 == 0){
+                    card_chamado_aberto.innerHTML += `<br>`
+                }
+
                 card_chamado_aberto.innerHTML += `
                     <div class="content1">
                             <div class="list-1">
@@ -363,7 +367,7 @@ function buscarChamadosAbertos() {
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                    </div><br>
                 `
             }
         });
