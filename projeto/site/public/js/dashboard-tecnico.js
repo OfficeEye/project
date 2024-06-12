@@ -63,9 +63,16 @@ function plotarGraficoEspecificacaoMaquina() {
                     div_nome_maquina.innerHTML = `
                     <b>${registro[0].nomeMaquina}</b>
                     `
-
+                    
                     let labels = []
                     let data = []
+                    var colorLine = '#3b9b9b'
+
+                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                        colorLine = 'RGB(255, 0, 0)'
+                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                        colorLine = 'RGB(255, 255, 0)'
+                    }
                     
                     for(let i = registro.length- 1; i > 0; i--) {
                         var registroUsoCpu = registro[i].registroNumero
@@ -79,10 +86,10 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderWidth: 3
                 
@@ -94,7 +101,9 @@ function plotarGraficoEspecificacaoMaquina() {
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: false
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: 100
                                 },
                             },
                         },
@@ -135,6 +144,13 @@ function plotarGraficoEspecificacaoMaquina() {
 
                     let labels = []
                     let data = []
+                    var colorLine = '#3b9b9b'
+
+                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                        colorLine = 'RGB(255, 0, 0)'
+                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                        colorLine = 'RGB(255, 255, 0)'
+                    }
                     
                     for(let i = registro.length- 1; i > 0; i--) {
                         var registroUsoMemoriaRam = registro[i].registroNumero
@@ -148,10 +164,10 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderWidth: 3
                 
@@ -164,7 +180,9 @@ function plotarGraficoEspecificacaoMaquina() {
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: false
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: 100
                                 },
                             },
                         },
@@ -205,6 +223,14 @@ function plotarGraficoEspecificacaoMaquina() {
 
                     let labels = []
                     let data = []
+                    let maxDisco = registro[0].informacaoTotalEspecificacao
+                    var colorLine = '#3b9b9b'
+
+                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                        colorLine = 'RGB(255, 0, 0)'
+                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                        colorLine = 'RGB(255, 255, 0)'
+                    }
                     
                     for(let i = registro.length- 1; i > 0; i--) {
                         var registroUsoDisco = registro[i].registroNumero
@@ -218,10 +244,10 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderWidth: 3
                 
@@ -234,7 +260,9 @@ function plotarGraficoEspecificacaoMaquina() {
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: false
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: maxDisco
                                 },
                             },
                         },
@@ -275,6 +303,13 @@ function plotarGraficoEspecificacaoMaquina() {
 
                     let labels = []
                     let data = []
+                    var colorLine = '#3b9b9b'
+
+                    if(registro[registro.length-1].statusRegistro == 'Crítico') {
+                        colorLine = 'RGB(255, 0, 0)'
+                    } else if (registro[registro.length-1].statusRegistro == 'Alerta') {
+                        colorLine = 'RGB(255, 255, 0)'
+                    }
                     
                     for(let i = registro.length- 1; i > 0; i--) {
                         var registroTemperaturaCpu = registro[i].registroNumero
@@ -288,10 +323,10 @@ function plotarGraficoEspecificacaoMaquina() {
                             label: '',
                             data: data,
                             backgroundColor: [
-                                '#3b9b9b'
+                                colorLine
                             ],
                             borderColor: [
-                                '#3b9b9b'
+                                colorLine
                 
                             ],
                             borderWidth: 3
@@ -305,7 +340,9 @@ function plotarGraficoEspecificacaoMaquina() {
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: false
+                                    beginAtZero: true,
+                                    min: 0,
+                                    max: 100
                                 },
                             },
                         },

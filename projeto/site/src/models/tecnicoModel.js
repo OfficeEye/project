@@ -159,7 +159,7 @@ function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
 function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
+    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'HH:mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
     maquina.nomeMaquina FROM registroEspecificacaoComponente
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
@@ -187,10 +187,11 @@ function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
 function getUltimosRegistroComponentesUsoMemoriaRam(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-     SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
-    maquina.nomeMaquina FROM registroEspecificacaoComponente
+     SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'HH:mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina, especificacaoComponente.informacaoTotalEspecificacao FROM registroEspecificacaoComponente
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
+    JOIN especificacaoComponente ON registroEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Memória em uso'
         ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;       
     `
@@ -215,10 +216,11 @@ function getUltimosRegistroComponentesUsoMemoriaRam(fkEmpresa, idFuncionario) {
 function getUltimosRegistroComponentesUsoDisco(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
-    maquina.nomeMaquina FROM registroEspecificacaoComponente
+    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'HH:mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
+    maquina.nomeMaquina, especificacaoComponente.informacaoTotalEspecificacao FROM registroEspecificacaoComponente
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
+    JOIN especificacaoComponente ON registroEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Espaço disponível'
         ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;     
     `
@@ -243,7 +245,7 @@ function getUltimosRegistroComponentesUsoDisco(fkEmpresa, idFuncionario) {
 function getUltimosRegistroComponentesTemperaturaCpu(fkEmpresa, idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
-    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
+    SELECT TOP 10 format(registroEspecificacaoComponente.dataHoraRegistro, 'HH:mm:ss') AS dataRegistro, registroEspecificacaoComponente.registroNumero, registroEspecificacaoComponente.tipoRegistro, componente.nomeComponente, registroEspecificacaoComponente.statusRegistro,
     maquina.nomeMaquina FROM registroEspecificacaoComponente
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente

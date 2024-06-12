@@ -19,7 +19,7 @@
 
                 <img src="../assets/svg/home.svg" alt="">
                 <img src="../assets/svg/computador-portatil.png" alt="" onclick="returnTabelaMaquinas()">
-                <img src="../assets/svg/operador-de-telemarketing.png" alt="" >
+                <img src="../assets/svg/operador-de-telemarketing.png" alt="" onclick="returnNewChamados()">
                 <img src="../assets/svg/relatorio.svg" alt="" onclick="returnChamados()">
                 <img src="../assets/svg/logout.svg" alt="" onclick="openModal()" class="logout-image">
 
@@ -117,3 +117,8 @@
 </html>
 <script src="../js/dashboard-tecnico.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function returnNewChamados() {
+        window.location.href = "new-chamados.html"
+    }
+</script>
