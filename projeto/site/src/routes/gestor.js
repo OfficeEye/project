@@ -35,7 +35,7 @@ router.post("/getDadosFuncionarioEditavel", function (req, res) {
     gestorController.getDadosFuncionarioEditavel(req, res);
 });
 
-router.post("/editarInformacoesFuncionario", function (req, res) {
+router.put("/editarInformacoesFuncionario", function (req, res) {
     gestorController.editarInformacoesFuncionario(req, res);
 });
 

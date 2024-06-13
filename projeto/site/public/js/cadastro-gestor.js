@@ -514,7 +514,6 @@ function confirmarEdicao(idFuncionario) {
         }).catch(function (erro) {
             console.log("#ERRO: " + erro);
         })
-        return false;
     }
 }
 
