@@ -60,6 +60,10 @@ router.post("/contarAlertasMaisTempo", function (req, res) {
     gestorController.contarAlertasMaisTempo(req, res);
 });
 
+router.delete("/confirmarRemocao", function (req, res) {
+    gestorController.confirmarRemocao(req, res);
+});
+
 
 
 module.exports = router;
