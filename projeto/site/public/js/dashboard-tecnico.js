@@ -416,25 +416,25 @@ function getMaquinaAlerta() {
                                     resposta.json().then(function (funcionario) {
                                         console.log(funcionario)
                                         if(
-                                            funcionario[0].statusRegistro == 'Crítico' ||
-                                            funcionario[0].statusRegistro == 'Alerta' ||
-                                            funcionario[1].statusRegistro == 'Crítico' ||
-                                            funcionario[1].statusRegistro == 'Alerta' ||
+                                            funcionario[4].statusRegistro == 'Crítico' ||
+                                            funcionario[4].statusRegistro == 'Alerta' ||
+                                            funcionario[3].statusRegistro == 'Crítico' ||
+                                            funcionario[3].statusRegistro == 'Alerta' ||
                                             funcionario[2].statusRegistro == 'Crítico' ||
                                             funcionario[2].statusRegistro == 'Alerta' ||
-                                            funcionario[4].statusRegistro == 'Crítico' ||
-                                            funcionario[4].statusRegistro == 'Alerta' 
+                                            funcionario[0].statusRegistro == 'Crítico' ||
+                                            funcionario[0].statusRegistro == 'Alerta' 
                                         ) {
 
                                             let nomeFuncionario = funcionario[0].nome;
                                             let nomeMaquinaFuncionario = funcionario[0].nomeMaquina;
                                             let idFuncionario = funcionario[0].idFuncionario;
                                             let registroDisco = funcionario[0].registroNumero;
-                                            let registroMemoria = funcionario[1].registroNumero;
+                                            let registroMemoria = funcionario[3].registroNumero;
                                             let registroCpuUso = funcionario[2].registroNumero;
-                                            let registroCpuTotalProcessos = funcionario[3].registroNumero;
-                                            let registroCpuTemperatura = funcionario[4].registroNumero;
-                                            let horaRegistro = new Date(funcionario[0].dataHoraRegistro)
+                                            let registroCpuTotalProcessos = funcionario[1].registroNumero;
+                                            let registroCpuTemperatura = funcionario[0].registroNumero;
+                                            let horaRegistro = new Date(funcionario[4].dataHoraRegistro)
                                             const diferencaMs = now - horaRegistro;
                                             const diffInSeconds = diferencaMs / 1000;
                                             const diffInMinutes = diffInSeconds / 60;
@@ -456,24 +456,24 @@ function getMaquinaAlerta() {
                                             let corStatus = 'yellow'
                                             let textoStatus = 'Crítico'
                                             
-                                            if(funcionario[0].statusRegistro == 'Crítico') {
+                                            if(funcionario[4].statusRegistro == 'Crítico') {
                                                 corDisco = "red"                             
                                                 
-                                            } else if (funcionario[0].statusRegistro == 'Alerta') {
+                                            } else if (funcionario[4].statusRegistro == 'Alerta') {
                                                 corDisco = 'yellow' 
                                             }
                                             
-                                            if(funcionario[1].statusRegistro == 'Crítico') {
+                                            if(funcionario[3].statusRegistro == 'Crítico') {
                                                 corMemoria = "red"                            
                                                 
-                                            } else if (funcionario[1].statusRegistro == 'Alerta') {
+                                            } else if (funcionario[3].statusRegistro == 'Alerta') {
                                                 corMemoria = 'yellow'
                                             }
                                             
-                                            if(funcionario[2].statusRegistro == 'Crítico' || funcionario[4].statusRegistro == 'Crítico') {
+                                            if(funcionario[2].statusRegistro == 'Crítico' || funcionario[0].statusRegistro == 'Crítico') {
                                                 corCPU = "red"                    
                                                 
-                                            } else if (funcionario[2].statusRegistro == 'Alerta' || funcionario[4].statusRegistro == 'Alerta') {
+                                            } else if (funcionario[2].statusRegistro == 'Alerta' || funcionario[0].statusRegistro == 'Alerta') {
                                                 corCPU = 'yellow'
                                             }
                                             
