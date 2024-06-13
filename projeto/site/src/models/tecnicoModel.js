@@ -318,7 +318,7 @@ function buscarQuantidadeDeMaquinasEmAlerta(fkEmpresa) {
             r.statusRegistro,
             f.statusLogin, -- Adiciona statusLogin aqui
             
-            ROW_NUMBER() OVER (PARTITION BY r.fkMaquina ORDER BY r.dataHoraRegistro DESC) AS rn
+            ROW_NUMBER() OVER (PARTITION BY r.fkMaquina ORDER BY r.idRegistro DESC) AS rn
         FROM 
             registroEspecificacaoComponente r
         JOIN 
