@@ -282,9 +282,6 @@ td img {
     border-radius: 6px;
 }
 
-
-
-
 #modalSair, #modalRemover{
     display: none;
     justify-content: space-between;
@@ -353,7 +350,7 @@ td img {
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    z-index: 3;
 }
 
 .container-modal{ 

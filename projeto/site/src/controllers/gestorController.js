@@ -339,6 +339,26 @@ function contarAlertasMaisTempo(req, res) {
     }
 }
 
+function confirmarRemocao(req, res) {
+    var idFuncionario = req.body.idFuncionarioServer;
+
+    if (idFuncionario == undefined) {
+        res.status(400).send("Seu idFuncionario está undefined!");
+    } else {
+        gestorModel.confirmarRemocao(idFuncionario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,

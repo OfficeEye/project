@@ -227,6 +227,15 @@ function contarAlertasMaisTempo(fkEmpresa){
     return database.executar(instrucao);
 }
 
+function confirmarRemocao(idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        DELETE FROM funcionario WHERE idFuncionario = ${idFuncionario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
+}
+
 
 
 module.exports = {
@@ -242,5 +251,6 @@ module.exports = {
     pegarDadosGrafico2,
     contarComputadoresEmAlerta,
     contarChamadosPrioritariosAbertos,
-    contarAlertasMaisTempo
+    contarAlertasMaisTempo,
+    confirmarRemocao
 };

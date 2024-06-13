@@ -139,7 +139,7 @@ function getNameUser() {
             // console.log("resposta: ", resposta);
             resposta.json().then(function (nomeEmpresa) {
                 console.log(nomeEmpresa)
-                nomeUser.innerHTML = `Cadastro de funcionarios da ${nomeEmpresa.nomeFantasia}`
+                nomeUser.innerHTML = `Cadastro de funcionários da <span style ="color: #3b9b9b">${nomeEmpresa.nomeFantasia}<span>`
             })
             
             // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
@@ -371,11 +371,13 @@ function openModal(texto){
     modalSair.classList.add("active");
     modalBackground.classList.add("active");
 }
+
 function closeModal(){
     modalSair.classList.remove("active");
     modalRemover.classList.remove("active");
     modalEditar.classList.remove("active");
     modalBackground.classList.remove("active");
+    console.log('Fechando o modal')
 }
 
 function returnCadastrarUsuario() {
@@ -404,37 +406,39 @@ function editarFuncionario() {
     modalBackground.classList.add("active");
 }
 
-function confirmarRemocao(idFuncionario){
-    let idFuncionarioVar = idFuncionario
-
-    console.log(idFuncionario)
-
-    if(idFuncionarioVar == ""){
-        console.log("idFuncionario nulo")
-    } else {
-        fetch("/gestor/excluirContaFuncionario",{
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                idFuncionarioServer: idFuncionarioVar
-            })
-        }).then(function (resposta) {
-            console.log("Deletado")
+function confirmarRemocao(idFuncionario) {
+    fetch("../gestor/excluirContaFuncionario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idFuncionarioServer: idFuncionario
+        }),
+    }).then(
+        function (resposta) {
             console.log("resposta: ", resposta);
-
-            closeModal()
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        
             getDadosFuncionario()
-            
-        }).catch(function (erro) {
-            console.log("#ERRO: " + erro);
-        })
-        return false;
-    }
-    
+            closeModal()
+            clearInput()
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+    return false;
 }
 
-function confirmarEdicao(){
-    closeModal()
+function clearInput(){
+    document.getElementById('nome_input').value = ''
+    document.getElementById('email_input').value = ''
+    document.getElementById('cpf_input').value = ''
+    document.getElementById('cargo_input').value = ''
+    document.getElementById('senha_input').value = ''
+    document.getElementById('confirmacao_senha_input').value = ''
 }
+    
+
