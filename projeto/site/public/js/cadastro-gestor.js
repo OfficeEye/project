@@ -432,6 +432,7 @@ function confirmarRemocao(idFuncionario) {
     return false;
 }
 
+
 function clearInput(){
     document.getElementById('nome_input').value = ''
     document.getElementById('email_input').value = ''

@@ -10,7 +10,7 @@ function validarSessao() {
 }
 function getNameUser() {
     const user = localStorage.NOME_USUARIO;
-    nomeUser.innerHTML = `Bem vindo, ${user}`
+    nomeUser.innerHTML = `Bem vindo, <span style = "color: #3b9b9b">${user}</span>`
 }
 function logout() {
     localStorage.removeItem('ID_USUARIO')

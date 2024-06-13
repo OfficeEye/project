@@ -162,7 +162,7 @@ img{
     width: 80%;
     height: 65%;
     font-size: 500%;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .content .container .low{
@@ -187,6 +187,22 @@ img{
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
+.data-selecionada{
+    border: none;
+    height: 20px;
+    width: 100px;
+    padding-left: 5px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.botao-ver{
+    border: none;
+    height: 20px;
+    width: 30px;
+    border-radius: 4px;
+    font-weight: bold;
+}
 .content .container .low .box .dados{
     display: flex;
     flex-direction: column;

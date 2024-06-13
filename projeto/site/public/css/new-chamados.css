@@ -8,6 +8,21 @@
     scroll-behavior: smooth;
   }
 
+  body::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #3B9B9B;
+    border: 3px solid #3B9B9B;
+    border-radius: 20px;
+  }
+
   body{
     font-family: 'Roboto', sans-serif;
     background-color: #262525;

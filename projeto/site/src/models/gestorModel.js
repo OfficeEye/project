@@ -236,6 +236,15 @@ function confirmarRemocao(idFuncionario) {
     return database.executar(instrucao); 
 }
 
+function confirmarEdicao(idFuncionario, nome, email, cpf, area, senha) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        UPDATE funcionario SET nome = '${nome}', email = '${email}', cpf = ${cpf}, area = '${area}', senha = '${senha}' WHERE idFuncionario = ${idFuncionario};
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
+}
+
 
 
 module.exports = {
@@ -252,5 +261,6 @@ module.exports = {
     contarComputadoresEmAlerta,
     contarChamadosPrioritariosAbertos,
     contarAlertasMaisTempo,
-    confirmarRemocao
+    confirmarRemocao,
+    confirmarEdicao
 };

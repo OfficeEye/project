@@ -359,6 +359,42 @@ function confirmarRemocao(req, res) {
     }
 }
 
+function confirmarEdicao(req, res) {
+    let idFuncionario = req.body.idFuncionarioServer;
+    let nome = req.body.nomeServer;
+    let email = req.body.emailServer;
+    let cpf = req.body.cpfServer;
+    let area = req.body.areaServer;
+    let senha = req.body.senhaServer;
+
+    if (idFuncionario == undefined) {
+        res.status(400).send("Seu idFuncionario está undefined!");
+    }else if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!")
+    }else if (email == undefined) {
+        res.status(400).send("Seu email está undefined!")
+    }else if (cpf == undefined) {
+        res.status(400).send("seu CPF está undefined!")
+    }else if (area == undefined) {
+        res.status(400).send("Sua area está undefined!")
+    }else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!")
+    } else {
+        gestorModel.confirmarEdicao(idFuncionario, nome, email, cpf, area, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+
+}
+
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
@@ -372,5 +408,7 @@ module.exports = {
     pegarDadosGrafico2,
     contarComputadoresEmAlerta,
     contarChamadosPrioritariosAbertos,
-    contarAlertasMaisTempo
+    contarAlertasMaisTempo,
+    confirmarRemocao,
+    confirmarEdicao
 }

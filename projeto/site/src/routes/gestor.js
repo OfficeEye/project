@@ -64,6 +64,9 @@ router.delete("/confirmarRemocao", function (req, res) {
     gestorController.confirmarRemocao(req, res);
 });
 
+router.put("/confirmarEdicao", function (req, res) {
+    gestorController.confirmarEdicao(req, res);
+});
 
 
 module.exports = router;
