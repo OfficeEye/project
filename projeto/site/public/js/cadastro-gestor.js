@@ -493,7 +493,7 @@ function confirmarEdicao(idFuncionario) {
 
     }else {
         
-        fetch("/gestor/editarInformacoesFuncionario", {
+        fetch("../gestor/editarInformacoesFuncionario", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
