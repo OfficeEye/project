@@ -16,6 +16,15 @@ function gestorCadastrarFuncionario(nome, email, cpf, cargo, senha, fkEmpresa) {
     return database.executar(instrucao);   
 }
 
+function getNomeEmpresa(fkEmpresa) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+    SELECT nomeFantasia FROM empresa WHERE idEmpresa = ${fkEmpresa}
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);   
+}
+
 function buscarInformacoesUsuario(idUsuario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
@@ -223,6 +232,7 @@ function contarAlertasMaisTempo(fkEmpresa){
 module.exports = {
     cadastrarUsuario,
     gestorCadastrarFuncionario,
+    getNomeEmpresa,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,

@@ -99,7 +99,7 @@ body {
 
 .div_tabelaUsuarios .column-1{
     height: 100%;
-    width: 50%;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,14 +156,14 @@ button{
 
 .div_tabelaUsuarios .column-2{
     height: 100%;
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 table {
-    width: 600px;
+    width: 900px;
     height: 70%;
     border: 2px solid #3B9B9B;
     border-radius: 10px;
@@ -206,7 +206,6 @@ td {
 tr {
     width: 100%;
     display: flex;
-    justify-content: space-between;
 
 }
 
@@ -218,24 +217,40 @@ tr {
 .th-nome {
     width: 190px;
 }
+
+.th-email {    
+    padding-left: 100px;
+}
+
+.th-area {
+    padding-left: 250px;
+}
+
+
+.th-acoes {
+    width: 120px;
+    padding-left: 170px;
+}
+
 .td-nome {
     width: 150px;
+    padding-left: 25px;
 }
 
-.th-maquina,
-.td-maquina {
-    width: 140px;
+.td-email {
+    padding-left: 30px;
+    width: 350px;
 }
 
-.th-acoes,
-.td-acoes {
-    width: 120px;
+.td-area {
+    padding-left: 60px;
+    width: 150px;
 }
-
 
 .container-img {
     display: flex;
     width: 80px;
+    padding-left: 150px;
 }
 
 td img {

@@ -136,7 +136,7 @@ function getUltimoStatusRegistro(fkEmpresa, idFuncionario) {
         JOIN maquina ON especificacaoComponente.fkMaquina = idMaquina
         JOIN funcionario ON maquina.fkFuncionario = idFuncionario
             WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND funcionario.idFuncionario = ${idFuncionario}  
-        ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;
+        ORDER BY registroEspecificacaoComponente.idRegistro DESC;
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -164,7 +164,7 @@ function getUltimosRegistroComponentesUsoCpu(fkEmpresa, idFuncionario) {
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Uso do processador'
-        ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;       
+        ORDER BY registroEspecificacaoComponente.idRegistro DESC;       
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -193,7 +193,7 @@ function getUltimosRegistroComponentesUsoMemoriaRam(fkEmpresa, idFuncionario) {
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
     JOIN especificacaoComponente ON registroEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Memória em uso'
-        ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;       
+        ORDER BY registroEspecificacaoComponente.idRegistro DESC;       
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -222,7 +222,7 @@ function getUltimosRegistroComponentesUsoDisco(fkEmpresa, idFuncionario) {
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
     JOIN especificacaoComponente ON registroEspecificacaoComponente.fkEspecificacaoComponente = idEspecificacaoComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Espaço disponível'
-        ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;     
+        ORDER BY registroEspecificacaoComponente.idRegistro DESC;     
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -250,7 +250,7 @@ function getUltimosRegistroComponentesTemperaturaCpu(fkEmpresa, idFuncionario) {
     JOIN maquina ON registroEspecificacaoComponente.fkMaquina = idMaquina
     JOIN componente ON registroEspecificacaoComponente.fkComponente = idComponente
         WHERE registroEspecificacaoComponente.fkEmpresa = ${fkEmpresa} AND registroEspecificacaoComponente.fkFuncionario = ${idFuncionario} AND registroEspecificacaoComponente.tipoRegistro = 'Temperatura da CPU'
-        ORDER BY registroEspecificacaoComponente.dataHoraRegistro DESC;         
+        ORDER BY registroEspecificacaoComponente.idRegistro DESC;         
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

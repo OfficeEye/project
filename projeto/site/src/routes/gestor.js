@@ -15,6 +15,10 @@ router.post("/buscarInformacoesUsuario", function (req, res) {
     gestorController.buscarInformacoesUsuario(req, res);
 });
 
+router.post("/getNomeEmpresa", function (req, res) {
+    gestorController.getNomeEmpresa(req, res);
+});
+
 router.put("/editarInformacoesUsuario", function (req, res) {
     gestorController.editarInformacoesUsuario(req, res);
 });

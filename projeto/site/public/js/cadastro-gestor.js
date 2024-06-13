@@ -121,8 +121,35 @@ function validarSessao() {
 }
 
 function getNameUser() {
-    const user = localStorage.NOME_USUARIO;
-    nomeUser.innerHTML = `Bem vindo, ${user}`
+    // const user = localStorage.NOME_USUARIO;
+    // nomeUser.innerHTML = `Bem vindo, ${user}`
+    let fkEmpresaVar = localStorage.EMPRESA_USUARIO;
+
+    fetch("../gestor/getNomeEmpresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            
+            fkEmpresaServer: fkEmpresaVar
+        }),
+    }).then(
+        function (resposta) {
+            // console.log("resposta: ", resposta);
+            resposta.json().then(function (nomeEmpresa) {
+                console.log(nomeEmpresa)
+                nomeUser.innerHTML = `Cadastro de funcionarios da ${nomeEmpresa.nomeFantasia}`
+            })
+            
+            // FAZER ALGO QUANDO EXECUTAR COM EXITO O COMANDO SQL
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+    return false;
 }
 
 function logout() {

@@ -75,6 +75,30 @@ function gestorCadastrarFuncionario(req, res) {
     }
 }
 
+function getNomeEmpresa(req, res) {
+    let fkEmpresa = req.body.fkEmpresaServer;
+
+    if (fkEmpresa == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.getNomeEmpresa(fkEmpresa)
+        .then(
+            function (resultado) {
+                if (resultado.length == 1){
+                    res.json(resultado[0])
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 function buscarInformacoesUsuario (req, res) {
     var idUsuario = req.body.idUsuarioServer;
 
@@ -318,6 +342,7 @@ function contarAlertasMaisTempo(req, res) {
 module.exports = {
     gestorCadastrarUsuario,
     gestorCadastrarFuncionario,
+    getNomeEmpresa,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
     excluirContaUsuario,

@@ -20,23 +20,31 @@
             <img src="../assets/svg/settings.svg" alt="" onclick="returnConfig()">
         </div>
     </div>
-    <div>
-        <label for="nome_input">Nome</label>
-        <input id="nome_input" type="text">
-
-        <label for="email_input">E-mail</label>
-        <input id="email_input" type="text">
-
-        <label for="cpf_input">CPF</label>
-        <input id="cpf_input" type="text">
-        
-        <label for="senha_input">Senha</label>
-        <input id="senha_input" type="text">   
-
-        <button onclick="editarInformacoesUsuario()">Atualizar</button>
-        
-        <button onclick="excluirContaUsuario()">Excluir Conta</button>
+    <div class="div_content">
+        <div class="div_header">
+            <div class="div_tituloPagina">
+                <h1 id="tituloPagina" style="color: white;">Editar informação pessoal</h1>
+            </div>
+        </div>
+        <div class="div_campoEditavel">
+            <label for="nome_input">Nome</label>
+            <input id="nome_input" type="text">
+    
+            <label for="email_input">E-mail</label>
+            <input id="email_input" type="text">
+    
+            <label for="cpf_input">CPF</label>
+            <input id="cpf_input" type="text">
+            
+            <label for="senha_input">Senha</label>
+            <input id="senha_input" type="text">   
+    
+            <button onclick="editarInformacoesUsuario()">Atualizar</button>
+            
+            <button onclick="excluirContaUsuario()">Excluir Conta</button>
+        </div>
     </div>
+    
     <div class="modal-background" id="modalBackground"></div>
     
     <dialog id="modalSair">

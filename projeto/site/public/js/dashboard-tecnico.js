@@ -155,6 +155,7 @@ function plotarGraficoEspecificacaoMaquina() {
                     for(let i = registro.length- 1; i >= 0; i--) {
                         var registroUsoMemoriaRam = registro[i].registroNumero
                         var dataHora = registro[i].dataRegistro
+                        // console.log(dataHora.getHours())
                         data.push(registroUsoMemoriaRam)
                         labels.push(dataHora)
                     }
