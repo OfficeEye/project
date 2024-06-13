@@ -61,6 +61,24 @@ function getDadosFuncionario(fkEmpresa){
     return database.executar(instrucao);
 }
 
+function getDadosFuncionarioEditavel(idFuncionario) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        SELECT idFuncionario, nome, cpf, area, email, senha FROM funcionario WHERE idFuncionario = '${idFuncionario}';
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function editarInformacoesFuncionario(idFuncionario, nome, cpf, area, email, senha) {
+    console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
+    var instrucao = `
+        UPDATE funcionario SET nome = '${nome}', cpf = ${cpf}, area = '${area}', email = '${email}', senha = '${senha}' WHERE funcionario.idFuncionario = '${idFuncionario}';
+    `
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao); 
+}
+
 function excluirContaFuncionario(idFuncionario) {
     console.log("Script do banco de dados para fazer cadastro - Clonar data viz separadamente e consultar chamado Cadastrar")
     var instrucao = `
@@ -255,6 +273,8 @@ module.exports = {
     editarInformacoesUsuario,
     excluirContaUsuario,
     getDadosFuncionario,
+    getDadosFuncionarioEditavel,
+    editarInformacoesFuncionario,
     excluirContaFuncionario,
     pegarDadosGrafico1,
     pegarDadosGrafico2,

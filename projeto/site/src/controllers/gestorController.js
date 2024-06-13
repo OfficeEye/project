@@ -199,6 +199,65 @@ function getDadosFuncionario(req, res) {
     }
 }
 
+function getDadosFuncionarioEditavel(req, res) {
+    var idFuncionario = req.body.idFuncionarioServer;
+
+    if (idFuncionario == undefined) {
+        res.status(400).send("Seu fkEmpresa está undefined!");
+    } else {
+        gestorModel.getDadosFuncionarioEditavel(idFuncionario)
+        .then(
+            function (resultado) {
+                if (resultado.length >= 1){
+                    res.json(resultado)
+                } else if (resultado.length == 0) {
+                    res.status(403).send("fkEmpresa inválido(s)");
+                }
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
+function editarInformacoesFuncionario(req, res) {
+    var idFuncionario = req.body.idFuncionarioServer;
+    var nome = req.body.nomeFuncionarioServer;
+    var cpf = req.body.cpfServer;
+    var area = req.body.areaServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (idFuncionario == undefined) {
+        res.status(403).send("Seu idFuncionario está undefined!");
+    } else if (nome == undefined) {
+        res.status(403).send("Seu idFuncionario está undefined!");
+    } else if (cpf == undefined) {
+        res.status(403).send("fkEmpresa inválido(s)");
+    } else if (area == undefined) {
+        res.status(403).send("fkEmpresa inválido(s)");
+    } else if (email == undefined) {
+        res.status(403).send("fkEmpresa inválido(s)");
+    } else if (senha == undefined) {
+        res.status(403).send("fkEmpresa inválido(s)");
+    } else {
+        gestorModel.editarInformacoesFuncionario(idFuncionario, nome, cpf, area, email, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        );
+    }
+}
+
 function excluirContaFuncionario(req, res) {
     var idFuncionario = req.body.idFuncionarioServer;
 
@@ -401,6 +460,8 @@ module.exports = {
     getNomeEmpresa,
     buscarInformacoesUsuario,
     editarInformacoesUsuario,
+    getDadosFuncionarioEditavel,
+    editarInformacoesFuncionario,
     excluirContaUsuario,
     getDadosFuncionario,
     excluirContaFuncionario,

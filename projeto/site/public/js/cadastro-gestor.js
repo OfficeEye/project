@@ -401,9 +401,50 @@ function removerFuncionario(idFuncionario) {
     modalBackground.classList.add("active");
 }
 
-function editarFuncionario() {
+function editarFuncionario(idFuncionario) {
+    var button = document.getElementById('button_editar_funcionario')
+    console.log(idFuncionario)
+    button.onclick = function() {
+        confirmarEdicao(idFuncionario);
+    };
     modalEditar.classList.add("active");
     modalBackground.classList.add("active");
+
+    fetch("../gestor/getDadosFuncionarioEditavel", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idFuncionarioServer: idFuncionario
+        }),
+    }).then(
+        function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (funcionario) {
+                    console.log(funcionario);
+                    nomeFuncionario_input.value = funcionario[0].nome
+                    cpfFuncionario_input.value =  funcionario[0].cpf
+                    areaFuncionario_input.value = funcionario[0].area
+                    emailFuncionario_input.value = funcionario[0].email
+                    senhaFuncionario_input.value = funcionario[0].senha
+                })
+            }else {
+    
+                console.log("Houve um erro ao tentar buscar dados!");
+    
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }           
+        }
+    ).catch(
+        function (resposta) {
+            console.log(`#ERRO: ${resposta}`)
+        }
+    );
+
+    
 }
 
 function confirmarRemocao(idFuncionario) {
@@ -430,6 +471,51 @@ function confirmarRemocao(idFuncionario) {
         }
     );
     return false;
+}
+
+function confirmarEdicao(idFuncionario) {
+    let idFuncionarioVar = idFuncionario;
+    var nomeFuncionarioVar = nomeFuncionario_input.value
+    var cpfVar = cpfFuncionario_input.value
+    var areaVar = areaFuncionario_input.value
+    var emailVar = emailFuncionario_input.value
+    var senhaVar = senhaFuncionario_input.value
+    
+    if (nomeFuncionarioVar == "") {
+        
+    } else if (emailVar.trim() == "" || emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1) {
+        
+    } else if (cpfVar.length != 11) {
+        
+    } else if (senhaVar < 6) {
+
+    } else if (areaVar == "") {
+
+    }else {
+        
+        fetch("/gestor/editarInformacoesFuncionario", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                idFuncionarioServer: idFuncionarioVar,
+                nomeFuncionarioServer: nomeFuncionarioVar,
+                cpfServer: cpfVar,
+                areaServer: areaVar,
+                emailServer: emailVar,                
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("atualizado!")
+            console.log("resposta: ", resposta);
+            closeModal()
+            getDadosFuncionario()
+        }).catch(function (erro) {
+            console.log("#ERRO: " + erro);
+        })
+        return false;
+    }
 }
 
 

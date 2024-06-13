@@ -31,6 +31,14 @@ router.post("/getDadosFuncionario", function (req, res) {
     gestorController.getDadosFuncionario(req, res);
 });
 
+router.post("/getDadosFuncionarioEditavel", function (req, res) {
+    gestorController.getDadosFuncionarioEditavel(req, res);
+});
+
+router.post("/editarInformacoesFuncionario", function (req, res) {
+    gestorController.editarInformacoesFuncionario(req, res);
+});
+
 router.post("/excluirContaFuncionario", function (req, res) {
     gestorController.excluirContaFuncionario(req, res);
 });

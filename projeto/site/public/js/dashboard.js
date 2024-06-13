@@ -240,7 +240,7 @@ function getDadosMaquina() {
                                 <td class="td-fabricante">${fabricante}</td>
                                 <td class="container-img">
                                     <img class="btn-excluir" src="../assets/svg/trash-icon.svg" alt="" onclick="removerMaquina()">
-                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario(id)">
+                                    <img class="btn-editar" src="../assets/svg/lapis.svg" alt="" onclick="editarFuncionario()">
                                 </td>
                                 
                             </tr>
